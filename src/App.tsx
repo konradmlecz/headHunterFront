@@ -5,12 +5,10 @@ import Login from './routes/login/Login'
 
 function App() {
   return (
-    <div>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="login" element={<Login />} />
       </Routes>
-    </div>
   );
 }
 
