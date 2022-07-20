@@ -1,3 +1,19 @@
+:root {
+  --main-text-color: #F7F7F7;
+  --main-background-color: #222224;
+  --input-placeholder-color: #7E7E7E;
+  --input-background-color: #292A2B;
+  --button-background-color: #E02735;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Catamaran', sans-serif;
+  color: var(--main-text-color);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +21,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  background-color: var(--main-background-color);
 }
 
 code {

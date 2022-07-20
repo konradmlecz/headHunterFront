@@ -1,18 +1,3 @@
-:root {
-    --main-text-color: #F7F7F7;
-    --main-background-color: #222224;
-    --input-placeholder-color: #7E7E7E;
-    --input-background-color: #292A2B;
-    --button-background-color: #E02735;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Catamaran', sans-serif;
-    color: var(--main-text-color);
-}
 
 .login-wrapper, .login-wrapper__form, .login-wrapper__form__bottom-form-line {
     display: flex;
