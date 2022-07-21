@@ -4,6 +4,7 @@
     --input-placeholder-color: #7E7E7E;
     --input-background-color: #292A2B;
     --button-background-color: #E02735;
+    --button-background-color-hover: #a91e29;
 }
 
 * {
@@ -13,7 +14,6 @@
     font-family: 'Catamaran', sans-serif;
     color: var(--main-text-color);
 }
-
 .login-wrapper, .login-wrapper__form, .login-wrapper__form__bottom-form-line {
     display: flex;
     justify-content: center;
@@ -42,6 +42,7 @@
 .login-wrapper__form__input-email, .login-wrapper__form__input-password {
     width: 350px;
     height: 40px;
+    font-size: 16px;
     color: var(--input-placeholder-color);
     background-color:var(--input-background-color);
     border-style: none;
@@ -58,20 +59,29 @@
 }
 
 .login-wrapper__form__link-forgot {
-    text-decoration: none;
     align-self: flex-end;
-    margin: 15px 0px 28px;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0 22px;
 }
 
 .login-wrapper__form__register-label {
     width: 60%;
+    font-size: 14px;
 }
 
 .login-wrapper__form__submit-button {
     width: 91px;
     height: 39px;
+    font-size: 16px;
     padding: 6px 10px;
     align-self: flex-end;
     background-color: var(--button-background-color);
     border-style: none;
+    transition: .3s;
+}
+
+.login-wrapper__form__submit-button:hover {
+    cursor: pointer;
+    background-color: var(--button-background-color-hover);
 }
