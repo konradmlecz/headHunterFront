@@ -1,8 +1,18 @@
+import TopBelt from '../../components/topBelt/TopBelt';
+import {Box} from '@mui/material';
+
 function HeadHunterView() {
     return (
-      <div>
-        HeadHunterView
-      </div>
+ 
+        <Box sx={{
+         width:'1200px',
+         display:'flex',
+         justifyContent:'center',
+      }}>
+        
+             
+      </Box>
+
     );
   }
   
