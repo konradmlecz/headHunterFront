@@ -3,10 +3,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Navigate} from "react-router-dom";
 
+type Roles = 'USER' | 'ADMIN' | 'HEADHUNTER'
+
+
 function Main() {
     const [isLoading, setIsLoading] = React.useState(true);
     const [isLogged, setIsLogged] = React.useState(false);
-  
+    const [role, setRole] = React.useState<Roles>("HEADHUNTER");
 
     React.useEffect(() => {
       setTimeout(() => {
@@ -27,10 +30,28 @@ function Main() {
         </Box>
       );
     }
+    if(isLogged && role === "ADMIN"){
+      return (
+        <>
+        {
+           <Navigate to="/admin" /> 
+         }
+     </>
+      );
+    }
+    if(isLogged && role === "HEADHUNTER"){
+      return (
+        <>
+        {
+            <Navigate to="/headhunter" /> 
+         }
+     </>
+      );
+    }
     return (
       <>
          {
-            isLogged ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
+            isLogged ? <Navigate to="/user" /> : <Navigate to="/login" />
           }
       </>
     );

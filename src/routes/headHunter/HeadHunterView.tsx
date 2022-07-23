@@ -1,9 +1,9 @@
-import TopBelt from '../../components/topBelt/TopBelt';
 import {Box, Typography ,TextField ,Button} from '@mui/material';
-
+import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 
 function HeadHunterView() {
     return (
+      <WrapperLoggedView>
       <Box sx={{
         display:'flex',
         justifyContent:'center',
@@ -84,7 +84,7 @@ function HeadHunterView() {
         </Box>
       </Box>
       </Box>
- 
+      </WrapperLoggedView>
     );
   }
   
