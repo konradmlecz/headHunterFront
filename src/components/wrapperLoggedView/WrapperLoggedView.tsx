@@ -13,8 +13,7 @@ const WrapperLoggedView: FC<Props> =({children}) => {
          minHeight: '100vh',
          display:'grid',
          gridTemplateColumns: 'auto',
-         gridTemplateRows: '100px 1fr',
-         justifyContent:'center',
+         gridTemplateRows: '80px 1fr',
       }}>
         <TopBelt/>    
          {children}
