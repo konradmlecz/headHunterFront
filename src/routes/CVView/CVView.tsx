@@ -1,13 +1,11 @@
 import React from "react";
 import temp_photo from '../../images/temp_photo.jpg';
 import defaultUser from '../../images/default_user_icon_4_by_karmaanddestiny_de7834s.jpg';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import arrow from '../../images/icons/Group 29.png';
 import githubIco from '../../images/icons/GitHub-Mark-64px.png';
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { phoneReceiverIconDefinition, envelopeIconDefinition, starIconDefinition, paperClipIconDefinition } from '../../helpers/fontAwsomeIcons';
+import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 
 import './CVView.css';
 
@@ -37,7 +35,7 @@ const tempData = {
 
 // function to color stars relates to rating
 const colorStars = (rate: number) => {
-    return [...Array(5)].map((icon, i: number) => {
+    return [...Array(5)].map((icon: IconDefinition, i: number) => {
         if (i < rate) {
             return <FontAwesomeIcon icon={starIconDefinition} key={i} className="red"/>
         } else {
@@ -71,7 +69,7 @@ export const CVView = () => {
                     </div>
                     <div className="cv__short-bio__info">
                         <p className="cv__short-bio__info__name">{tempData.name}</p>
-                        <a href="" className="cv__short-bio__info__git">
+                        <a href={`https://github.com/${tempData.github}`} className="cv__short-bio__info__git">
                             <img src={githubIco} alt="Arrow sign" className="cv__short-bio__info__git__ico"/>
                             {tempData.github}
                         </a>
@@ -79,7 +77,9 @@ export const CVView = () => {
                             <FontAwesomeIcon icon={phoneReceiverIconDefinition}/> {tempData.phone}
                         </p>
                         <p className="cv__short-bio__info__email">
-                            <FontAwesomeIcon icon={envelopeIconDefinition} /> {tempData.email}</p>
+                            <FontAwesomeIcon icon={envelopeIconDefinition} />
+                            <a href={`mailto:{tempData.email}`} className="cv__short-bio__info__email__link">{tempData.email}</a>
+                        </p>
                         <p className="cv__short-bio__info__about-me">O mnie</p>
                         <p className="cv__short-bio__info__about-me-text">{tempData.info}</p>
                     </div>
@@ -222,8 +222,8 @@ export const CVView = () => {
                         </div>
                         <div className="cv__main-bio__content">
                             <div className="cv__main-bio__content__scrum">
-                                {tempData.scrumLinks.map(link => (
-                                    <a href="" className="cv__main-bio__content__scrum__link">
+                                {tempData.scrumLinks.map((link: string, i: number) => (
+                                    <a href="" className="cv__main-bio__content__scrum__link" key={i}>
                                         <span className="cv__main-bio__content__scrum__icon"><FontAwesomeIcon icon={paperClipIconDefinition}/></span>
                                         {link}
                                     </a>
@@ -237,8 +237,8 @@ export const CVView = () => {
                         </div>
                         <div className="cv__main-bio__content">
                             <div className="cv__main-bio__content__pass">
-                                {tempData.passLinks.map(link => (
-                                        <a href="" className="cv__main-bio__content__pass__link">
+                                {tempData.passLinks.map((link: string, i: number) => (
+                                        <a href="" className="cv__main-bio__content__pass__link" key={i}>
                                         <span className="cv__main-bio__content__pass__icon"><FontAwesomeIcon icon={paperClipIconDefinition}/></span>
                                 {link}
                                         </a>

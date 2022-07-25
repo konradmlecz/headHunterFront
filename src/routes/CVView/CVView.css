@@ -165,6 +165,14 @@
     align-self: flex-start;
 }
 
+.cv__short-bio__info__email__link {
+    text-decoration: none;
+}
+
+.fa-phone, .fa-envelope {
+    margin-right: 10px;
+}
+
 .fa-phone path, .fa-envelope path {
     color: var(--shaded-element-color);
 }
