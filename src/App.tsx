@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import Main from './routes/main/Main'
-import Login from './routes/login/Login'
+import {Login} from './routes/login/Login'
 import Admin from './routes/adminView/AdminView'
 import User from './routes/userView/UserView'
 import HeadHunterView from './routes/headHunter/HeadHunterView';
