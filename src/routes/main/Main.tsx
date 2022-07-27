@@ -2,7 +2,8 @@ import * as React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Navigate} from "react-router-dom";
-
+import {Global} from '../../context/store';
+import {auth} from '../../utils/auth';
 type Roles = 'USER' | 'ADMIN' | 'HEADHUNTER'
 
 
@@ -10,16 +11,15 @@ function Main() {
     const [isLoading, setIsLoading] = React.useState(true);
     const [isLogged, setIsLogged] = React.useState(false);
     const [role, setRole] = React.useState<Roles>("HEADHUNTER");
+    const { dispatchGlobalContext, globalState } = React.useContext(Global);
 
     React.useEffect(() => {
       setTimeout(() => {
-       const getData = ()=>{
-          const isLogged = true
-          return isLogged
-        }
-          getData()
-       setIsLoading(false)
-       setIsLogged(getData())
+       (async ()=>{
+         const data = await auth()
+          console.log(data);
+       })()
+      //  setIsLoading(false)
       }, 1000)
     });
 
