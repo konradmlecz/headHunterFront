@@ -1,20 +1,43 @@
 import React, { SyntheticEvent, useState } from "react";
 import logo from '../../images/megaK_logo.png';
-
+import {login} from '../../utils/login';
 import './Login.css';
+import { useNavigate } from "react-router-dom";
+import {Global} from '../../context/store';
 
 export const Login = () => {
 
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
-
+    const navigate = useNavigate();
+    const { dispatchGlobalContext, globalState } = React.useContext(Global);
+    console.log(globalState, "globalState");
     const submitLoginForm = async (e: SyntheticEvent) => {
-
+        const data = {
+            email:userEmail,
+	        pwd:userPassword,
+            role:'USER'
+        }
         e.preventDefault();
-
-        console.log(userEmail);
-        console.log(userPassword);
+        const response  = await login(data)
+        if(response.isSuccess){
+            dispatchGlobalContext({
+                type:'SET_USER',
+                payload:{
+                    user:{
+                        role: response.role,
+                        name: '',
+                        surname: ''
+                    }
+                }
+            })
+            if(response.role === 'student') navigate("/user", { replace: true });
+            if(response.role === 'hr') navigate("/hr", { replace: true });
+            if(response.role === 'admin') navigate("/admin", { replace: true });
+            }
+        console.log(response, "response");
     }
+
 
     return (
       <div className="login-wrapper">

@@ -4,23 +4,40 @@ import Box from '@mui/material/Box';
 import { Navigate} from "react-router-dom";
 import {Global} from '../../context/store';
 import {auth} from '../../utils/auth';
-type Roles = 'USER' | 'ADMIN' | 'HEADHUNTER'
+
+type Roles = 'student' | 'admin' | 'hr' | ''
 
 
 function Main() {
     const [isLoading, setIsLoading] = React.useState(true);
     const [isLogged, setIsLogged] = React.useState(false);
-    const [role, setRole] = React.useState<Roles>("HEADHUNTER");
+    const [role, setRole] = React.useState<Roles>("");
+
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
 
     React.useEffect(() => {
-      setTimeout(() => {
        (async ()=>{
-         const data = await auth()
-          console.log(data);
+         const response = await auth()
+         if(response.isSuccess){
+          dispatchGlobalContext({
+            type:'SET_USER',
+            payload:{
+                user:{
+                    role: response.role,
+                    name: response.name,
+                    surname: response.surname
+                }
+            }
+            
+        })
+          setIsLogged(true)
+          setRole(response.role)
+         }
+         else {
+          setIsLogged(false)
+         }
+         setIsLoading(false)
        })()
-      //  setIsLoading(false)
-      }, 1000)
     });
 
     if(isLoading){
@@ -30,7 +47,7 @@ function Main() {
         </Box>
       );
     }
-    if(isLogged && role === "ADMIN"){
+    if(isLogged && role === "admin"){
       return (
         <>
         {
@@ -39,7 +56,7 @@ function Main() {
      </>
       );
     }
-    if(isLogged && role === "HEADHUNTER"){
+    if(isLogged && role === "hr"){
       return (
         <>
         {

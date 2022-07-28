@@ -2,7 +2,7 @@ import React, { useReducer, createContext, Reducer } from 'react';
 
 export type GlobalState = {
     user: {
-        role: '' |  'USER' | "ADMIN"| 'HEADHUNTER',
+        role: '' |  'student' | "admin"| 'hr',
         name: string,
         surname: string
     }
@@ -17,7 +17,8 @@ export const initialState:GlobalState = {
 };
 
 export enum ActionKind {
-    SET_USER = 'SET_USER'
+    SET_USER = 'SET_USER',
+    CLEAR_USER = 'CLEAR_USER'
 }
 
 export interface Action {
@@ -32,6 +33,15 @@ export const reducerGlobalState: Reducer<GlobalState, Action> = (state, action) 
                 ...state,
                 user: action.payload.user
             };
+            case ActionKind.CLEAR_USER:
+                return {
+                    ...state,
+                    user:  {
+                        role: '',
+                        name: '',
+                        surname: ''
+                    }
+                };
         default:
             return {
                 ...state
