@@ -1,11 +1,44 @@
 import React, { useReducer, createContext, Reducer } from 'react';
 
+
+type Student = {
+    bio: string;
+    bonusProjectUrls: string;
+    canTakeApprenticeship: boolean;
+    company: string;
+    courseCompletion: number;
+    courseEngagment: number;
+    courses: string;
+    education: string;
+    email: string;
+    expectedContractType: string;
+    expectedSalary: string;
+    expectedTypeWork: string;
+    firstName: string;
+    fullName: string;
+    githubUsername: string;
+    id: string;
+    lastName: string;
+    maxReservedStudents: number;
+    monthsOfCommercialExp: number
+    phone: number;
+    portfolioUrls: string;
+    projectDegree: number;
+    projectUrls: string;
+    targetWorkCity: string;
+    teamProjectDegree: number;
+    workExperience: string;
+}
+
+
+
 export type GlobalState = {
     user: {
         role: '' |  'student' | "admin"| 'hr',
         name: string,
         surname: string
-    }
+    },
+    students:Student[]
 };
 
 export const initialState:GlobalState = {
@@ -13,11 +46,13 @@ export const initialState:GlobalState = {
         role: '',
         name: '',
         surname: ''
-    }
+    },
+    students:[]
 };
 
 export enum ActionKind {
     SET_USER = 'SET_USER',
+    SET_STUDENTS = 'SET_STUDENTS',
     CLEAR_USER = 'CLEAR_USER'
 }
 
@@ -42,6 +77,11 @@ export const reducerGlobalState: Reducer<GlobalState, Action> = (state, action) 
                         surname: ''
                     }
                 };
+                case ActionKind.SET_STUDENTS:
+                    return {
+                        ...state,
+                        students: action.payload.students
+                    };
         default:
             return {
                 ...state

@@ -1,14 +1,23 @@
-import React,{FC} from 'react';
+import React,{FC, useEffect} from 'react';
 import {Box, Typography ,TextField ,Button} from '@mui/material';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 import {Global} from '../../context/store';
 import { useNavigate } from "react-router-dom";
-
+import {getStudentAll} from '../../utils/studentAll'
 function HeadHunterView() {
 
   const { dispatchGlobalContext, globalState } = React.useContext(Global);
   const navigate = useNavigate();
   if(globalState.user.role !== 'hr') navigate("/", { replace: true });
+
+
+useEffect(()=>{
+ (async ()=>{
+  const data = await getStudentAll()
+  
+  console.log(data);
+ })()
+},[])
 
     return (
       <WrapperLoggedView>
