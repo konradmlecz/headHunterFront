@@ -3,9 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import Main from './routes/main/Main'
 import {Login} from './routes/login/Login'
 import Admin from './routes/adminView/AdminView'
-import User from './routes/userView/UserView'
+import StudentView from './routes/studentView/StudentView'
 import HeadHunterView from './routes/headHunter/HeadHunterView';
 import { CVView } from "./routes/CVView/CVView";
+
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="login" element={<Login />} />
         <Route path="admin" element={<Admin />} />
-        <Route path="user" element={<User/>} />
+        <Route path="student" element={<StudentView/>} />
         <Route path="headhunter" element={<HeadHunterView/>} />
         <Route path="cv" element={<CVView />} />
       </Routes>

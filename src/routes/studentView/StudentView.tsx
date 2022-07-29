@@ -1,20 +1,18 @@
-import React,{FC} from 'react';
+import React,{FC} from 'react'
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
-import Box from '@mui/material/Box';
 import {Global} from '../../context/store';
 import { useNavigate } from "react-router-dom";
-function AdminView() {
+function UserView() {
 
   const { dispatchGlobalContext, globalState } = React.useContext(Global);
   const navigate = useNavigate();
-  if(globalState.user.role !== 'admin') navigate("/", { replace: true });
-
+  if(globalState.user.role !== 'student') navigate("/", { replace: true });
     return (
-      <WrapperLoggedView>
-      AdminView
+      <WrapperLoggedView>      
+        UserView
      </WrapperLoggedView>
     );
   }
   
-  export default AdminView;
+  export default UserView;
   

@@ -1,7 +1,15 @@
+import React,{FC} from 'react';
 import {Box, Typography ,TextField ,Button} from '@mui/material';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
+import {Global} from '../../context/store';
+import { useNavigate } from "react-router-dom";
 
 function HeadHunterView() {
+
+  const { dispatchGlobalContext, globalState } = React.useContext(Global);
+  const navigate = useNavigate();
+  if(globalState.user.role !== 'hr') navigate("/", { replace: true });
+
     return (
       <WrapperLoggedView>
       <Box sx={{
