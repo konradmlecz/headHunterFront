@@ -4,16 +4,16 @@ import {login} from '../../utils/login';
 import './Login.css';
 import { useNavigate } from "react-router-dom";
 import {Global} from '../../context/store';
+import {Box, Typography} from '@mui/material';
 
 export const Login = () => {
-
+    const [isError, setIsError] = useState(false)
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
     const navigate = useNavigate();
-    const { dispatchGlobalContext, globalState } = React.useContext(Global);
-    console.log(globalState, "globalState");
+    const { dispatchGlobalContext } = React.useContext(Global);
     const submitLoginForm = async (e: SyntheticEvent) => {
-        const data = {
+        const data = { 
             email:userEmail,
 	        pwd:userPassword,
             role:'USER'
@@ -34,11 +34,12 @@ export const Login = () => {
             if(response.role === 'student') navigate("/user", { replace: true });
             if(response.role === 'hr') navigate("/hr", { replace: true });
             if(response.role === 'admin') navigate("/admin", { replace: true });
+            setIsError(false)
             }
-        console.log(response, "response");
+            else{
+                setIsError(true)
+            }
     }
-
-
     return (
       <div className="login-wrapper">
           <form action="" onSubmit={submitLoginForm} className="login-wrapper__form">
@@ -47,6 +48,13 @@ export const Login = () => {
                   alt="MegaK logo"
                   className="login-wrapper__form__logo"
               />
+              {isError && <Box sx={{
+                paddingBottom:'10px'
+              }}>
+                  <Typography sx={{
+                    color:'red'
+                  }}>Email albo łasło są nieprawidłowe</Typography>
+              </Box>}
               <input
                   type="email"
                   placeholder="E-mail"
