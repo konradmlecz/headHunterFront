@@ -1,6 +1,8 @@
 import React from "react";
 
 import './FilterPopUp.css';
+import {starIconDefinition} from "../../../helpers/fontAwsomeIcons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 interface Props {
     setIsPopUpVisible: (bool: boolean) => void;
@@ -21,18 +23,30 @@ export const FilterPopUp = ({setIsPopUpVisible}: Props) => {
                         <p>Filtrowanie</p>
                         <button>Wyczyść wszystkie</button>
                     </div>
-                    <div>
+                    <div className="popup-inner-wrapper__form__course-rate-segment">
                         <p>Ocena przejścia kursu</p>
-                        <label htmlFor="5-course">5</label>
-                        <input type="radio" id="5-course" name="Course rate" value="5"/>
-                        <label htmlFor="4-course">4</label>
-                        <input type="radio" id="4-course" name="Course rate" value="4"/>
-                        <label htmlFor="3-course">3</label>
-                        <input type="radio" id="3-course" name="Course rate" value="3"/>
-                        <label htmlFor="2-course">2</label>
-                        <input type="radio" id="2-course" name="Course rate" value="2"/>
-                        <label htmlFor="1-course">1</label>
-                        <input type="radio" id="1-course" name="Course rate" value="1"/>
+                        <div className="popup-inner-wrapper__form__star-container">
+                            <label className="popup-inner-wrapper__form__star" htmlFor="5-course">5
+                                <input type="radio" id="5-course" name="Course rate" value="5"/>
+                                <span><FontAwesomeIcon icon={starIconDefinition}/></span>
+                            </label>
+                            <label className="popup-inner-wrapper__form__star" htmlFor="4-course">4
+                                <input type="radio" id="4-course" name="Course rate" value="4"/>
+                                <span><FontAwesomeIcon icon={starIconDefinition}/></span>
+                            </label>
+                            <label className="popup-inner-wrapper__form__star" htmlFor="3-course">3
+                                <input type="radio" id="3-course" name="Course rate" value="3"/>
+                                <span><FontAwesomeIcon icon={starIconDefinition}/></span>
+                            </label>
+                            <label className="popup-inner-wrapper__form__star" htmlFor="2-course">2
+                                <input type="radio" id="2-course" name="Course rate" value="2"/>
+                                <span><FontAwesomeIcon icon={starIconDefinition}/></span>
+                            </label>
+                            <label className="popup-inner-wrapper__form__star" htmlFor="1-course">1
+                                <input type="radio" id="1-course" name="Course rate" value="1"/>
+                                <span><FontAwesomeIcon icon={starIconDefinition}/></span>
+                            </label>
+                        </div>
                     </div>
                     <div>
                         <p>Ocena aktywności i zangażowania na kursie</p>

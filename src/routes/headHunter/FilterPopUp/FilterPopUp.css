@@ -1,3 +1,9 @@
+.popup-inner-wrapper__form__star-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .popup-outer-wrapper {
     position: absolute;
     top: 0;
@@ -27,4 +33,32 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+[type=radio] + span {
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+[type=radio]:checked + span path {
+    color: var(--button-background-color);
+}
+
+.popup-inner-wrapper__form__star-container {
+    width: 100%;
+}
+
+.popup-inner-wrapper__form__star {
+    display: block;
+    width: 50px;
+    margin-right: 8px;
+    padding: 3px 0;
+    background-color: var(--input-background-color);
 }
