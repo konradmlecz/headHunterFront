@@ -45,9 +45,6 @@
 .cv-wrapper {
     width: 100%;
     background-color: var(--main-background-color);
-    /* ↓↓↓ tylko na czas stylowania ↓↓↓ */
-    padding-top: 80px;
-    /* ↑↑↑ --- ↑↑↑ */
     padding-bottom: 40px;
 }
 
@@ -185,6 +182,8 @@
 
 .cv__short-bio__info__about-me-text {
     margin-bottom: 30px;
+    margin-left: 2px;
+    text-align: left;
 }
 
 /*main bio*/
@@ -262,6 +261,7 @@
 .cv__main-bio__content__expectation-container__experience-title{
     width: 100%;
     height: 50%;
+    text-align: left;
 }
 
 .cv__main-bio__content__expectation-container__place__content,
@@ -274,6 +274,7 @@
     height: 35%;
     font-size: 14px;
     font-weight: bold;
+    text-align: left;
 }
 
 .cv__main-bio__content__expectation-container__place__content,
@@ -285,6 +286,7 @@
 .cv__main-bio__content__courses,
 .cv__main-bio__content__profExp {
     padding: 20px 25px 20px;
+    text-align: left;
 }
 
 .cv__main-bio__content__portfolio,

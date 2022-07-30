@@ -1,9 +1,19 @@
 import {Box, Typography ,TextField ,Button} from '@mui/material';
+import {useState} from "react";
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
+import {FilterPopUp} from "./FilterPopUp/FilterPopUp";
 
 function HeadHunterView() {
+
+    const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
+
+    const handleFilterButton = () => {
+        setIsPopUpVisible(true);
+    }
+
     return (
       <WrapperLoggedView>
+          {isPopUpVisible ? <FilterPopUp setIsPopUpVisible={setIsPopUpVisible}/> : null}
       <Box sx={{
         display:'flex',
         justifyContent:'center',
@@ -77,7 +87,10 @@ function HeadHunterView() {
             alignItems:'center'}}>
           <Button   sx={{
               background:'#1E1E1F',
-            }}variant="contained">Filtrowanie</Button>
+            }}
+                    variant="contained"
+                    onClick={handleFilterButton}
+          >Filtrowanie</Button>
            </Box>
          <Box>
          </Box>
