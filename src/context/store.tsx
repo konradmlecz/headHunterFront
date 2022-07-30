@@ -1,7 +1,7 @@
 import React, { useReducer, createContext, Reducer } from 'react';
 
 
-type Student = {
+export type Student = {
     bio: string;
     bonusProjectUrls: string;
     canTakeApprenticeship: boolean;

@@ -3,7 +3,9 @@ import {Box, Typography ,TextField ,Button} from '@mui/material';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 import {Global} from '../../context/store';
 import { useNavigate } from "react-router-dom";
-import {getStudentAll} from '../../utils/studentAll'
+import {getStudentAll} from '../../utils/studentAll';
+import ListItem from '../../components/listItem/ListItem';
+import { isTemplateExpression } from 'typescript';
 function HeadHunterView() {
 
   const { dispatchGlobalContext, globalState } = React.useContext(Global);
@@ -96,8 +98,12 @@ useEffect(()=>{
               background:'#1E1E1F',
             }}variant="contained">Filtrowanie</Button>
            </Box>
-         <Box>
-         </Box>
+        </Box>
+        <Box sx={{
+          background:'#292A2B'
+        }}>
+          {globalState.students.map(item=> <ListItem itemStudent={item}/>)}
+           
         </Box>
       </Box>
       </Box>
