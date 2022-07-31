@@ -153,9 +153,11 @@ export const FilterPopUp = ({setIsPopUpVisible}: Props) => {
                         <div className="popup-inner-wrapper__form__intern-segment__radio-inputs">
                             <label htmlFor="intern-yes">
                             <input className="popup-inner-wrapper__form__intern-segment__radio" type="radio" id="intern-yes" name="internship" value="yes"/>
+                                <span></span>
                             Tak</label>
                             <label htmlFor="intern-no">
                             <input className="popup-inner-wrapper__form__intern-segment__radio" type="radio" id="intern-no" name="internship" value="no"/>
+                                <span></span>
                             Nie</label>
                         </div>
                     </div>
