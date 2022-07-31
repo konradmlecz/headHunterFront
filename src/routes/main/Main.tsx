@@ -69,7 +69,7 @@ function Main() {
     return (
       <>
          {
-            isLogged ? <Navigate to="/user" /> : <Navigate to="/login" />
+            isLogged ? <Navigate to="/student" /> : <Navigate to="/login" />
           }
       </>
     );
