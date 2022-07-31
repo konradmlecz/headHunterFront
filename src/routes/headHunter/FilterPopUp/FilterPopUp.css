@@ -71,6 +71,7 @@
 [type=radio] + span, [type=checkbox] + label {
     cursor: pointer;
     margin-left: 3px;
+    user-select: none;
 }
 
 [type=checkbox] + label {
@@ -124,6 +125,7 @@
     height: 35px;
     margin: 6px 10px 0 10px;
     padding-left: 10px;
+    font-size: 14px;
     background-color: var(--input-background-color);
     border: none;
     color: var(--input-placeholder-color);
@@ -154,6 +156,15 @@
     opacity: 1;
     width: auto;
     height: auto;
+}
+
+.popup-inner-wrapper__form__experience-segment {
+    width: 100%;
+}
+
+.popup-inner-wrapper__form__experience-segment input {
+    display: block;
+    margin-top: 6px;
 }
 
 .popup-inner-wrapper__form__bottom-segment__cancel-button {
