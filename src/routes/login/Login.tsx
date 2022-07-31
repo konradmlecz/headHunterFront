@@ -31,7 +31,7 @@ export const Login = () => {
                     }
                 }
             })
-            if(response.role === 'student') navigate("/user", { replace: true });
+            if(response.role === 'student') navigate("/student", { replace: true });
             if(response.role === 'hr') navigate("/hr", { replace: true });
             if(response.role === 'admin') navigate("/admin", { replace: true });
             setIsError(false)
