@@ -11,7 +11,6 @@ export async function login(data:{pwd:string,email:string}) {
         
     });
     const dataPrimary = await response.text();
-    let dataParsed = null;
     try {
         return  JSON.parse(dataPrimary);
     } catch (e) {

@@ -59,7 +59,7 @@ const id = open ? 'simple-popover' : undefined;
       <Box aria-describedby={id} onClick={handleClick} sx={{
         cursor:'pointer'
       }}>
-        {globalState.user.name && globalState.user.surname ? globalState.user.name + '' + globalState.user.surname :  'Imię i Nazwisko'}
+        {globalState.user.firstName && globalState.user.lastName ? globalState.user.firstName + ' ' + globalState.user.lastName :  'Imię i Nazwisko'}
       </Box>
       <Popover
                             id={id}

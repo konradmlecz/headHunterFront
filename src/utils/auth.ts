@@ -5,7 +5,6 @@ export async function auth() {
         credentials: 'include', // include, *same-origin, omit
     });
     const dataPrimary = await response.text();
-    let dataParsed = null;
     try {
         return JSON.parse(dataPrimary);
     } catch (e) {

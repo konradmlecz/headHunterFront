@@ -18,14 +18,15 @@ function Main() {
     React.useEffect(() => {
        (async ()=>{
          const response = await auth()
+         console.log(response);
          if(response.isSuccess){
           dispatchGlobalContext({
             type:'SET_USER',
             payload:{
                 user:{
                     role: response.role,
-                    name: response.name,
-                    surname: response.surname
+                    firstName: response.firstName,
+                    lastName: response.lastName
                 }
             }
             
@@ -60,7 +61,7 @@ function Main() {
       return (
         <>
         {
-            <Navigate to="/headhunter" /> 
+            <Navigate to="/hr" /> 
          }
      </>
       );

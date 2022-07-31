@@ -26,8 +26,8 @@ export const Login = () => {
                 payload:{
                     user:{
                         role: response.role,
-                        name: '',
-                        surname: ''
+                        firstName: response.firstName,
+                        lastName: response.lastName
                     }
                 }
             })

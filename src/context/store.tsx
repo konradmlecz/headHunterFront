@@ -35,8 +35,8 @@ export type Student = {
 export type GlobalState = {
     user: {
         role: '' |  'student' | "admin"| 'hr',
-        name: string,
-        surname: string
+        firstName: string,
+        lastName: string
     },
     students:Student[]
 };
@@ -44,8 +44,8 @@ export type GlobalState = {
 export const initialState:GlobalState = {
     user: {
         role: '',
-        name: '',
-        surname: ''
+        firstName: '',
+        lastName: ''
     },
     students:[]
 };
@@ -71,11 +71,11 @@ export const reducerGlobalState: Reducer<GlobalState, Action> = (state, action) 
             case ActionKind.CLEAR_USER:
                 return {
                     ...state,
-                    user:  {
+                    user: {
                         role: '',
-                        name: '',
-                        surname: ''
-                    }
+                        firstName: '',
+                        lastName: ''
+                    },
                 };
                 case ActionKind.SET_STUDENTS:
                     return {
