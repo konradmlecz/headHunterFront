@@ -5,7 +5,6 @@ import {Global} from '../../context/store';
 import { useNavigate } from "react-router-dom";
 import {getStudentAll} from '../../utils/studentAll';
 import ListItem from '../../components/listItem/ListItem';
-import { isTemplateExpression } from 'typescript';
 function HeadHunterView() {
 
   const { dispatchGlobalContext, globalState } = React.useContext(Global);
@@ -16,8 +15,13 @@ function HeadHunterView() {
 useEffect(()=>{
  (async ()=>{
   const data = await getStudentAll()
-  
-  console.log(data);
+  dispatchGlobalContext({
+    type:'SET_STUDENTS',
+    payload:{
+      students: data
+    }
+  })
+
  })()
 },[])
 
@@ -102,7 +106,7 @@ useEffect(()=>{
         <Box sx={{
           background:'#292A2B'
         }}>
-          {globalState.students.map(item=> <ListItem itemStudent={item}/>)}
+          {globalState.students.map(item=> <ListItem key={item.email} itemStudent={item}/>)}
            
         </Box>
       </Box>

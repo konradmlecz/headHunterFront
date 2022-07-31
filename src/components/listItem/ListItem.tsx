@@ -1,10 +1,7 @@
 import React,{FC, useEffect, useState} from 'react';
-import {Box, Typography ,TextField ,Button} from '@mui/material';
+import {Box, Typography, Button} from '@mui/material';
 import MiniBox from '../miniBox/MiniBox';
-import {Global} from '../../context/store';
-import { useNavigate } from "react-router-dom";
-import {getStudentAll} from '../../utils/studentAll'
-import {keys,text,key} from '../../constant/keys'
+import {qualitiesStudent, qualitiesText} from '../../constant/qualities'
 import {Student} from '../../context/store'
 
 type Props = {
@@ -20,7 +17,7 @@ const ListItem: FC<Props> = ({itemStudent}) => {
         <Box sx={{display:'flex', flexDirection:'column', margin: '10px', borderTop: '4px solid #222224', padding: '5px 10px'}}>
           <Box sx={{display:"grid", gridTemplateColumns: 'auto 1fr auto auto', justifyContent:'center', alignItems:'center'}}>
             <Typography>
-                Jan K.
+                {itemStudent.firstName + ' ' + itemStudent.lastName}
             </Typography>
             <Box/>
             <Button sx={{
@@ -32,9 +29,9 @@ const ListItem: FC<Props> = ({itemStudent}) => {
             </Box>
             {
                 open && <Box sx={{display: 'flex'}}>
-                    {keys.map(item=>
+                    {qualitiesStudent.map(item=>
                             <MiniBox
-                            textTop={text[item]} textDown={itemStudent[item]}
+                            textTop={qualitiesText[item]} textDown={itemStudent[item]} quality={item}
                             /> )}
                     </Box>
             }

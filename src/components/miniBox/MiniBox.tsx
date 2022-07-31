@@ -1,21 +1,19 @@
 import React,{FC, useEffect, useState} from 'react';
-import {Box, Typography ,TextField ,Button} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 
-import {Global} from '../../context/store';
-import { useNavigate } from "react-router-dom";
-import {getStudentAll} from '../../utils/studentAll'
-import { grid } from '@mui/system';
-
+import { qualitiesStudentText, qualitiesKey, qualitiesStudentBoolean, qualitiesStudentDegree } from '../../constant/qualities';
+ 
 type Props = {
     textTop:string;
     textDown: string | number | boolean;
+    quality: qualitiesKey;
+
 }
 
 
 
-const MiniBox:FC<Props> = ({textTop, textDown}) =>{
+const MiniBox:FC<Props> = ({textTop, textDown, quality}) =>{
   
-
     return (
         <>
         <Box sx={{display:'flex', flexDirection:'column', background: '#222324', padding: '10px'}}>
@@ -25,8 +23,22 @@ const MiniBox:FC<Props> = ({textTop, textDown}) =>{
             }}>{textTop}</Typography>
            </Box>
            <Box sx={{padding:'5px'}}>
-            <Typography>{textDown}</Typography>
-           </Box>
+         {
+          qualitiesStudentText.includes(quality) ? (
+                <Typography>{textDown}</Typography>
+            ) : null
+         }
+            {
+          qualitiesStudentBoolean.includes(quality) ? (
+                <Typography>{textDown ? 'Tak' : 'Nie'}</Typography>
+            ) : null
+         }
+               {
+          qualitiesStudentDegree.includes(quality) ? (
+                <Typography>{textDown} /5</Typography>
+            ) : null
+         }
+            </Box>
         </Box>
      </>
     );

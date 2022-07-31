@@ -1,12 +1,12 @@
 
 
-export type key =
+export type qualitiesKey =
     'courseCompletion' | 'courseEngagment' | "projectDegree" | 'teamProjectDegree'|'expectedTypeWork'|'targetWorkCity'|"expectedContractType" |'expectedSalary'| 'canTakeApprenticeship'|'monthsOfCommercialExp'
 
 
-export const keys: key[] = ['courseCompletion','courseEngagment',"projectDegree",'teamProjectDegree','expectedTypeWork','targetWorkCity',"expectedContractType", 'expectedSalary','canTakeApprenticeship','monthsOfCommercialExp']
+export const qualitiesStudent: qualitiesKey[] = ['courseCompletion','courseEngagment',"projectDegree",'teamProjectDegree','expectedTypeWork','targetWorkCity',"expectedContractType", 'expectedSalary','canTakeApprenticeship','monthsOfCommercialExp']
 
-export const text = {
+export const qualitiesText = {
     expectedContractType: 'Oczekiwany typ kontraktu',
     expectedSalary: "Oczekiwane wynagrodzenie miesięczne netto",
     teamProjectDegree: "Ocena pracy w zespole Scrum",
@@ -18,3 +18,10 @@ export const text = {
     canTakeApprenticeship: "Zgoda na odbycie praktyk/stażu",
     targetWorkCity: "Docelowe miasto, gdzie chce pracować kan."
 }
+
+export const qualitiesStudentText: qualitiesKey[] = ['expectedTypeWork','targetWorkCity',"expectedContractType", 'expectedSalary','monthsOfCommercialExp']
+
+export const qualitiesStudentDegree: qualitiesKey[] = ['courseCompletion','courseEngagment',"projectDegree",'teamProjectDegree']
+
+
+export const qualitiesStudentBoolean: qualitiesKey[] = ['canTakeApprenticeship']
