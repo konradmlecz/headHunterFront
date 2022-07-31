@@ -1,7 +1,8 @@
 .popup-inner-wrapper,
 .popup-inner-wrapper__form,
 .popup-inner-wrapper__form__star-container,
-.popup-inner-wrapper__form__top-segment {
+.popup-inner-wrapper__form__top-segment,
+.popup-inner-wrapper__form__bottom-segment {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,27 +44,43 @@
     justify-content: space-between;
 }
 
-.popup-inner-wrapper__form__cancel-button {
-    width: 62px;
-    height: 39px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+.popup-inner-wrapper__form__top-segment__title {
+    font-size: 22px;
+    font-weight: bold;
 }
 
-[type=radio] {
+.popup-inner-wrapper__form__top-segment__button {
+    font-size: 14px;
+    padding: 4px 10px;
+    background-color: var(--clear-form-button-color);
+    transition: .3s;
+}
+
+.popup-inner-wrapper__form__top-segment__button:hover {
+    cursor: pointer;
+    background-color: var(--clear-form-hover-button-color);
+}
+
+[type=radio], [type=checkbox] {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-[type=radio] + span {
+[type=radio] + span, [type=checkbox] + label {
     cursor: pointer;
     margin-left: 3px;
 }
 
-[type=radio]:checked + span path {
+[type=checkbox] + label {
+    display: inline-block;
+    margin: 0px 8px 0 0;
+    padding: 4px 10px;
+    background-color: var(--input-background-color);
+}
+
+[type=radio]:checked + span path, [type=checkbox]:checked + label{
     color: var(--button-background-color);
 }
 
@@ -86,10 +103,76 @@
     font-size: 14px;
 }
 
+.popup-inner-wrapper__form__place-segment__title,
+.popup-inner-wrapper__form__contract-segment__title {
+    margin-bottom: 8px;
+}
+
 .popup-inner-wrapper__form__star {
     display: block;
     width: 50px;
     margin-right: 8px;
     padding: 3px 0;
     background-color: var(--input-background-color);
+}
+
+.popup-inner-wrapper__form__salary-segment label {
+    font-size: 12px;
+}
+
+.popup-inner-wrapper__form__salary-segment input {
+    height: 35px;
+    margin: 6px 10px 0 10px;
+    padding-left: 10px;
+    background-color: var(--input-background-color);
+    border: none;
+    color: var(--input-placeholder-color);
+}
+
+.popup-inner-wrapper__form__intern-segment {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.popup-inner-wrapper__form__intern-segment label {
+    display: block;
+    text-align: left;
+}
+
+.popup-inner-wrapper__form__intern-segment__radio-inputs {
+    display: flex;
+}
+
+.popup-inner-wrapper__form__bottom-segment {
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.popup-inner-wrapper__form__intern-segment__radio {
+    position: relative;
+    opacity: 1;
+    width: auto;
+    height: auto;
+}
+
+.popup-inner-wrapper__form__bottom-segment__cancel-button {
+    width: 62px;
+    height: 39px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-inner-wrapper__form__bottom-segment__submit-button {
+    font-size: 16px;
+    padding: 6px 10px;
+    margin-left: 20px;
+    background-color: var(--button-background-color);
+    transition: .3s;
+}
+
+.popup-inner-wrapper__form__bottom-segment__submit-button:hover {
+    cursor: pointer;
+    background-color: var(--button-background-color-hover);
 }
