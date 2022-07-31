@@ -14,11 +14,36 @@ export const FilterPopUp = ({setIsPopUpVisible}: Props) => {
         setIsPopUpVisible(false);
     }
 
+    const handleSubmitForm = async (e: any) => {
+
+        e.preventDefault();
+
+        const query = {
+            courseRate: Number(e.currentTarget.elements.courseRate.value),
+            activityRate: Number(e.currentTarget.elements.activityRate.value),
+            codeRate: Number(e.currentTarget.elements.codeRate.value),
+            scrumRate: Number(e.currentTarget.elements.scrumRate.value),
+            remote: e.currentTarget.elements.jobPlace[0].checked,
+            office: e.currentTarget.elements.jobPlace[1].checked,
+            employmentContract: e.currentTarget.elements.jobContract[0].checked,
+            b2b: e.currentTarget.elements.jobContract[1].checked,
+            mandatoryContract: e.currentTarget.elements.jobContract[2].checked,
+            contract: e.currentTarget.elements.jobContract[3].checked,
+            salaryFrom: Number(e.currentTarget.elements.jobSalary[0].value),
+            salaryTo: Number(e.currentTarget.elements.jobSalary[1].value),
+            apprenticeship: Boolean(e.currentTarget.elements.internship.value),
+            experience: Number(e.currentTarget.elements.experience.value),
+        }
+
+        console.table(query);
+
+    }
+
     return (
         <>
             <div className="popup-outer-wrapper"></div>
             <div className="popup-inner-wrapper">
-                <form action="" className="popup-inner-wrapper__form">
+                <form action="" className="popup-inner-wrapper__form" onSubmit={handleSubmitForm}>
                     <div className="popup-inner-wrapper__form__top-segment">
                         <p className="popup-inner-wrapper__form__top-segment__title">Filtrowanie</p>
                         <button className="popup-inner-wrapper__form__top-segment__button">Wyczyść wszystkie</button>
@@ -27,23 +52,23 @@ export const FilterPopUp = ({setIsPopUpVisible}: Props) => {
                         <p className="popup-inner-wrapper__form__course-rate-segment__title">Ocena przejścia kursu</p>
                         <div className="popup-inner-wrapper__form__star-container">
                             <label className="popup-inner-wrapper__form__star" htmlFor="5-course">5
-                                <input type="radio" id="5-course" name="Course rate" value="5"/>
+                                <input type="radio" id="5-course" name="courseRate" value="5"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="4-course">4
-                                <input type="radio" id="4-course" name="Course rate" value="4"/>
+                                <input type="radio" id="4-course" name="courseRate" value="4"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="3-course">3
-                                <input type="radio" id="3-course" name="Course rate" value="3"/>
+                                <input type="radio" id="3-course" name="courseRate" value="3"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="2-course">2
-                                <input type="radio" id="2-course" name="Course rate" value="2"/>
+                                <input type="radio" id="2-course" name="courseRate" value="2"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="1-course">1
-                                <input type="radio" id="1-course" name="Course rate" value="1"/>
+                                <input type="radio" id="1-course" name="courseRate" value="1"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                         </div>
@@ -52,23 +77,23 @@ export const FilterPopUp = ({setIsPopUpVisible}: Props) => {
                         <p className="popup-inner-wrapper__form__activity-rate-segment__title">Ocena aktywności i zangażowania na kursie</p>
                         <div className="popup-inner-wrapper__form__star-container">
                             <label className="popup-inner-wrapper__form__star" htmlFor="5-activity">5
-                                <input type="radio" id="5-activity" name="Activity rate" value="5"/>
+                                <input type="radio" id="5-activity" name="activityRate" value="5"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="4-activity">4
-                                <input type="radio" id="4-activity" name="Activity rate" value="4"/>
+                                <input type="radio" id="4-activity" name="activityRate" value="4"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="3-activity">3
-                                <input type="radio" id="3-activity" name="Activity rate" value="3"/>
+                                <input type="radio" id="3-activity" name="activityRate" value="3"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="2-activity">2
-                                <input type="radio" id="2-activity" name="Activity rate" value="2"/>
+                                <input type="radio" id="2-activity" name="activityRate" value="2"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="1-activity">1
-                                <input type="radio" id="1-activity" name="Activity rate" value="1"/>
+                                <input type="radio" id="1-activity" name="activityRate" value="1"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                         </div>
@@ -77,23 +102,23 @@ export const FilterPopUp = ({setIsPopUpVisible}: Props) => {
                         <p className="popup-inner-wrapper__form__code-rate-segment__title">Ocena kodu w projekcie własnym</p>
                         <div className="popup-inner-wrapper__form__star-container">
                             <label className="popup-inner-wrapper__form__star" htmlFor="5-code">5
-                                <input type="radio" id="5-code" name="Code rate" value="5"/>
+                                <input type="radio" id="5-code" name="codeRate" value="5"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="4-code">4
-                                <input type="radio" id="4-code" name="Code rate" value="4"/>
+                                <input type="radio" id="4-code" name="codeRate" value="4"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="3-code">3
-                                <input type="radio" id="3-code" name="Code rate" value="3"/>
+                                <input type="radio" id="3-code" name="codeRate" value="3"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="2-code">2
-                                <input type="radio" id="2-code" name="Code rate" value="2"/>
+                                <input type="radio" id="2-code" name="codeRate" value="2"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="1-code">1
-                                <input type="radio" id="1-code" name="Code rate" value="1"/>
+                                <input type="radio" id="1-code" name="codeRate" value="1"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                         </div>
@@ -102,68 +127,68 @@ export const FilterPopUp = ({setIsPopUpVisible}: Props) => {
                         <p className="popup-inner-wrapper__form__scrum-rate-segment__title">Ocena pracy w zespole w Scrum</p>
                         <div className="popup-inner-wrapper__form__star-container">
                             <label className="popup-inner-wrapper__form__star" htmlFor="5-scrum">5
-                                <input type="radio" id="5-scrum" name="Scrum rate" value="5"/>
+                                <input type="radio" id="5-scrum" name="scrumRate" value="5"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="4-scrum">4
-                                <input type="radio" id="4-scrum" name="Scrum rate" value="4"/>
+                                <input type="radio" id="4-scrum" name="scrumRate" value="4"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="3-scrum">3
-                                <input type="radio" id="3-scrum" name="Scrum rate" value="3"/>
+                                <input type="radio" id="3-scrum" name="scrumRate" value="3"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="2-scrum">2
-                                <input type="radio" id="2-scrum" name="Scrum rate" value="2"/>
+                                <input type="radio" id="2-scrum" name="scrumRate" value="2"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                             <label className="popup-inner-wrapper__form__star" htmlFor="1-scrum">1
-                                <input type="radio" id="1-scrum" name="Scrum rate" value="1"/>
+                                <input type="radio" id="1-scrum" name="scrumRate" value="1"/>
                                 <span><FontAwesomeIcon icon={starIconDefinition}/></span>
                             </label>
                         </div>
                     </div>
                     <div className="popup-inner-wrapper__form__place-segment">
                         <p className="popup-inner-wrapper__form__place-segment__title">Preferowane miejsce pracy</p>
-                        <input type="checkbox" id="remote" name="job-place" value="Praca zdalna"/>
+                        <input type="checkbox" id="remote" name="jobPlace" value="remote"/>
                         <label htmlFor="remote">Praca zdalna</label>
-                        <input type="checkbox" id="office" name="job-place" value="Praca w biurze"/>
+                        <input type="checkbox" id="office" name="jobPlace" value="office"/>
                         <label htmlFor="office">Praca w biurze</label>
                     </div>
                     <div className="popup-inner-wrapper__form__contract-segment">
                         <p className="popup-inner-wrapper__form__contract-segment__title">Oczekiwany tryb kontraktu</p>
-                        <input type="checkbox" id="employment" name="job-contract" value="Umowa o pracę"/>
+                        <input type="checkbox" id="employment" name="jobContract" value="Umowa o pracę"/>
                         <label htmlFor="employment">Umowa o pracę</label>
-                        <input type="checkbox" id="b2b" name="job-contract" value="B2B"/>
+                        <input type="checkbox" id="b2b" name="jobContract" value="B2B"/>
                         <label htmlFor="b2b">B2B</label>
-                        <input type="checkbox" id="mandate" name="job-contract" value="Umowa zlecenie"/>
+                        <input type="checkbox" id="mandate" name="jobContract" value="Umowa zlecenie"/>
                         <label htmlFor="mandate">Umowa zlecenie</label>
-                        <input type="checkbox" id="contract" name="job-contract" value="Umowa o dzieło"/>
+                        <input type="checkbox" id="contract" name="jobContract" value="Umowa o dzieło"/>
                         <label htmlFor="contract">Umowa o dzieło</label>
                     </div>
                     <div className="popup-inner-wrapper__form__salary-segment">
                         <p className="popup-inner-wrapper__form__salary-segment__title">Oczekiwane wynagrodzenie miesięczne</p>
                         <label htmlFor="from">Od</label>
-                        <input type="number" id="from" name="job-salary" placeholder="zł"/>
+                        <input type="number" id="from" name="jobSalary" placeholder="zł"/>
                         <label htmlFor="to">Do</label>
-                        <input type="number" id="to" name="job-salary" placeholder="zł"/>
+                        <input type="number" id="to" name="jobSalary" placeholder="zł"/>
                     </div>
                     <div className="popup-inner-wrapper__form__intern-segment">
                         <p className="popup-inner-wrapper__form__intern-segment__title">Zgoda na odbycie bezpłatnych praktyk/stażu na początek</p>
                         <div className="popup-inner-wrapper__form__intern-segment__radio-inputs">
                             <label htmlFor="intern-yes">
-                            <input className="popup-inner-wrapper__form__intern-segment__radio" type="radio" id="intern-yes" name="internship" value="yes"/>
+                            <input className="popup-inner-wrapper__form__intern-segment__radio" type="radio" id="intern-yes" name="internship" value="1"/>
                                 <span></span>
                             Tak</label>
                             <label htmlFor="intern-no">
-                            <input className="popup-inner-wrapper__form__intern-segment__radio" type="radio" id="intern-no" name="internship" value="no"/>
+                            <input className="popup-inner-wrapper__form__intern-segment__radio" type="radio" id="intern-no" name="internship" value="0"/>
                                 <span></span>
                             Nie</label>
                         </div>
                     </div>
                     <div className="popup-inner-wrapper__form__experience-segment">
                         <p className="popup-inner-wrapper__form__experience-segment__title">Ilość miesięcy doświadczenia komercyjnego kandydata w programowaniu</p>
-                        <input type="number"/>
+                        <input type="number" name="experience"/>
                     </div>
                     <div className="popup-inner-wrapper__form__bottom-segment">
                         <button className="popup-inner-wrapper__form__bottom-segment__cancel-button" onClick={handleCancelButton}>Anuluj</button>

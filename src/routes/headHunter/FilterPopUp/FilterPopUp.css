@@ -16,6 +16,7 @@
     height: 100vh;
     background-color: var(--popup-background-color);
     opacity: .5;
+    z-index: 1;
 }
 
 .popup-inner-wrapper {
@@ -28,6 +29,7 @@
     align-items: flex-start;
     transform: translate(-50%, -50%);
     background-color: var(--popup-background-color);
+    z-index: 2;
 }
 
 .popup-inner-wrapper__form {
@@ -77,7 +79,7 @@
 
 [type=checkbox] + label {
     display: inline-block;
-    margin: 0px 8px 0 0;
+    margin: 0 8px 0 0;
     padding: 4px 10px;
     background-color: var(--input-background-color);
 }
