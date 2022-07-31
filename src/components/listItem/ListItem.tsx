@@ -1,8 +1,10 @@
 import React,{FC, useEffect, useState} from 'react';
 import {Box, Typography, Button} from '@mui/material';
 import MiniBox from '../miniBox/MiniBox';
-import {qualitiesStudent, qualitiesText} from '../../constant/qualities'
-import {Student} from '../../context/store'
+import {qualitiesStudent, qualitiesText} from '../../constant/qualities';
+import {Student} from '../../context/store';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
 type Props = {
     itemStudent:Student
@@ -25,7 +27,13 @@ const ListItem: FC<Props> = ({itemStudent}) => {
                 color: 'white',
                 margin: '5px 10px'
             }}>Zarezerwuj Rozmowe</Button>
-             <Box onClick={()=>setOpen(!open)}>Zwiń</Box>
+             <Box onClick={()=>setOpen(!open)} sx={{
+                              cursor:'pointer'
+             }}>
+                {
+                    open ?   <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} /> 
+                }
+             </Box>
             </Box>
             {
                 open && <Box sx={{display: 'flex'}}>

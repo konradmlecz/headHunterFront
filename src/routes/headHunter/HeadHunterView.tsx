@@ -1,16 +1,21 @@
-import React,{FC, useEffect} from 'react';
+import React,{FC, useEffect, useState} from 'react';
 import {Box, Typography ,TextField ,Button} from '@mui/material';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 import {Global} from '../../context/store';
 import { useNavigate } from "react-router-dom";
 import {getStudentAll} from '../../utils/studentAll';
-import ListItem from '../../components/listItem/ListItem';
+import Available from '../../components/available/Available';
+import Talk from '../../components/talk/Talk';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
+
 function HeadHunterView() {
+
+  const [tab, setTab] = useState<'Available' | 'Talk'>('Available')
 
   const { dispatchGlobalContext, globalState } = React.useContext(Global);
   const navigate = useNavigate();
   if(globalState.user.role !== 'hr') navigate("/", { replace: true });
-
 
 useEffect(()=>{
  (async ()=>{
@@ -35,27 +40,39 @@ useEffect(()=>{
          width:'1200px',
          display:'flex',
          flexDirection: 'column',
-         paddingTop: '30px'
       }}>
         <Box sx={{
+          marginTop: '30px',
           background:'#292A2B',
           height:'72px',
           display: 'flex',
-          alignItems:'center'
+          alignItems:'center',
         }}>
           <Box sx={{
-              width:'180px'
-          }}>
+              width:'180px',
+              height:'100%',
+              display:'flex',
+              justifyContent:'center',
+              alignItems: 'center',
+              cursor: 'pointer',
+              borderBottom: `${tab === 'Available' ? '2px solid red' : '2px solid transparent'}`
+          }} onClick={()=>setTab("Available")}>
              <Typography sx={{
               color:'white'
              }}>Dostępni kursanci</Typography>
           </Box>
           <Box sx={{
-              width:'150px'
-          }}>
+                     width:'180px',
+                     height:'100%',
+                     display:'flex',
+                     justifyContent:'center',
+                     alignItems: 'center',
+                     cursor: 'pointer',
+                     borderBottom: `${tab === 'Talk' ? '2px solid red' : '2px solid transparent'}`
+          }} onClick={()=>setTab('Talk')}>
              <Typography sx={{
               color:'white'
-             }}>Dostępni kursanci</Typography>
+             }}>Do rozmowy</Typography>
           </Box>
         </Box>
         <Box sx={{
@@ -100,15 +117,15 @@ useEffect(()=>{
             alignItems:'center'}}>
           <Button   sx={{
               background:'#1E1E1F',
-            }}variant="contained">Filtrowanie</Button>
+              cursor:'pointer'
+            }}variant="contained"> <FontAwesomeIcon icon={faFilter} />  <Typography sx={{
+              paddingLeft:'5px'
+            }}>Filtrowanie</Typography></Button>
            </Box>
         </Box>
-        <Box sx={{
-          background:'#292A2B'
-        }}>
-          {globalState.students.map(item=> <ListItem key={item.email} itemStudent={item}/>)}
-           
-        </Box>
+        {tab ==='Available' && <Available/> }
+        {tab ==='Talk' && <Talk/> }
+     
       </Box>
       </Box>
       </WrapperLoggedView>
