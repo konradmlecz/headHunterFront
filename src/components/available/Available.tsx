@@ -6,7 +6,7 @@ import ListItem from '../../components/listItem/ListItem';
 function Available() {
 
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
-  
+      console.log(globalState);
       return (
           <Box sx={{
             background:'#292A2B'

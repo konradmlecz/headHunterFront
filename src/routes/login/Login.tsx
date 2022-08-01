@@ -19,7 +19,9 @@ export const Login = () => {
             role:'USER'
         }
         e.preventDefault();
+        console.log(data);
         const response  = await login(data)
+        console.log(response);
         if(response.isSuccess){
             dispatchGlobalContext({
                 type:'SET_USER',

@@ -5,15 +5,32 @@ import {qualitiesStudent, qualitiesText} from '../../constant/qualities';
 import {Student} from '../../context/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { ubdateStatus } from '../../utils/ubdateStatus'
+import {getStudentAll} from '../../utils/studentAll';
+import {Global} from '../../context/store';
 
 type Props = {
     itemStudent:Student
 }
 
-
 const ListItem: FC<Props> = ({itemStudent}) => {
     const [open,setOpen] = useState(false)
+    const { dispatchGlobalContext, globalState } = React.useContext(Global);
 
+    const handleStatus = async ()=>{
+        const data = await ubdateStatus({id:itemStudent.id})
+        if(data.isSuccess){
+            const data2 = await getStudentAll()
+            if(data2.isSuccess){
+            dispatchGlobalContext({
+                type:'SET_STUDENTS',
+                payload:{
+                  students: data2.data
+                }
+              })
+            }
+        }
+    }
     return (
         <>
         <Box sx={{display:'flex', flexDirection:'column', margin: '10px', borderTop: '4px solid #222224', padding: '5px 10px'}}>
@@ -26,7 +43,7 @@ const ListItem: FC<Props> = ({itemStudent}) => {
                 background:'#E02735',
                 color: 'white',
                 margin: '5px 10px'
-            }}>Zarezerwuj Rozmowe</Button>
+            }} onClick={handleStatus}>Zarezerwuj Rozmowe</Button>
              <Box onClick={()=>setOpen(!open)} sx={{
                               cursor:'pointer'
              }}>

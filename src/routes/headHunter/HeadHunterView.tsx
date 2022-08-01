@@ -9,6 +9,8 @@ import Talk from '../../components/talk/Talk';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
+//available interview
+
 function HeadHunterView() {
 
   const [tab, setTab] = useState<'Available' | 'Talk'>('Available')
@@ -20,13 +22,14 @@ function HeadHunterView() {
 useEffect(()=>{
  (async ()=>{
   const data = await getStudentAll()
+  if (data.isSuccess){
   dispatchGlobalContext({
     type:'SET_STUDENTS',
     payload:{
-      students: data
+      students: data.data
     }
   })
-
+  }
  })()
 },[])
 
