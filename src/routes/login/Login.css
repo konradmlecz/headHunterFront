@@ -52,6 +52,11 @@
 .login-wrapper__form__register-label {
     width: 60%;
     font-size: 14px;
+    text-align: left;
+}
+
+.login-wrapper__form__register-label a {
+    margin-left: 5px;
 }
 
 .login-wrapper__form__submit-button {

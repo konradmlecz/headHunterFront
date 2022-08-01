@@ -1,17 +1,3 @@
-:root {
-    --main-text-color: #F7F7F7;
-    --main-background-color: #222224;
-    --second-background-color: #292A2B;
-    --input-placeholder-color: #7E7E7E;
-    --input-background-color: #292A2B;
-    --button-background-color: #E02735;
-    --button-background-color-hover: #a91e29;
-    --link-color: #0B8BD4;
-    --shaded-element-color: #4D4D4D;
-    --shaded-letters-color: #9E9E9E;
-    --shaded-container-color: #222324;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -45,9 +31,6 @@
 .cv-wrapper {
     width: 100%;
     background-color: var(--main-background-color);
-    /* ↓↓↓ tylko na czas stylowania ↓↓↓ */
-    padding-top: 80px;
-    /* ↑↑↑ --- ↑↑↑ */
     padding-bottom: 40px;
 }
 
@@ -185,6 +168,8 @@
 
 .cv__short-bio__info__about-me-text {
     margin-bottom: 30px;
+    margin-left: 2px;
+    text-align: left;
 }
 
 /*main bio*/
@@ -262,6 +247,7 @@
 .cv__main-bio__content__expectation-container__experience-title{
     width: 100%;
     height: 50%;
+    text-align: left;
 }
 
 .cv__main-bio__content__expectation-container__place__content,
@@ -274,6 +260,7 @@
     height: 35%;
     font-size: 14px;
     font-weight: bold;
+    text-align: left;
 }
 
 .cv__main-bio__content__expectation-container__place__content,
@@ -285,6 +272,7 @@
 .cv__main-bio__content__courses,
 .cv__main-bio__content__profExp {
     padding: 20px 25px 20px;
+    text-align: left;
 }
 
 .cv__main-bio__content__portfolio,

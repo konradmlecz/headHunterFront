@@ -1,9 +1,18 @@
 :root {
   --main-text-color: #F7F7F7;
   --main-background-color: #222224;
+  --second-background-color: #292A2B;
   --input-placeholder-color: #7E7E7E;
   --input-background-color: #292A2B;
   --button-background-color: #E02735;
+  --button-background-color-hover: #9d1d27;
+  --link-color: #0B8BD4;
+  --shaded-element-color: #4D4D4D;
+  --shaded-letters-color: #9E9E9E;
+  --shaded-container-color: #222324;
+  --popup-background-color: #0a0a0a;
+  --clear-form-button-color: #172A35;
+  --clear-form-hover-button-color: #254456;
 }
 
 * {

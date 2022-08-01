@@ -8,16 +8,23 @@ import Available from '../../components/available/Available';
 import Talk from '../../components/talk/Talk';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
-
+import {FilterPopUp} from "./FilterPopUp/FilterPopUp";
 //available interview
 
 function HeadHunterView() {
 
   const [tab, setTab] = useState<'Available' | 'Talk'>('Available')
+  const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
+
+  const handleFilterButton = () => {
+      setIsPopUpVisible(true);
+  }
 
   const { dispatchGlobalContext, globalState } = React.useContext(Global);
   const navigate = useNavigate();
   if(globalState.user.role !== 'hr') navigate("/", { replace: true });
+
+
 
 useEffect(()=>{
  (async ()=>{
@@ -35,6 +42,7 @@ useEffect(()=>{
 
     return (
       <WrapperLoggedView>
+          {isPopUpVisible ? <FilterPopUp setIsPopUpVisible={setIsPopUpVisible}/> : null}
       <Box sx={{
         display:'flex',
         justifyContent:'center',
@@ -121,7 +129,8 @@ useEffect(()=>{
           <Button   sx={{
               background:'#1E1E1F',
               cursor:'pointer'
-            }}variant="contained"> <FontAwesomeIcon icon={faFilter} />  <Typography sx={{
+              
+            }}   onClick={handleFilterButton} variant="contained"> <FontAwesomeIcon icon={faFilter} />  <Typography sx={{
               paddingLeft:'5px'
             }}>Filtrowanie</Typography></Button>
            </Box>

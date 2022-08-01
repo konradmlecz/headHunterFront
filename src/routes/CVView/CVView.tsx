@@ -2,6 +2,7 @@ import React from "react";
 import temp_photo from '../../images/temp_photo.jpg';
 import defaultUser from '../../images/default_user_icon_4_by_karmaanddestiny_de7834s.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import WrapperLoggedView from "../../components/wrapperLoggedView/WrapperLoggedView";
 import arrow from '../../images/icons/Group 29.png';
 import githubIco from '../../images/icons/GitHub-Mark-64px.png';
 import { phoneReceiverIconDefinition, envelopeIconDefinition, starIconDefinition, paperClipIconDefinition } from '../../helpers/fontAwsomeIcons';
@@ -46,6 +47,7 @@ const colorStars = (rate: number) => {
 
 export const CVView = () => {
     return (
+        <WrapperLoggedView>
         <div className="cv-wrapper">
             <div className="cv">
                 <div className="cv__back">
@@ -249,5 +251,6 @@ export const CVView = () => {
                 </div>
             </div>
         </div>
+        </WrapperLoggedView>
     )
 }
