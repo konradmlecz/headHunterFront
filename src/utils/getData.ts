@@ -1,11 +1,15 @@
-export async function getStudentAll() {
-    const response = await fetch('http://localhost:3001/student/all',{
+import { adress } from "../constant/setting";
+
+type Props = {
+    link:string
+}
+export async function getData({link}:Props) {
+    const response = await fetch(`${adress}${link}`,{
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         // mode: 'no-cors', // no-cors, *cors, same-origin
         credentials: 'include', // include, *same-origin, omit
     });
     const dataPrimary = await response.text();
-    let dataParsed = null;
     try {
         return JSON.parse(dataPrimary);
     } catch (e) {

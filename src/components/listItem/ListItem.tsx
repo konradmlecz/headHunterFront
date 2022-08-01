@@ -3,10 +3,9 @@ import {Box, Typography, Button} from '@mui/material';
 import MiniBox from '../miniBox/MiniBox';
 import {qualitiesStudent, qualitiesText} from '../../constant/qualities';
 import {Student} from '../../context/store';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons'
-import { ubdateStatus } from '../../utils/ubdateStatus'
-import {getStudentAll} from '../../utils/studentAll';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { ContextManager } from '../../context/ContextManager';
 import {Global} from '../../context/store';
 
 type Props = {
@@ -16,20 +15,9 @@ type Props = {
 const ListItem: FC<Props> = ({itemStudent}) => {
     const [open,setOpen] = useState(false)
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
-
+    console.log(globalState, "globalState");
     const handleStatus = async ()=>{
-        const data = await ubdateStatus({id:itemStudent.id})
-        if(data.isSuccess){
-            const data2 = await getStudentAll()
-            if(data2.isSuccess){
-            dispatchGlobalContext({
-                type:'SET_STUDENTS',
-                payload:{
-                  students: data2.data
-                }
-              })
-            }
-        }
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).ubdateStatusOfStudent(itemStudent.id)
     }
     return (
         <>

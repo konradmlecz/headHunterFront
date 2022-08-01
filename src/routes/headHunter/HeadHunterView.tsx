@@ -3,12 +3,13 @@ import {Box, Typography ,TextField ,Button} from '@mui/material';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 import {Global} from '../../context/store';
 import { useNavigate } from "react-router-dom";
-import {getStudentAll} from '../../utils/studentAll';
+
 import Available from '../../components/available/Available';
 import Talk from '../../components/talk/Talk';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import {FilterPopUp} from "./FilterPopUp/FilterPopUp";
+import { ContextManager } from '../../context/ContextManager'
 //available interview
 
 function HeadHunterView() {
@@ -28,15 +29,8 @@ function HeadHunterView() {
 
 useEffect(()=>{
  (async ()=>{
-  const data = await getStudentAll()
-  if (data.isSuccess){
-  dispatchGlobalContext({
-    type:'SET_STUDENTS',
-    payload:{
-      students: data.data
-    }
-  })
-  }
+  await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).ubdateStudents()
+
  })()
 },[])
 

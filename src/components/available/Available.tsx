@@ -11,7 +11,7 @@ function Available() {
           <Box sx={{
             background:'#292A2B'
           }}>
-            {globalState.students.map(item=> <ListItem key={item.email} itemStudent={item}/>)}
+            {globalState.studentsAvailable.map(item=> <ListItem key={item.email} itemStudent={item}/>)}
           </Box>
       );
     }
