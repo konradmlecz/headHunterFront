@@ -1,7 +1,6 @@
 import React,{FC, useEffect, useState} from 'react';
 import {Box, Typography, Button} from '@mui/material';
-import MiniBox from '../miniBox/MiniBox';
-import {qualitiesStudent, qualitiesText} from '../../constant/qualities';
+import MiniBoxes from '../miniBoxes/MiniBoxes';
 import {Student} from '../../context/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
@@ -12,12 +11,13 @@ type Props = {
     itemStudent:Student
 }
 
-const ListItem: FC<Props> = ({itemStudent}) => {
+const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
     const [open,setOpen] = useState(false)
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
-    console.log(globalState, "globalState");
+
     const handleStatus = async ()=>{
         await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).ubdateStatusOfStudent(itemStudent.id)
+        
     }
     return (
         <>
@@ -40,18 +40,11 @@ const ListItem: FC<Props> = ({itemStudent}) => {
                 }
              </Box>
             </Box>
-            {
-                open && <Box sx={{display: 'flex'}}>
-                    {qualitiesStudent.map(item=>
-                            <MiniBox
-                            textTop={qualitiesText[item]} textDown={itemStudent[item]} quality={item}
-                            /> )}
-                    </Box>
-            }
+            <MiniBoxes open={open} itemStudent={itemStudent}/>
         </Box>
      </>
     );
   }
   
-  export default ListItem;
+  export default ListItemAvaiable;
   

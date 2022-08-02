@@ -7,6 +7,9 @@ import arrow from '../../images/icons/Group 29.png';
 import githubIco from '../../images/icons/GitHub-Mark-64px.png';
 import { phoneReceiverIconDefinition, envelopeIconDefinition, starIconDefinition, paperClipIconDefinition } from '../../helpers/fontAwsomeIcons';
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
+import {Global} from '../../context/store';
+import { ContextManager } from '../../context/ContextManager'
+import { useNavigate } from "react-router-dom";
 
 import './CVView.css';
 
@@ -46,11 +49,18 @@ const colorStars = (rate: number) => {
 }
 
 export const CVView = () => {
+    const { dispatchGlobalContext, globalState } = React.useContext(Global);
+    const navigate = useNavigate();
+    const student = new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).getStudent()
+
+    const back = () => {
+        navigate("/hr");
+    }
     return (
         <WrapperLoggedView>
         <div className="cv-wrapper">
             <div className="cv">
-                <div className="cv__back">
+                <div className="cv__back" onClick={back}>
                    <a href="" className="cv__back__link">
                        <img
                            src={arrow}
@@ -65,25 +75,25 @@ export const CVView = () => {
                         <img
                             // src={tempData.github ? `https://github.com/${tempData.github}.png ` : defaultUser}
                             src={temp_photo}
-                            alt={`Photo of ${tempData.name}`}
+                            // alt={`Photo of ${tempData.name}`}
                             className="cv__short-bio__img__temp-photo"
                         />
                     </div>
                     <div className="cv__short-bio__info">
-                        <p className="cv__short-bio__info__name">{tempData.name}</p>
-                        <a href={`https://github.com/${tempData.github}`} className="cv__short-bio__info__git">
+                        <p className="cv__short-bio__info__name">{student.firstName + ' ' + student.lastName}</p>
+                        <a href={`https://github.com/${student.githubUsername}`} className="cv__short-bio__info__git">
                             <img src={githubIco} alt="Arrow sign" className="cv__short-bio__info__git__ico"/>
-                            {tempData.github}
+                            {student.githubUsername}
                         </a>
                         <p className="cv__short-bio__info__phone">
-                            <FontAwesomeIcon icon={phoneReceiverIconDefinition}/> {tempData.phone}
+                            <FontAwesomeIcon icon={phoneReceiverIconDefinition}/> {student.phone}
                         </p>
                         <p className="cv__short-bio__info__email">
                             <FontAwesomeIcon icon={envelopeIconDefinition} />
-                            <a href={`mailto:{tempData.email}`} className="cv__short-bio__info__email__link">{tempData.email}</a>
+                            <a href={`mailto:{tempData.email}`} className="cv__short-bio__info__email__link">{student.email}</a>
                         </p>
                         <p className="cv__short-bio__info__about-me">O mnie</p>
-                        <p className="cv__short-bio__info__about-me-text">{tempData.info}</p>
+                        <p className="cv__short-bio__info__about-me-text">{student.bio}</p>
                     </div>
                     <div className="cv__short-bio__controls">
                         <form action="" className="cv__short-bio__controls__form">
@@ -103,10 +113,10 @@ export const CVView = () => {
                                 </div>
                                 <div className="cv__main-bio__content__stars-container__stars">
                                     <p className="cv__main-bio__content__stars-container__stars__rating">
-                                        <span className="cv__main-bio__content__stars-container__stars__rating__rate">{tempData.courseRate}</span>
+                                        <span className="cv__main-bio__content__stars-container__stars__rating__rate">{student.courseCompletion}</span>
                                         /5
                                     </p>
-                                    {colorStars(tempData.courseRate)}
+                                    {colorStars(student.courseCompletion)}
                                 </div>
                             </div>
                             <div className="cv__main-bio__content__stars-container">
@@ -115,10 +125,10 @@ export const CVView = () => {
                                 </div>
                                 <div className="cv__main-bio__content__stars-container__stars">
                                     <p className="cv__main-bio__content__stars-container__stars__rating">
-                                        <span className="cv__main-bio__content__stars-container__stars__rating__rate">{tempData.courseActivityRate}</span>
+                                        <span className="cv__main-bio__content__stars-container__stars__rating__rate">{student.courseEngagment}</span>
                                         /5
                                     </p>
-                                    {colorStars(tempData.courseActivityRate)}
+                                    {colorStars(student.courseEngagment)}
                                 </div>
                             </div>
                             <div className="cv__main-bio__content__stars-container">
@@ -127,10 +137,10 @@ export const CVView = () => {
                                 </div>
                                 <div className="cv__main-bio__content__stars-container__stars">
                                     <p className="cv__main-bio__content__stars-container__stars__rating">
-                                        <span className="cv__main-bio__content__stars-container__stars__rating__rate">{tempData.codeRate}</span>
+                                        <span className="cv__main-bio__content__stars-container__stars__rating__rate">{student.projectDegree}</span>
                                         /5
                                     </p>
-                                    {colorStars(tempData.codeRate)}
+                                    {colorStars(student.projectDegree)}
                                 </div>
                             </div>
                             <div className="cv__main-bio__content__stars-container">
@@ -139,10 +149,10 @@ export const CVView = () => {
                                 </div>
                                 <div className="cv__main-bio__content__stars-container__stars">
                                     <p className="cv__main-bio__content__stars-container__stars__rating">
-                                        <span className="cv__main-bio__content__stars-container__stars__rating__rate">{tempData.scrumRate}</span>
+                                        <span className="cv__main-bio__content__stars-container__stars__rating__rate">{student.teamProjectDegree}</span>
                                         /5
                                     </p>
-                                    {colorStars(tempData.scrumRate)}
+                                    {colorStars(student.teamProjectDegree)}
                                 </div>
                             </div>
                         </div>
@@ -154,37 +164,37 @@ export const CVView = () => {
                                 <div className="cv__main-bio__content__expectation-container__place">
                                     <p className="cv__main-bio__content__expectation-container__place-title">Preferowane miejsce pracy</p>
                                     <p className="cv__main-bio__content__expectation-container__place__content">
-                                        {tempData.place}
+                                        {student.expectedTypeWork}
                                     </p>
                                 </div>
                                 <div className="cv__main-bio__content__expectation-container__city">
                                     <p className="cv__main-bio__content__expectation-container__city-title">Docelowe miasto gdzie chce pracować kandydat</p>
                                     <p className="cv__main-bio__content__expectation-container__city-title__content">
-                                        {tempData.city}
+                                        {student.targetWorkCity}
                                     </p>
                                 </div>
                                 <div className="cv__main-bio__content__expectation-container__contract">
                                     <p className="cv__main-bio__content__expectation-container__contract-title">Oczekiwany typ kontaktu</p>
                                     <p className="cv__main-bio__content__expectation-container__contract__content">
-                                        {tempData.contract}
+                                        {student.expectedContractType}
                                     </p>
                                 </div>
                                 <div className="cv__main-bio__content__expectation-container__salary">
                                     <p className="cv__main-bio__content__expectation-container__salary-title">Oczekiwane wynagrodzenie miesięczne netto</p>
                                     <p className="cv__main-bio__content__expectation-container__salary__content">
-                                        {tempData.salary} zł
+                                        {student.expectedSalary} zł
                                     </p>
                                 </div>
                                 <div className="cv__main-bio__content__expectation-container__agreement">
                                     <p className="cv__main-bio__content__expectation-container__agreement-title">Zgoda na odbycie bezpłatnych praktyk/stażu na początek</p>
                                     <p className="cv__main-bio__content__expectation-container__agreement__content">
-                                        {tempData.agreement ? 'TAK' : 'NIE'}
+                                        {student.canTakeApprenticeship ? 'TAK' : 'NIE'}
                                     </p>
                                 </div>
                                 <div className="cv__main-bio__content__expectation-container__experience">
-                                    <p className="cv__main-bio__content__expectation-container__experience-title">Komercyjne doświadczenie w programowaniu</p>
+                                    <p className="cv__main-bio__content__expectation-container__experience-title">Komercyjne miesiące doświadczenia w programowaniu</p>
                                     <p className="cv__main-bio__content__expectation-container__experience__content">
-                                        {tempData.experience}
+                                        {student.monthsOfCommercialExp}
                                     </p>
                                 </div>
                             </div>
@@ -193,19 +203,19 @@ export const CVView = () => {
                             <p className="cv__main-bio__title-container__title">Edukacja</p>
                         </div>
                         <div className="cv__main-bio__content">
-                            <p className="cv__main-bio__content__education">{tempData.education}</p>
+                            <p className="cv__main-bio__content__education">{student.education}</p>
                         </div>
                         <div className="cv__main-bio__title-container">
                             <p className="cv__main-bio__title-container__title">Kursy</p>
                         </div>
                         <div className="cv__main-bio__content">
-                            <p className="cv__main-bio__content__courses">{tempData.courses}</p>
+                            <p className="cv__main-bio__content__courses">{student.courses}</p>
                         </div>
                         <div className="cv__main-bio__title-container">
                             <p className="cv__main-bio__title-container__title">Doświadczenie zawodowe</p>
                         </div>
                         <div className="cv__main-bio__content">
-                            <p className="cv__main-bio__content__profExp">{tempData.profExperience}</p>
+                            <p className="cv__main-bio__content__profExp">{student.workExperience}</p>
                         </div>
                         <div className="cv__main-bio__title-container">
                             <p className="cv__main-bio__title-container__title">Portfolio</p>
@@ -214,7 +224,7 @@ export const CVView = () => {
                             <div className="cv__main-bio__content__portfolio">
                                 <a href="" className="cv__main-bio__content__portfolio__link">
                                     <span className="cv__main-bio__content__portfolio__icon"><FontAwesomeIcon icon={paperClipIconDefinition}/></span>
-                                    {tempData.portfolioLink}
+                                    {student.portfolioUrls}
                                 </a>
                             </div>
                         </div>

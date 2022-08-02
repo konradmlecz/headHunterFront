@@ -18,7 +18,6 @@ export class ContextManager {
 
     async ubdateStudents() {
         const data = await getData({link:'student/all'})
-        console.log(data, "data");
         if (data.isSuccess){
         this.dispatch({
           type:'SET_STUDENTS_AVAILABLE',
@@ -43,5 +42,18 @@ export class ContextManager {
         if(data.isSuccess){
             await this.ubdateStudents()
         }
+    }
+    setChoosenStudentId(id:string){
+      this.dispatch({
+        type:'SET_STUDENT_ID',
+        payload:{
+          choosenStudent: {
+            id
+        }
+        }
+      })
+    }
+    getStudent(){
+      return this.state.studentsInteview.filter(item=> item.id === this.state.choosenStudent.id)[0]
     }
 }

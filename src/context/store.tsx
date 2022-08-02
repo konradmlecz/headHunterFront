@@ -39,7 +39,10 @@ export type GlobalState = {
         lastName: string
     },
     studentsAvailable:Student[],
-    studentsInteview:Student[]
+    studentsInteview:Student[],
+    choosenStudent: {
+        id:string
+    }
 };
 
 export const initialState:GlobalState = {
@@ -49,13 +52,17 @@ export const initialState:GlobalState = {
         lastName: ''
     },
     studentsAvailable:[],
-    studentsInteview:[]
+    studentsInteview:[],
+    choosenStudent: {
+        id:''
+    }
 };
 
 export enum ActionKind {
     SET_USER = 'SET_USER',
     SET_STUDENTS_AVAILABLE = 'SET_STUDENTS_AVAILABLE',
     SET_STUDENTS_INTERVIEW = 'SET_STUDENTS_INTERVIEW',
+    SET_STUDENT_ID = 'SET_STUDENT_ID',
     CLEAR_USER = 'CLEAR_USER'
 }
 
@@ -85,11 +92,16 @@ export const reducerGlobalState: Reducer<GlobalState, Action> = (state, action) 
                         ...state,
                         studentsAvailable: action.payload.studentsAvailable
                     };
-                    case ActionKind.SET_STUDENTS_INTERVIEW:
+                case ActionKind.SET_STUDENTS_INTERVIEW:
                         return {
                             ...state,
                             studentsInteview: action.payload.studentsInteview
                         };
+                case ActionKind.SET_STUDENT_ID:
+                            return {
+                                ...state,
+                                choosenStudent: action.payload.choosenStudent
+                            };
         default:
             return {
                 ...state

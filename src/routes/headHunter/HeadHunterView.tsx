@@ -4,8 +4,8 @@ import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedV
 import {Global} from '../../context/store';
 import { useNavigate } from "react-router-dom";
 
-import Available from '../../components/available/Available';
-import Talk from '../../components/talk/Talk';
+import ListAvailable from '../../components/listAvailable/ListAvailable';
+import ListTalk from '../../components/listTalk/ListTalk';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import {FilterPopUp} from "./FilterPopUp/FilterPopUp";
@@ -29,8 +29,7 @@ function HeadHunterView() {
 
 useEffect(()=>{
  (async ()=>{
-  await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).ubdateStudents()
-
+    await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).ubdateStudents()
  })()
 },[])
 
@@ -129,8 +128,8 @@ useEffect(()=>{
             }}>Filtrowanie</Typography></Button>
            </Box>
         </Box>
-        {tab ==='Available' && <Available/> }
-        {tab ==='Talk' && <Talk/> }
+        {tab ==='Available' && <ListAvailable/> }
+        {tab ==='Talk' && <ListTalk/> }
      
       </Box>
       </Box>

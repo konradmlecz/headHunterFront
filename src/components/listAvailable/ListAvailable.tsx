@@ -1,20 +1,19 @@
 import React,{FC, useEffect} from 'react';
 import {Box, Typography ,TextField ,Button} from '@mui/material';
 import {Global} from '../../context/store';
-import { useNavigate } from "react-router-dom";
-import ListItem from '../../components/listItem/ListItem';
-function Available() {
+import ListAvailableItem from '../listAvaiableItem/ListAvailableItem';
+function ListAvailable() {
 
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
-      console.log(globalState);
+
       return (
           <Box sx={{
             background:'#292A2B'
           }}>
-            {globalState.studentsAvailable.map(item=> <ListItem key={item.email} itemStudent={item}/>)}
+            {globalState.studentsAvailable.map(item=> <ListAvailableItem key={item.email} itemStudent={item}/>)}
           </Box>
       );
     }
 
-    export default Available
+    export default ListAvailable
     
