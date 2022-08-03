@@ -1,5 +1,7 @@
-export async function ubdateStatus(data:{id: string}) {
-    const response = await fetch(`http://localhost:3001/headhunter/interview/${data.id}`, {
+export async function ubdateItemForId(data:{id: string, link:string}) {
+    const link = `http://localhost:3001/${data.link}${data.id}`
+    console.log(link, 'link');
+    const response = await fetch(link, {
         method: 'PATCH', // *GET, POST, PUT, DELETE, etc.
         // mode: 'no-cors', // no-cors, *cors, same-origin
         credentials: 'include', // include, *same-origin, omit

@@ -1,7 +1,7 @@
 import {GlobalState } from '../context/store'
 import React,{FC, useEffect} from 'react';
 import {getData} from '../utils/getData';
-import { ubdateStatus } from '../utils/ubdateStatus'
+import { ubdateItemForId } from '../utils/ubdateItemForId'
 
 type Props = {
     dispatch: React.Dispatch<any>;
@@ -37,12 +37,33 @@ export class ContextManager {
         }
     }
     
-    async ubdateStatusOfStudent(id:string){
-        const data = await ubdateStatus({id:id})
+    async setStatusOfStudentToInteview(id:string){
+        const data = await ubdateItemForId({id:id, link:'headhunter/interview/'})
         if(data.isSuccess){
             await this.ubdateStudents()
         }
     }
+
+    async setStatusOfStudentToAvailable(id:string){
+      console.log(id,'id');
+      const data = await ubdateItemForId({id:id, link:'headhunter/disinterest/'})
+      console.log(data, "res");
+      if(data.isSuccess){
+          await this.ubdateStudents()
+      }
+  
+    }
+
+    async setStatusOfStudentToEmployed(id:string){
+      console.log(id,'id');
+      const data = await ubdateItemForId({id:id, link:'student/employed/'})
+      console.log(data, "res");
+      if(data.isSuccess){
+          await this.ubdateStudents()
+      }
+  
+    }
+
     setChoosenStudentId(id:string){
       this.dispatch({
         type:'SET_STUDENT_ID',

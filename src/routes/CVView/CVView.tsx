@@ -56,6 +56,17 @@ export const CVView = () => {
     const back = () => {
         navigate("/hr");
     }
+
+
+    const handleStatusAv = async ()=>{
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToInteview(globalState.choosenStudent.id)
+        
+    }
+
+    const handleStatusEm = async ()=>{
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(globalState.choosenStudent.id)
+        
+    }
     return (
         <WrapperLoggedView>
         <div className="cv-wrapper">
@@ -97,8 +108,8 @@ export const CVView = () => {
                     </div>
                     <div className="cv__short-bio__controls">
                         <form action="" className="cv__short-bio__controls__form">
-                            <input type="submit" className="cv__short-bio__controls__btn" value="Brak zainteresowania"/>
-                            <input type="submit" className="cv__short-bio__controls__btn" value="Zatrudniony"/>
+                            <input type="submit" className="cv__short-bio__controls__btn" value="Brak zainteresowania" onClick={handleStatusAv}/>
+                            <input type="submit" className="cv__short-bio__controls__btn" value="Zatrudniony" onClick={handleStatusEm}/>
                         </form>
                     </div>
                 </div>

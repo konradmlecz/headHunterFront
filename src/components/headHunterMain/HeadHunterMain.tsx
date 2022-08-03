@@ -1,4 +1,4 @@
-import React,{FC, useEffect, useState} from 'react';
+import React,{FC, useEffect, useState , ReactNode} from 'react';
 import {Box, Typography ,TextField ,Button} from '@mui/material';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 import {Global} from '../../context/store';
@@ -8,13 +8,16 @@ import ListAvailable from '../../components/listAvailable/ListAvailable';
 import ListTalk from '../../components/listTalk/ListTalk';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import {FilterPopUp} from "./FilterPopUp/FilterPopUp";
+import {FilterPopUp} from '../../routes/headHunter/FilterPopUp/FilterPopUp';
 import { ContextManager } from '../../context/ContextManager'
+import { JsxElement } from 'typescript';
 //available interview
 
-function HeadHunterView() {
+type Props = {
+    children:ReactNode
+}
 
-  const [tab, setTab] = useState<'Available' | 'Talk'>('Available')
+const HeadHunterMain: FC<Props> = ({children}) =>{
   const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
 
   const handleFilterButton = () => {
@@ -27,7 +30,7 @@ function HeadHunterView() {
 
 
 
-useEffect(()=>{
+  useEffect(()=>{
  (async ()=>{
     await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).ubdateStudents()
  })()
@@ -59,11 +62,11 @@ useEffect(()=>{
               justifyContent:'center',
               alignItems: 'center',
               cursor: 'pointer',
-              borderBottom: `${tab === 'Available' ? '2px solid red' : '2px solid transparent'}`
-          }} onClick={()=>setTab("Available")}>
+              // borderBottom: `${tab === 'Available' ? '2px solid red' : '2px solid transparent'}`
+          }}>
              <Typography sx={{
               color:'white'
-             }}>Dostępni kursanci</Typography>
+             }} onClick={()=> navigate("/hr/available", { replace: true })}>Dostępni kursanci</Typography>
           </Box>
           <Box sx={{
                      width:'180px',
@@ -72,8 +75,8 @@ useEffect(()=>{
                      justifyContent:'center',
                      alignItems: 'center',
                      cursor: 'pointer',
-                     borderBottom: `${tab === 'Talk' ? '2px solid red' : '2px solid transparent'}`
-          }} onClick={()=>setTab('Talk')}>
+               //      borderBottom: `${tab === 'Talk' ? '2px solid red' : '2px solid transparent'}`
+          }}  onClick={()=> navigate("/hr/inteview", { replace: true })}>
              <Typography sx={{
               color:'white'
              }}>Do rozmowy</Typography>
@@ -128,14 +131,14 @@ useEffect(()=>{
             }}>Filtrowanie</Typography></Button>
            </Box>
         </Box>
-        {tab ==='Available' && <ListAvailable/> }
-        {tab ==='Talk' && <ListTalk/> }
-     
+        <Box>
+            {children}
+        </Box>
       </Box>
       </Box>
       </WrapperLoggedView>
     );
   }
   
-  export default HeadHunterView;
+  export default HeadHunterMain;
   

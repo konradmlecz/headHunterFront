@@ -22,6 +22,17 @@ const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
         new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setChoosenStudentId(itemStudent.id)
         navigate("/cv", { replace: true });
     }
+
+
+    const handleStatusAv = async ()=>{
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToInteview(itemStudent.id)
+        
+    }
+
+    const handleStatusEm = async ()=>{
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(itemStudent.id)
+        
+    }
     return (
         <>
         <Box sx={{display:'flex', flexDirection:'column', margin: '10px', borderTop: '4px solid #222224', padding: '5px 10px'}}>
@@ -43,12 +54,12 @@ const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
                 background:'#E02735',
                 color: 'white',
                 margin: '5px 10px'
-            }} >Brak zainteresowania</Button>
+            }} onClick={handleStatusAv}>Brak zainteresowania</Button>
                <Button sx={{
                 background:'#E02735',
                 color: 'white',
                 margin: '5px 10px'
-            }}>Zatrudniony</Button>
+            }} onClick={handleStatusEm}>Zatrudniony</Button>
              <Box onClick={()=>setOpen(!open)} sx={{
                               cursor:'pointer'
              }}>

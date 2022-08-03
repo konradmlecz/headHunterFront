@@ -4,9 +4,9 @@ import Main from './routes/main/Main'
 import {Login} from './routes/login/Login'
 import Admin from './routes/adminView/AdminView'
 import StudentView from './routes/studentView/StudentView'
-import HeadHunterView from './routes/headHunter/HeadHunterView';
-import { CVView } from "./routes/CVView/CVView";
-
+import HeadHunterViewAvailable from './routes/headHunter/HeadHunterAvailableView';
+import HeadHunterViewInterview from './routes/headHunter/HeadHunterInteviewView'
+import { CVView } from './routes/CVView/CVView';
 
 function App() {
   return (
@@ -15,7 +15,8 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="admin" element={<Admin />} />
         <Route path="student" element={<StudentView/>} />
-        <Route path="hr" element={<HeadHunterView/>} />
+        <Route path="hr/available" element={<HeadHunterViewAvailable/>} />        
+        <Route path="hr/inteview" element={<HeadHunterViewInterview/>} />
         <Route path="cv" element={<CVView />} />
       </Routes>
   );

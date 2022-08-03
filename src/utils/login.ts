@@ -10,6 +10,7 @@ export async function login(data:{pwd:string,email:string}) {
         body: JSON.stringify(data)
         
     });
+    console.log(response);
     const dataPrimary = await response.text();
     try {
         return  JSON.parse(dataPrimary);

@@ -16,7 +16,7 @@ const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
 
     const handleStatus = async ()=>{
-        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).ubdateStatusOfStudent(itemStudent.id)
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToInteview(itemStudent.id)
         
     }
     return (

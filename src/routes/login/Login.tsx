@@ -15,11 +15,9 @@ export const Login = () => {
     const submitLoginForm = async (e: SyntheticEvent) => {
         const data = { 
             email:userEmail,
-	        pwd:userPassword,
-            role:'USER'
+	        pwd:userPassword
         }
         e.preventDefault();
-        console.log(data);
         const response  = await login(data)
         console.log(response);
         if(response.isSuccess){
@@ -27,14 +25,13 @@ export const Login = () => {
                 type:'SET_USER',
                 payload:{
                     user:{
-                        role: response.role,
                         firstName: response.firstName,
                         lastName: response.lastName
                     }
                 }
             })
             if(response.role === 'student') navigate("/student", { replace: true });
-            if(response.role === 'hr') navigate("/hr", { replace: true });
+            if(response.role === 'hr/') navigate("/hr/available", { replace: true });
             if(response.role === 'admin') navigate("/admin", { replace: true });
             setIsError(false)
             }
