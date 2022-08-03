@@ -25,12 +25,12 @@ const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
 
 
     const handleStatusAv = async ()=>{
-        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToInteview(itemStudent.id)
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToAvailable(itemStudent.id, true)
         
     }
 
     const handleStatusEm = async ()=>{
-        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(itemStudent.id)
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(itemStudent.id, true)
         
     }
     return (

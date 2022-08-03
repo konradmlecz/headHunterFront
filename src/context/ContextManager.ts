@@ -44,21 +44,17 @@ export class ContextManager {
         }
     }
 
-    async setStatusOfStudentToAvailable(id:string){
-      console.log(id,'id');
+    async setStatusOfStudentToAvailable(id:string, ubdateState:boolean){
       const data = await ubdateItemForId({id:id, link:'headhunter/disinterest/'})
-      console.log(data, "res");
-      if(data.isSuccess){
+      if(data.isSuccess && ubdateState){
           await this.ubdateStudents()
       }
   
     }
 
-    async setStatusOfStudentToEmployed(id:string){
-      console.log(id,'id');
-      const data = await ubdateItemForId({id:id, link:'student/employed/'})
-      console.log(data, "res");
-      if(data.isSuccess){
+    async setStatusOfStudentToEmployed(id:string, ubdateState:boolean){
+      const data = await ubdateItemForId({id:id, link:'headhunter/employed/'})
+      if(data.isSuccess && ubdateState){
           await this.ubdateStudents()
       }
   

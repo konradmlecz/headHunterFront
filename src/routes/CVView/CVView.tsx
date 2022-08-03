@@ -54,18 +54,18 @@ export const CVView = () => {
     const student = new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).getStudent()
 
     const back = () => {
-        navigate("/hr");
+        navigate("/hr/interview");
     }
 
 
     const handleStatusAv = async ()=>{
-        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToInteview(globalState.choosenStudent.id)
-        
+        // await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToAvailable(globalState.choosenStudent.id,false)
+        back()
     }
 
     const handleStatusEm = async ()=>{
-        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(globalState.choosenStudent.id)
-        
+        // await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(globalState.choosenStudent.id, false)
+        back()
     }
     return (
         <WrapperLoggedView>
