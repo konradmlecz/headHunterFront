@@ -31,6 +31,35 @@ export type Student = {
 }
 
 
+const StudentData:Student = {
+    bio: '',
+    bonusProjectUrls: '',
+    canTakeApprenticeship: false,
+    company: '',
+    courseCompletion: 0,
+    courseEngagment: 0,
+    courses: '',
+    education: '',
+    email: '',
+    expectedContractType: '',
+    expectedSalary: '',
+    expectedTypeWork: '',
+    firstName: '',
+    fullName: '',
+    githubUsername: '',
+    id: '',
+    lastName: '',
+    maxReservedStudents: 0,
+    monthsOfCommercialExp: 0,
+    phone: 0,
+    portfolioUrls: '',
+    projectDegree: 0,
+    projectUrls: '',
+    targetWorkCity: '',
+    teamProjectDegree: 0,
+    workExperience: '',
+}
+
 
 export type GlobalState = {
     user: {
@@ -40,9 +69,7 @@ export type GlobalState = {
     },
     studentsAvailable:Student[],
     studentsInteview:Student[],
-    choosenStudent: {
-        id:string
-    }
+    choosenStudent: Student 
 };
 
 export const initialState:GlobalState = {
@@ -53,16 +80,14 @@ export const initialState:GlobalState = {
     },
     studentsAvailable:[],
     studentsInteview:[],
-    choosenStudent: {
-        id:''
-    }
+    choosenStudent: StudentData
 };
 
 export enum ActionKind {
     SET_USER = 'SET_USER',
     SET_STUDENTS_AVAILABLE = 'SET_STUDENTS_AVAILABLE',
     SET_STUDENTS_INTERVIEW = 'SET_STUDENTS_INTERVIEW',
-    SET_STUDENT_ID = 'SET_STUDENT_ID',
+    SET_STUDENT_CV= 'SET_STUDENT_CV',
     CLEAR_USER = 'CLEAR_USER'
 }
 
@@ -97,7 +122,7 @@ export const reducerGlobalState: Reducer<GlobalState, Action> = (state, action) 
                             ...state,
                             studentsInteview: action.payload.studentsInteview
                         };
-                case ActionKind.SET_STUDENT_ID:
+                case ActionKind.SET_STUDENT_CV:
                             return {
                                 ...state,
                                 choosenStudent: action.payload.choosenStudent

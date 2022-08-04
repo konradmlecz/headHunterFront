@@ -76,7 +76,7 @@ const HeadHunterMain: FC<Props> = ({children}) =>{
                      alignItems: 'center',
                      cursor: 'pointer',
                //      borderBottom: `${tab === 'Talk' ? '2px solid red' : '2px solid transparent'}`
-          }}  onClick={()=> navigate("/hr/inteview", { replace: true })}>
+          }}  onClick={()=> navigate("/hr/interview", { replace: true })}>
              <Typography sx={{
               color:'white'
              }}>Do rozmowy</Typography>

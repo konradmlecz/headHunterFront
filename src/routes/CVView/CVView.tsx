@@ -52,19 +52,19 @@ export const CVView = () => {
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
     const navigate = useNavigate();
     const student = new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).getStudent()
-
+    console.log(student);
     const back = () => {
         navigate("/hr/interview");
     }
 
 
     const handleStatusAv = async ()=>{
-        // await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToAvailable(globalState.choosenStudent.id,false)
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToAvailable(globalState.choosenStudent.id)
         back()
     }
 
     const handleStatusEm = async ()=>{
-        // await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(globalState.choosenStudent.id, false)
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(globalState.choosenStudent.id)
         back()
     }
     return (

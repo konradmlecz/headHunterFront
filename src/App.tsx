@@ -16,7 +16,7 @@ function App() {
         <Route path="admin" element={<Admin />} />
         <Route path="student" element={<StudentView/>} />
         <Route path="hr/available" element={<HeadHunterViewAvailable/>} />        
-        <Route path="hr/inteview" element={<HeadHunterViewInterview/>} />
+        <Route path="hr/interview" element={<HeadHunterViewInterview/>} />
         <Route path="cv" element={<CVView />} />
       </Routes>
   );

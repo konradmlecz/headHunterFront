@@ -19,18 +19,18 @@ const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
 
   
     const show = ()=> {
-        new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setChoosenStudentId(itemStudent.id)
+        new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setChoosenStudent(itemStudent.id)
         navigate("/cv", { replace: true });
     }
 
 
     const handleStatusAv = async ()=>{
-        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToAvailable(itemStudent.id, true)
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToAvailable(itemStudent.id)
         
     }
 
     const handleStatusEm = async ()=>{
-        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(itemStudent.id, true)
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(itemStudent.id)
         
     }
     return (

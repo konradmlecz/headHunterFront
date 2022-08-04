@@ -44,33 +44,36 @@ export class ContextManager {
         }
     }
 
-    async setStatusOfStudentToAvailable(id:string, ubdateState:boolean){
+    async setStatusOfStudentToAvailable(id:string){
       const data = await ubdateItemForId({id:id, link:'headhunter/disinterest/'})
-      if(data.isSuccess && ubdateState){
+      if(data.isSuccess){
           await this.ubdateStudents()
       }
   
     }
 
-    async setStatusOfStudentToEmployed(id:string, ubdateState:boolean){
+    async setStatusOfStudentToEmployed(id:string){
       const data = await ubdateItemForId({id:id, link:'headhunter/employed/'})
-      if(data.isSuccess && ubdateState){
+      if(data.isSuccess){
           await this.ubdateStudents()
       }
   
     }
 
-    setChoosenStudentId(id:string){
-      this.dispatch({
-        type:'SET_STUDENT_ID',
-        payload:{
-          choosenStudent: {
-            id
-        }
-        }
-      })
+    setChoosenStudent(id:string){
+      const student  = this.state.studentsInteview.find(item => item.id === id)
+      if(student){
+        this.dispatch({
+          type:'SET_STUDENT_CV',
+          payload:{
+            choosenStudent: {
+              ...student
+          }
+          }
+        })
+      }
     }
     getStudent(){
-      return this.state.studentsInteview.filter(item=> item.id === this.state.choosenStudent.id)[0]
+      return this.state.choosenStudent;
     }
 }

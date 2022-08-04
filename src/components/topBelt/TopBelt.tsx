@@ -12,7 +12,6 @@ function TopBelt() {
   const handleClick = (_e: any) => {
     setAnchorEl(_e.currentTarget);
 };
-console.log(globalState);
 const handleClose = () => {
     setAnchorEl(null);
 };
