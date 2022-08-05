@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import temp_photo from '../../images/temp_photo.jpg';
 import defaultUser from '../../images/default_user_icon_4_by_karmaanddestiny_de7834s.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -51,6 +51,11 @@ const colorStars = (rate: number) => {
 export const CVView = () => {
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(globalState.user.role !== "hr") navigate ("/login",{ replace: true });
+    },[])
+
     const student = new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).getStudent()
     console.log(student);
     const back = () => {

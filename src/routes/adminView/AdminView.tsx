@@ -1,4 +1,4 @@
-import React,{FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 import Box from '@mui/material/Box';
 import {Global} from '../../context/store';
@@ -7,7 +7,10 @@ function AdminView() {
 
   const { dispatchGlobalContext, globalState } = React.useContext(Global);
   const navigate = useNavigate();
-  if(globalState.user.role !== 'admin') navigate("/", { replace: true });
+
+  useEffect(()=>{
+    if(globalState.user.role !== "admin") navigate ("/login",{ replace: true });
+  },[])
 
     return (
       <WrapperLoggedView>
@@ -15,6 +18,5 @@ function AdminView() {
      </WrapperLoggedView>
     );
   }
-  
+
   export default AdminView;
-  

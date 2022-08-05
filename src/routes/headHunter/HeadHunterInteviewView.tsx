@@ -11,9 +11,8 @@ function HeadHunterAvailableView() {
 
   const { dispatchGlobalContext, globalState } = React.useContext(Global);
   const navigate = useNavigate();
-  if(globalState.user.role !== 'hr') navigate("/", { replace: true });
 
-useEffect(()=>{
+useEffect(()=>{if(globalState.user.role !== "hr") navigate ("/login",{ replace: true });
  (async ()=>{
     await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).ubdateStudents()
  })()
@@ -21,10 +20,9 @@ useEffect(()=>{
 
     return (
       <HeadHunterMain>
-       <ListTalk/> 
+       <ListTalk/>
        </HeadHunterMain>
     );
   }
-  
+
   export default HeadHunterAvailableView;
-  

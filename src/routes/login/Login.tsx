@@ -13,17 +13,20 @@ export const Login = () => {
     const navigate = useNavigate();
     const { dispatchGlobalContext } = React.useContext(Global);
     const submitLoginForm = async (e: SyntheticEvent) => {
-        const data = { 
+        const data = {
             email:userEmail,
 	        pwd:userPassword
         }
         e.preventDefault();
+        console.log(data);
         const response  = await login(data)
+        console.log(response);
         if(response.isSuccess){
             dispatchGlobalContext({
                 type:'SET_USER',
                 payload:{
                     user:{
+                        role: response.role,
                         firstName: response.firstName,
                         lastName: response.lastName
                     }
@@ -84,4 +87,3 @@ export const Login = () => {
       </div>
     );
   }
-  

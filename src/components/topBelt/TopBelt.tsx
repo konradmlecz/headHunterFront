@@ -51,7 +51,7 @@ const id = open ? 'simple-popover' : undefined;
        <CardMedia
         component="img"
         height="50"
-        image="./megaK_logo.png"
+        image="../megaK_logo.png"
         alt="Paella dish"
       />
       <Box/>
@@ -79,14 +79,14 @@ const id = open ? 'simple-popover' : undefined;
                                 <Typography sx={{
                                   padding:'10px 5px',
                                   fontSize:'12px',
-                                  textAlign:'left' 
+                                  textAlign:'left'
                                 }}>
                                   Konto
                                 </Typography>
                                 <Typography sx={{
                                   padding:'10px  5px',
                                   fontSize:'12px',
-                                  textAlign:'left' 
+                                  textAlign:'left'
                                 }}
                                 onClick={handleLogOut}>
                                   Wyloguj
