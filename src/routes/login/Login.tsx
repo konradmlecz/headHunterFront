@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useState, useEffect } from "react";
 import logo from '../../images/megaK_logo.png';
 import {login} from '../../utils/login';
 import './Login.css';
@@ -11,16 +11,15 @@ export const Login = () => {
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
     const navigate = useNavigate();
-    const { dispatchGlobalContext } = React.useContext(Global);
+    const { dispatchGlobalContext, globalState } = React.useContext(Global);
+
     const submitLoginForm = async (e: SyntheticEvent) => {
         const data = {
             email:userEmail,
 	        pwd:userPassword
         }
         e.preventDefault();
-        console.log(data);
         const response  = await login(data)
-        console.log(response);
         if(response.isSuccess){
             dispatchGlobalContext({
                 type:'SET_USER',
@@ -41,6 +40,8 @@ export const Login = () => {
                 setIsError(true)
             }
     }
+
+
     return (
       <div className="login-wrapper">
           <form action="" onSubmit={submitLoginForm} className="login-wrapper__form">
