@@ -57,7 +57,7 @@ export const CVView = () => {
     },[])
 
     const student = new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).getStudent()
-    console.log(student);
+    
     const back = () => {
         navigate("/hr/interview");
     }
@@ -113,8 +113,8 @@ export const CVView = () => {
                     </div>
                     <div className="cv__short-bio__controls">
                         <form action="" className="cv__short-bio__controls__form">
-                            <input type="submit" className="cv__short-bio__controls__btn" value="Brak zainteresowania" onClick={handleStatusAv}/>
-                            <input type="submit" className="cv__short-bio__controls__btn" value="Zatrudniony" onClick={handleStatusEm}/>
+                            <input className="cv__short-bio__controls__btn" value="Brak zainteresowania" onClick={handleStatusAv}/>
+                            <input className="cv__short-bio__controls__btn" value="Zatrudniony" onClick={handleStatusEm}/>
                         </form>
                     </div>
                 </div>
