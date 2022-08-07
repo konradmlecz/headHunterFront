@@ -34,10 +34,25 @@ function UserView() {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
 
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setError(false);
         setSuccess(false);
+
+        const res = await fetch('http://localhost:3001/student/profile', {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(user),
+            credentials: 'include',
+        })
+        const data = await res.json()
+        try {
+            if (!data.isSuccess) throw new Error();
+            setSuccess(true);
+        } catch (error) {
+            setError(true);
+        }
     };
 
     const updateUser = (key: string, value: any) => {
@@ -49,8 +64,35 @@ function UserView() {
     };
 
     useEffect(() => {
-        if (globalState.user.role !== "student") navigate("/login", {replace: true});
-    }, [])
+        (async () => {
+            if (globalState.user.role !== "student") navigate("/login", {replace: true});
+            const res = await fetch('http://localhost:3001/student/profile', {
+                method: 'GET',
+                credentials: 'include',
+            })
+            const data = await res.json()
+            setUser(user => ({
+                ...user,
+                email: data.email,
+                phone: data.phone,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                githubUsername: data.githubUsername,
+                portfolioUrls: data.portfolioUrls,
+                projectUrls: data.projectUrls,
+                bio: data.bio,
+                expectedTypeWork: data.expectedTypeWork,
+                targetWorkCity: data.targetWorkCity,
+                expectedContractType: data.expectedContractType,
+                expectedSalary: data.expectedSalary,
+                canTakeApprenticeship: data.canTakeApprenticeship,
+                monthsOfCommercialExp: data.monthsOfCommercialExp,
+                education: data.education,
+                workExperience: data.workExperience,
+                courses: data.courses,
+            }));
+        })()
+    }, []);
 
     return (
         <WrapperLoggedView>
@@ -69,7 +111,7 @@ function UserView() {
                         <input
                             type="email"
                             required={true}
-                            placeholder={user.email}
+                            value={user.email}
                             onChange={e => updateUser("email", e.target.value)}
                         />
                         <label>Numer telefonu</label>
@@ -82,14 +124,14 @@ function UserView() {
                         <input
                             type="text"
                             required={true}
-                            placeholder={user.firstName}
+                            value={user.firstName ?? ""}
                             onChange={e => updateUser("firstName", e.target.value)}
                         />
                         <label>Nazwisko</label>
                         <input
                             type="text"
                             required={true}
-                            placeholder={user.lastName}
+                            value={user.lastName ?? ""}
                             onChange={e => updateUser("lastName", e.target.value)}
                         />
 
@@ -97,30 +139,31 @@ function UserView() {
                         <input
                             type="text"
                             required={true}
-                            placeholder={user.githubUsername}
+                            value={user.githubUsername ?? ""}
                             onChange={e => updateUser("githubUsername", e.target.value)}
                         />
                         <label>Portfolio URL</label>
                         <input
                             type="text"
-                            placeholder={user.portfolioUrls}
+                            value={user.portfolioUrls ?? ""}
                             onChange={e => updateUser("portfolioUrls", e.target.value)}
                         />
                         <label>Projekty GitHub</label>
                         <input
                             type="text"
                             required={true}
-                            placeholder={user.projectUrls}
+                            value={user.projectUrls ?? ""}
                             onChange={e => updateUser("projectUrls", e.target.value)}
                         />
                         <label>Biogram zawodowy</label>
                         <input
                             type="text"
-                            placeholder={user.bio}
+                            value={user.bio ?? ""}
                             onChange={e => updateUser("bio", e.target.value)}
                         />
                         <label>Preferowane miejsce pracy</label>
-                        <select value={user.expectedTypeWork} onChange={e => updateUser("expectedTypeWork", e.target.value)}>
+                        <select value={user.expectedTypeWork}
+                                onChange={e => updateUser("expectedTypeWork", e.target.value)}>
                             <option value={expectedTypeWork.ONSITE}>Na miejscu</option>
                             <option value={expectedTypeWork.RELOCATION}>Gotowość do przeprowadzki</option>
                             <option value={expectedTypeWork.REMOTELY}>Wyłącznie zdalnie</option>
@@ -130,11 +173,12 @@ function UserView() {
                         <label>Docelowe miasto</label>
                         <input
                             type="text"
-                            placeholder={user.targetWorkCity}
+                            value={user.targetWorkCity ?? ""}
                             onChange={e => updateUser("targetWorkCity", e.target.value)}
                         />
                         <label>Oczekiwany typ kontraktu</label>
-                        <select value={user.expectedContractType} onChange={e => updateUser("expectedContractType", e.target.value)}>
+                        <select value={user.expectedContractType}
+                                onChange={e => updateUser("expectedContractType", e.target.value)}>
                             <option value={expectedContractType.UOP}>Tylko UoP</option>
                             <option value={expectedContractType.B2B}>Mozliwe B2B</option>
                             <option value={expectedContractType.UZ}>Możliwe UZ/UoD</option>
@@ -143,14 +187,18 @@ function UserView() {
                         <label>Oczekiwane wynagrodzenie</label>
                         <input
                             type="text"
-                            placeholder={user.expectedSalary}
+                            value={user.expectedSalary ?? ""}
                             onChange={e => updateUser("expectedSalary", e.target.value)}
                         />
                         <label>Zgoda na odbycie bezpłatnych praktyk/stażu</label>
-                        <div onChange={e => updateUser("canTakeApprenticeship", e.target)}>
-                            <input type="radio" value={1} name="true" /> Tak
-                            <input type="radio" value={0} name="false" /> Nie
-                        </div>
+                        <select onChange={e => updateUser("canTakeApprenticeship", e.target.value)}>
+                            <option value="true">Tak</option>
+                            <option value="false">Nie</option>
+                        </select>
+                        {/*<div >*/}
+                        {/*    <input type="radio" checked={user.canTakeApprenticeship === true} value="true" name="true" onChange={e => updateUser("canTakeApprenticeship", e.target.value)}/> Tak*/}
+                        {/*    <input type="radio" checked={user.canTakeApprenticeship === false} value="false" name="false" onChange={e => updateUser("canTakeApprenticeship", e.target.value)}/> Nie*/}
+                        {/*</div>*/}
                         <label>Ilość miesięcy doświadczenia komercyjnego</label>
                         <input
                             type="number"
@@ -162,19 +210,19 @@ function UserView() {
                         <label>Przebieg edukacji</label>
                         <input
                             type="text"
-                            placeholder={user.education}
+                            value={user.education ?? ""}
                             onChange={e => updateUser("education", e.target.value)}
                         />
                         <label>Przebieg doswiadczenia zawodowego</label>
                         <input
                             type="text"
-                            placeholder={user.workExperience}
+                            value={user.workExperience ?? ""}
                             onChange={e => updateUser("workExperience", e.target.value)}
                         />
                         <label>Kursy i certyfikaty</label>
                         <input
                             type="text"
-                            placeholder={user.courses}
+                            value={user.courses ?? ""}
                             onChange={e => updateUser("courses", e.target.value)}
                         />
 
