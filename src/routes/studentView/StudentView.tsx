@@ -107,7 +107,7 @@ function UserView() {
                     </div>
                     <form action="" className="settingsForm" onSubmit={handleSubmit}>
 
-                        <label>Email</label>
+                        <label>Email*</label>
                         <input
                             type="email"
                             required={true}
@@ -120,14 +120,14 @@ function UserView() {
                             placeholder={String(user.phone)}
                             onChange={e => updateUser("phone", e.target.value)}
                         />
-                        <label>Imię</label>
+                        <label>Imię*</label>
                         <input
                             type="text"
                             required={true}
                             value={user.firstName ?? ""}
                             onChange={e => updateUser("firstName", e.target.value)}
                         />
-                        <label>Nazwisko</label>
+                        <label>Nazwisko*</label>
                         <input
                             type="text"
                             required={true}
@@ -135,7 +135,7 @@ function UserView() {
                             onChange={e => updateUser("lastName", e.target.value)}
                         />
 
-                        <label>Login GitHub</label>
+                        <label>Login GitHub*</label>
                         <input
                             type="text"
                             required={true}
@@ -148,7 +148,7 @@ function UserView() {
                             value={user.portfolioUrls ?? ""}
                             onChange={e => updateUser("portfolioUrls", e.target.value)}
                         />
-                        <label>Projekty GitHub</label>
+                        <label>Projekty GitHub*</label>
                         <input
                             type="text"
                             required={true}
@@ -161,7 +161,7 @@ function UserView() {
                             value={user.bio ?? ""}
                             onChange={e => updateUser("bio", e.target.value)}
                         />
-                        <label>Preferowane miejsce pracy</label>
+                        <label>Preferowane miejsce pracy*</label>
                         <select value={user.expectedTypeWork}
                                 onChange={e => updateUser("expectedTypeWork", e.target.value)}>
                             <option value={expectedTypeWork.ONSITE}>Na miejscu</option>
@@ -176,7 +176,7 @@ function UserView() {
                             value={user.targetWorkCity ?? ""}
                             onChange={e => updateUser("targetWorkCity", e.target.value)}
                         />
-                        <label>Oczekiwany typ kontraktu</label>
+                        <label>Oczekiwany typ kontraktu*</label>
                         <select value={user.expectedContractType}
                                 onChange={e => updateUser("expectedContractType", e.target.value)}>
                             <option value={expectedContractType.UOP}>Tylko UoP</option>
@@ -190,16 +190,12 @@ function UserView() {
                             value={user.expectedSalary ?? ""}
                             onChange={e => updateUser("expectedSalary", e.target.value)}
                         />
-                        <label>Zgoda na odbycie bezpłatnych praktyk/stażu</label>
+                        <label>Zgoda na odbycie bezpłatnych praktyk/stażu*</label>
                         <select onChange={e => updateUser("canTakeApprenticeship", e.target.value)}>
                             <option value="true">Tak</option>
                             <option value="false">Nie</option>
                         </select>
-                        {/*<div >*/}
-                        {/*    <input type="radio" checked={user.canTakeApprenticeship === true} value="true" name="true" onChange={e => updateUser("canTakeApprenticeship", e.target.value)}/> Tak*/}
-                        {/*    <input type="radio" checked={user.canTakeApprenticeship === false} value="false" name="false" onChange={e => updateUser("canTakeApprenticeship", e.target.value)}/> Nie*/}
-                        {/*</div>*/}
-                        <label>Ilość miesięcy doświadczenia komercyjnego</label>
+                        <label>Ilość miesięcy doświadczenia komercyjnego*</label>
                         <input
                             type="number"
                             required={true}
