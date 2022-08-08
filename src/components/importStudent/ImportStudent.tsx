@@ -62,8 +62,16 @@ export const ImportStudent = () => {
             ) : (
                 <p>Select a file to show details</p>
             )}
-            <Button variant="contained" endIcon={<SendIcon/>} onClick={handleSubmission}
-                    color={"error"}>
+            <Button
+                variant="contained"
+                endIcon={<SendIcon/>}
+                onClick={handleSubmission}
+                color={"error"}
+                disabled={(isFilePicked && selectedFile) ? false : true}
+                style={{
+                    margin:"20px 0"
+                }}
+            >
                 Send
             </Button>
             {uploded ?
