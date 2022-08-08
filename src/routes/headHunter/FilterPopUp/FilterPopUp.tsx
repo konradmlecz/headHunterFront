@@ -25,8 +25,6 @@ interface QueryInterface {
     experience: number,
 }
 
-
-
 export const FilterPopUp = ({setIsPopUpVisible}: Props) => {
 
     const [form, setForm] = useState<QueryInterface>({
