@@ -17,7 +17,8 @@ function HeadHunterAvailableView() {
 useEffect(()=>{
   new AuthRouter({navigate:navigate, location:location, state:globalState}).check();
  (async ()=>{
-    await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).ubdateStudents()
+
+ await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).ubdateStudents()
  })()
 },[])
 
