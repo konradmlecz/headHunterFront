@@ -191,9 +191,9 @@ function UserView() {
                             onChange={e => updateUser("expectedSalary", e.target.value)}
                         />
                         <label>Zgoda na odbycie bezpłatnych praktyk/stażu*</label>
-                        <select onChange={e => updateUser("canTakeApprenticeship", e.target.value)}>
-                            <option value="true">Tak</option>
-                            <option value="false">Nie</option>
+                        <select onChange={e => updateUser("canTakeApprenticeship", Number(e.target.value))}>
+                            <option value="1">Tak</option>
+                            <option value="0">Nie</option>
                         </select>
                         <label>Ilość miesięcy doświadczenia komercyjnego*</label>
                         <input
