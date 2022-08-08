@@ -24,3 +24,24 @@ export enum expectedContractType {
     UZ = 'Możliwe UZ/UoD',
     NO = 'Brak',
 }
+
+export interface Student {
+    id?: string;
+    email: string;
+    phone: number;
+    firstName: string;
+    lastName: string;
+    githubUsername: string;
+    portfolioUrls: string;
+    projectUrls: string;
+    bio: string;
+    expectedTypeWork: expectedTypeWork;
+    targetWorkCity: string;
+    expectedContractType: expectedContractType;
+    expectedSalary: string;
+    canTakeApprenticeship: boolean;
+    monthsOfCommercialExp: number;
+    education: string;
+    workExperience: string;
+    courses: string;
+}
