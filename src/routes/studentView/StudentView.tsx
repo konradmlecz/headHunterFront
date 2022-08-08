@@ -4,9 +4,14 @@ import {Global} from '../../context/store';
 import {useNavigate} from "react-router-dom";
 import {expectedContractType, expectedTypeWork, Student} from "../../types/global-types";
 import "./StudentView.css";
+import {ContextManager} from "../../context/ContextManager";
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 
 function UserView() {
-
     const {dispatchGlobalContext, globalState} = React.useContext(Global);
     const navigate = useNavigate();
 
@@ -34,6 +39,15 @@ function UserView() {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -62,6 +76,16 @@ function UserView() {
             [key]: value,
         }));
     };
+
+    const handleStatusEm = async () => {
+        await new ContextManager({dispatch: dispatchGlobalContext, state: globalState}).studentSetToEmployed()
+
+        navigate('/login', {replace: true});
+        dispatchGlobalContext({
+            type: 'CLEAR_USER',
+        });
+
+    }
 
     useEffect(() => {
         (async () => {
@@ -102,8 +126,33 @@ function UserView() {
                         <span className="settingsUpdateTitle">Edytuj profil</span>
                         <div className="btnWrapper">
                             <button className="btn" type="submit">Zmień hasło</button>
-                            <button className="btn" type="submit">Zatrudniony</button>
+                            <button className="btn" onClick={handleClickOpen}>Zatrudniony</button>
                         </div>
+                        <Dialog
+                            PaperProps={{
+                                style: {
+                                    backgroundColor: 'var(--input-background-color)',
+                                    color: 'var(--main-text-color)'
+                                },
+                            }}
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogContent>
+                                <DialogContentText color="var(--main-text-color)" id="alert-dialog-description">
+                                    Czy na pewno oznaczyć jako zatrudniony?
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions color="var(--main-text-color)">
+                                <Button style={{color: 'var(--main-text-color)'}}
+                                        onClick={handleStatusEm}>Potwierdź</Button>
+                                <Button style={{color: 'var(--main-text-color)'}} onClick={handleClose} autoFocus>
+                                    Anuluj
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </div>
                     <form action="" className="settingsForm" onSubmit={handleSubmit}>
 
