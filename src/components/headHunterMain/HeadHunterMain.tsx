@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import {FilterPopUp} from '../../routes/headHunter/FilterPopUp/FilterPopUp';
 import { ContextManager } from '../../context/ContextManager'
-import { JsxElement } from 'typescript';
 //available interview
 
 type Props = {
@@ -26,8 +25,6 @@ const HeadHunterMain: FC<Props> = ({children}) =>{
 
   const { dispatchGlobalContext, globalState } = React.useContext(Global);
   const navigate = useNavigate();
-  if(globalState.user.role !== 'hr') navigate("/", { replace: true });
-
 
 
   useEffect(()=>{

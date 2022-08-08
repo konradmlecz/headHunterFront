@@ -9,8 +9,8 @@ import { phoneReceiverIconDefinition, envelopeIconDefinition, starIconDefinition
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 import {Global} from '../../context/store';
 import { ContextManager } from '../../context/ContextManager'
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
+import {AuthRouter} from '../../utils/AuthRouter'
 import './CVView.css';
 
 const tempData = {
@@ -51,13 +51,14 @@ const colorStars = (rate: number) => {
 export const CVView = () => {
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(()=>{
-        if(globalState.user.role !== "hr") navigate ("/login",{ replace: true });
+          new AuthRouter({navigate:navigate, location:location, state:globalState}).check();
     },[])
 
     const student = new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).getStudent()
-    console.log(student);
+    
     const back = () => {
         navigate("/hr/interview");
     }
@@ -113,8 +114,8 @@ export const CVView = () => {
                     </div>
                     <div className="cv__short-bio__controls">
                         <form action="" className="cv__short-bio__controls__form">
-                            <input type="submit" className="cv__short-bio__controls__btn" value="Brak zainteresowania" onClick={handleStatusAv}/>
-                            <input type="submit" className="cv__short-bio__controls__btn" value="Zatrudniony" onClick={handleStatusEm}/>
+                            <input className="cv__short-bio__controls__btn" value="Brak zainteresowania" onClick={handleStatusAv}/>
+                            <input className="cv__short-bio__controls__btn" value="Zatrudniony" onClick={handleStatusEm}/>
                         </form>
                     </div>
                 </div>
