@@ -15,7 +15,7 @@
     width: 100%;
     height: 100vh;
     background-color: var(--popup-background-color);
-    opacity: .5;
+    opacity: 0.5;
     z-index: 1;
 }
 
@@ -55,7 +55,7 @@
     font-size: 14px;
     padding: 4px 10px;
     background-color: var(--clear-form-button-color);
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .popup-inner-wrapper__form__top-segment__button:hover {
@@ -63,28 +63,31 @@
     background-color: var(--clear-form-hover-button-color);
 }
 
-[type=radio], [type=checkbox] {
+[type='radio'],
+[type='checkbox'] {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-[type=radio] + span, [type=checkbox] + label {
+[type='radio'] + span,
+[type='checkbox'] + label {
     cursor: pointer;
     margin-left: 3px;
     user-select: none;
     font-size: 14px;
 }
 
-[type=checkbox] + label {
+[type='checkbox'] + label {
     display: inline-block;
     margin: 0 8px 0 0;
     padding: 4px 10px;
     background-color: var(--input-background-color);
 }
 
-[type=radio]:checked + span path, [type=checkbox]:checked + label{
+[type='checkbox']:checked + span path,
+[type='checkbox']:checked + label {
     color: var(--button-background-color);
 }
 
@@ -230,7 +233,7 @@
     padding: 6px 10px;
     margin-left: 20px;
     background-color: var(--button-background-color);
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .popup-inner-wrapper__form__bottom-segment__submit-button:hover {
