@@ -3,13 +3,13 @@ import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedV
 import {Global} from '../../context/store';
 import {useNavigate} from "react-router-dom";
 import {expectedContractType, expectedTypeWork, Student} from "../../types/global-types";
-import "./StudentView.css";
 import {ContextManager} from "../../context/ContextManager";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
+import "./StudentView.css";
 
 function UserView() {
     const {dispatchGlobalContext, globalState} = React.useContext(Global);
@@ -120,10 +120,10 @@ function UserView() {
 
     return (
         <WrapperLoggedView>
-            <div className="settings">
-                <div className="settingsWrapper">
-                    <div className="settingsTitle">
-                        <span className="settingsUpdateTitle">Edytuj profil</span>
+            <div className="editProfile">
+                <div className="editProfileWrapper">
+                    <div className="editProfileTitleWrapper">
+                        <span className="editProfileTitle">Edytuj profil</span>
                         <div className="btnWrapper">
                             <button className="btn" type="submit">Zmień hasło</button>
                             <button className="btn" onClick={handleClickOpen}>Zatrudniony</button>
@@ -154,7 +154,7 @@ function UserView() {
                             </DialogActions>
                         </Dialog>
                     </div>
-                    <form action="" className="settingsForm" onSubmit={handleSubmit}>
+                    <form action="" className="editProfileForm" onSubmit={handleSubmit}>
 
                         <label>Email*</label>
                         <input

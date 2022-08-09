@@ -1,38 +1,38 @@
-.settings {
+.editProfile {
     display: flex;
     justify-content: center;
 }
 
-.settingsWrapper {
+.editProfileWrapper {
     width: 60%;
     padding: 20px;
 }
 
-.settingsTitle {
+.editProfileTitleWrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.settingsUpdateTitle {
+.editProfileTitle {
     font-size: 30px;
     margin-bottom: 20px;
     color: var(--input-placeholder-color);
 }
 
-.settingsForm {
+.editProfileForm {
     display: flex;
     flex-direction: column;
     align-items: start;
 }
 
-.settingsForm > label {
+.editProfileForm > label {
     font-size: 14px;
     margin-top: 20px;
     color: var(--input-placeholder-color);
 }
 
-.settingsForm > input, select {
+.editProfileForm > input, select {
     color: var(--input-placeholder-color);
     background-color: var(--input-background-color);
     margin: 10px 0;
