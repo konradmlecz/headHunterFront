@@ -99,7 +99,7 @@ function AdminView() {
                                     color: 'white',
                                 }}
                             >
-                                Dodaj - Head Hunter'a
+                                Dodaj - Head Huntera
                             </Typography>
                         </Box>
                     </Box>
