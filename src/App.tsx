@@ -7,11 +7,13 @@ import StudentView from './routes/studentView/StudentView';
 import HeadHunterViewAvailable from './routes/headHunter/HeadHunterAvailableView';
 import HeadHunterViewInterview from './routes/headHunter/HeadHunterInteviewView';
 import { CVView } from './routes/CVView/CVView';
+import {SetPassword} from "./routes/setPassword/SetPassword";
 
 function App() {
     return (
         <Routes>
             <Route path="/" element={<Main />} />
+            <Route path="/user/register/:id/:token" element={<SetPassword/>} />
             <Route path="login" element={<Login />} />
             <Route path="admin" element={<Admin />} />
             <Route path="student" element={<StudentView />} />
