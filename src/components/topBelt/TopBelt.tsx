@@ -1,14 +1,14 @@
 import React from 'react';
-import { Box, CardMedia, Typography } from '@mui/material';
-import { Popover } from '@mui/material';
-import { logout } from '../../utils/logout';
-import { useNavigate } from 'react-router-dom';
-import { Global } from '../../context/store';
+import {Box, CardMedia, Typography} from '@mui/material';
+import {Popover} from '@mui/material';
+import {logout} from '../../utils/logout';
+import {useNavigate} from 'react-router-dom';
+import {Global} from '../../context/store';
 
 function TopBelt() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const navigate = useNavigate();
-    const { dispatchGlobalContext, globalState } = React.useContext(Global);
+    const {dispatchGlobalContext, globalState} = React.useContext(Global);
     const handleClick = (_e: any) => {
         setAnchorEl(_e.currentTarget);
     };
@@ -19,13 +19,21 @@ function TopBelt() {
     const handleLogOut = async () => {
         const data = await logout();
         if (data.isSuccess) {
-            navigate('/login', { replace: true });
+            navigate('/login', {replace: true});
             setAnchorEl(null);
             dispatchGlobalContext({
                 type: 'CLEAR_USER',
             });
         }
     };
+
+    const handleSettings = async () => {
+        navigate('/settings', {replace: true});
+    }
+
+    const handleHome = async () => {
+        navigate(`/${globalState.user.role}`, {replace: true});
+    }
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -56,7 +64,7 @@ function TopBelt() {
                     image="../megaK_logo.png"
                     alt="Paella dish"
                 />
-                <Box />
+                <Box/>
                 <Box
                     aria-describedby={id}
                     onClick={handleClick}
@@ -66,8 +74,8 @@ function TopBelt() {
                 >
                     {globalState.user.firstName && globalState.user.lastName
                         ? globalState.user.firstName +
-                          ' ' +
-                          globalState.user.lastName
+                        ' ' +
+                        globalState.user.lastName
                         : 'Imię i Nazwisko'}
                 </Box>
                 <Popover
@@ -95,8 +103,19 @@ function TopBelt() {
                                 fontSize: '12px',
                                 textAlign: 'left',
                             }}
+                            onClick={handleHome}
                         >
                             Konto
+                        </Typography>
+                            <Typography
+                            sx={{
+                                padding: '10px 5px',
+                                fontSize: '12px',
+                                textAlign: 'left',
+                            }}
+                            onClick={handleSettings}
+                        >
+                            Zmień hasło
                         </Typography>
                         <Typography
                             sx={{

@@ -7,7 +7,9 @@ import StudentView from './routes/studentView/StudentView';
 import HeadHunterViewAvailable from './routes/headHunter/HeadHunterAvailableView';
 import HeadHunterViewInterview from './routes/headHunter/HeadHunterInteviewView';
 import { CVView } from './routes/CVView/CVView';
+import SettingsView from "./routes/settingsView/SettingsView";
 import {SetPassword} from "./routes/setPassword/SetPassword";
+
 
 function App() {
     return (
@@ -20,6 +22,7 @@ function App() {
             <Route path="hr/available" element={<HeadHunterViewAvailable />} />
             <Route path="hr/interview" element={<HeadHunterViewInterview />} />
             <Route path="cv" element={<CVView />} />
+            <Route path="settings" element={<SettingsView />} />
         </Routes>
     );
 }
