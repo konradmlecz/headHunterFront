@@ -45,7 +45,7 @@ function SettingsView() {
     return (
         <WrapperLoggedView>
             <div className="editProfile">
-                <div className="editProfileWrapper" style={{width: "40%"}}>
+                <div className="editProfileWrapper">
                     <div className="editProfileTitleWrapper">
                         <span className="editProfileTitle">Edytuj hasło</span>
                     </div>

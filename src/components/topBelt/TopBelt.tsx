@@ -31,6 +31,10 @@ function TopBelt() {
         navigate('/settings', {replace: true});
     }
 
+    const handleHome = async () => {
+        navigate(`/${globalState.user.role}`, {replace: true});
+    }
+
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
@@ -99,9 +103,19 @@ function TopBelt() {
                                 fontSize: '12px',
                                 textAlign: 'left',
                             }}
-                            onClick={handleSettings}
+                            onClick={handleHome}
                         >
                             Konto
+                        </Typography>
+                            <Typography
+                            sx={{
+                                padding: '10px 5px',
+                                fontSize: '12px',
+                                textAlign: 'left',
+                            }}
+                            onClick={handleSettings}
+                        >
+                            Zmień hasło
                         </Typography>
                         <Typography
                             sx={{

@@ -125,7 +125,6 @@ function UserView() {
                     <div className="editProfileTitleWrapper">
                         <span className="editProfileTitle">Edytuj profil</span>
                         <div className="btnWrapper">
-                            <button className="btn" type="submit">Zmień hasło</button>
                             <button className="btn" onClick={handleClickOpen}>Zatrudniony</button>
                         </div>
                         <Dialog
