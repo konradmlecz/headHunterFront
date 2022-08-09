@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './FilterPopUp.css';
 import { starIconDefinition } from '../../../helpers/fontAwsomeIcons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FilterManager, KeysOfRate } from './FilterManager';
+import { FilterManager, KeysOfRate, KeysOfEx } from './FilterManager';
 interface Props {
     setIsPopUpVisible: (bool: boolean) => void;
 }
@@ -13,6 +13,8 @@ interface QueryInterface {
     courseEngagment: number[];
     projectDegree: number[];
     teamProjectDegree: number[];
+    expectedTypeWork: string[];
+    expectedContractType: string[];
     remote: boolean;
     office: boolean;
     employmentContract: boolean;
@@ -31,6 +33,8 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
         courseEngagment: [],
         projectDegree: [],
         teamProjectDegree: [],
+        expectedTypeWork: [],
+        expectedContractType: [],
         remote: false,
         office: false,
         employmentContract: false,
@@ -42,11 +46,17 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
         apprenticeship: false,
         experience: 0,
     });
-
+    console.log(state);
     const setRate = (key: KeysOfRate, num: number) => {
-        console.log(num);
         const stateToUbdate = new FilterManager({ state }).setRate(key, num);
-        console.log(stateToUbdate);
+        setState(stateToUbdate);
+    };
+
+    const setExpected = (key: KeysOfEx, str: string) => {
+        const stateToUbdate = new FilterManager({ state }).setExpected(
+            key,
+            str
+        );
         setState(stateToUbdate);
     };
 
@@ -564,9 +574,11 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                             id="remote"
                             name="jobPlace"
                             value="remote"
-                            checked={state.remote}
+                            checked={new FilterManager({
+                                state,
+                            }).ifIsCheckedEx('expectedTypeWork', 'remote')}
                             onChange={(e) =>
-                                updateForm('remote', e.target.checked)
+                                setExpected('expectedTypeWork', 'remote')
                             }
                         />
                         <label htmlFor="remote">Praca zdalna</label>
@@ -575,9 +587,11 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                             id="office"
                             name="jobPlace"
                             value="office"
-                            checked={state.office}
+                            checked={new FilterManager({
+                                state,
+                            }).ifIsCheckedEx('expectedTypeWork', 'office')}
                             onChange={(e) =>
-                                updateForm('office', e.target.checked)
+                                setExpected('expectedTypeWork', 'office')
                             }
                         />
                         <label htmlFor="office">Praca w biurze</label>
@@ -590,12 +604,17 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                             type="checkbox"
                             id="employment"
                             name="jobContract"
-                            value="Umowa o pracę"
-                            checked={state.employmentContract}
+                            value="employmentContract"
+                            checked={new FilterManager({
+                                state,
+                            }).ifIsCheckedEx(
+                                'expectedContractType',
+                                'employmentContract'
+                            )}
                             onChange={(e) =>
-                                updateForm(
-                                    'employmentContract',
-                                    e.target.checked
+                                setExpected(
+                                    'expectedContractType',
+                                    'employmentContract'
                                 )
                             }
                         />
@@ -604,10 +623,12 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                             type="checkbox"
                             id="b2b"
                             name="jobContract"
-                            value="B2B"
-                            checked={state.b2b}
+                            value="b2b"
+                            checked={new FilterManager({
+                                state,
+                            }).ifIsCheckedEx('expectedContractType', 'b2b')}
                             onChange={(e) =>
-                                updateForm('b2b', e.target.checked)
+                                setExpected('expectedContractType', 'b2b')
                             }
                         />
                         <label htmlFor="b2b">B2B</label>
@@ -615,12 +636,17 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                             type="checkbox"
                             id="mandate"
                             name="jobContract"
-                            value="Umowa zlecenie"
-                            checked={state.mandatoryContract}
+                            value="mandatoryContract"
+                            checked={new FilterManager({
+                                state,
+                            }).ifIsCheckedEx(
+                                'expectedContractType',
+                                'mandatoryContract'
+                            )}
                             onChange={(e) =>
-                                updateForm(
-                                    'mandatoryContract',
-                                    e.target.checked
+                                setExpected(
+                                    'expectedContractType',
+                                    'mandatoryContract'
                                 )
                             }
                         />
@@ -629,10 +655,15 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                             type="checkbox"
                             id="contract"
                             name="jobContract"
-                            value="Umowa o dzieło"
-                            checked={state.contract}
+                            value="contract"
+                            checked={new FilterManager({
+                                state,
+                            }).ifIsCheckedEx(
+                                'expectedContractType',
+                                'contract'
+                            )}
                             onChange={(e) =>
-                                updateForm('contract', e.target.checked)
+                                setExpected('expectedContractType', 'contract')
                             }
                         />
                         <label htmlFor="contract">Umowa o dzieło</label>
