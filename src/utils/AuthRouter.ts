@@ -13,7 +13,7 @@ const pathNamesStudent = ['']
 
 const pathNamesHr = ['/hr/available', '/hr/interview', '/cv']
 
-const pathNamesAdmin = ['/hr/available', '/hr/interview', '/cv']
+const pathNamesAdmin = ['/hr/available', '/hr/interview', '/cv', '/admin']
 
 
 export class AuthRouter {

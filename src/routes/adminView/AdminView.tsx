@@ -15,10 +15,11 @@ function AdminView() {
     const [addHeadHunterView, setAddHeadHunterView] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+
     useEffect(() => {
         new AuthRouter({
-            navigate: navigate,
-            location: location,
+            navigate,
+            location,
             state: globalState,
         }).check();
     }, []);
