@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-
+import { ContextManager } from '../../../context/ContextManager';
 import './FilterPopUp.css';
 import { starIconDefinition } from '../../../helpers/fontAwsomeIcons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Global } from '../../../context/store';
 import {
     FilterManager,
     KeysOfRate,
@@ -26,6 +27,8 @@ interface QueryInterface {
 }
 
 export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
+    const { dispatchGlobalContext, globalState } = React.useContext(Global);
+
     const [state, setState] = useState<QueryInterface>({
         courseCompletion: [],
         courseEngagment: [],
@@ -63,6 +66,10 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
     const handleSubmitForm = async (e: any) => {
         e.preventDefault();
         const data = new FilterManager({ state }).prepareState();
+        new ContextManager({
+            state: globalState,
+            dispatch: dispatchGlobalContext,
+        }).setFilter(data);
         console.log(data);
     };
 
