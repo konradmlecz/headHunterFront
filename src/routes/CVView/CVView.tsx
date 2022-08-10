@@ -58,7 +58,7 @@ export const CVView = () => {
     },[])
 
     const student = new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).getStudent()
-    
+
     const back = () => {
         navigate("/hr/interview");
     }
@@ -73,6 +73,9 @@ export const CVView = () => {
         await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(globalState.choosenStudent.id)
         back()
     }
+
+    console.log(student)
+
     return (
         <WrapperLoggedView>
         <div className="cv-wrapper">
@@ -90,9 +93,7 @@ export const CVView = () => {
                 <div className="cv__short-bio">
                     <div className="cv__short-bio__img">
                         <img
-                            // src={tempData.github ? `https://github.com/${tempData.github}.png ` : defaultUser}
-                            src={temp_photo}
-                            // alt={`Photo of ${tempData.name}`}
+                            src={student.bonusProjectUrls.split('/')[3] ? `https://github.com/${student.bonusProjectUrls.split('/')[3]}.png ` : defaultUser}
                             className="cv__short-bio__img__temp-photo"
                         />
                     </div>
