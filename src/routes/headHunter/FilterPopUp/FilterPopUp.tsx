@@ -3,7 +3,12 @@ import React, { useState } from 'react';
 import './FilterPopUp.css';
 import { starIconDefinition } from '../../../helpers/fontAwsomeIcons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FilterManager, KeysOfRate, KeysOfEx } from './FilterManager';
+import {
+    FilterManager,
+    KeysOfRate,
+    KeysOfEx,
+    KeysOfNormal,
+} from './FilterManager';
 interface Props {
     setIsPopUpVisible: (bool: boolean) => void;
 }
@@ -15,16 +20,9 @@ interface QueryInterface {
     teamProjectDegree: number[];
     expectedTypeWork: string[];
     expectedContractType: string[];
-    remote: boolean;
-    office: boolean;
-    employmentContract: boolean;
-    b2b: boolean;
-    mandatoryContract: boolean;
-    contract: boolean;
-    salaryFrom: number | string;
-    salaryTo: number | string;
-    apprenticeship: boolean;
-    experience: number;
+    expectedSalary: string[];
+    canTakeApprenticeship: boolean[];
+    monthsOfCommercialExp: number[];
 }
 
 export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
@@ -35,16 +33,9 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
         teamProjectDegree: [],
         expectedTypeWork: [],
         expectedContractType: [],
-        remote: false,
-        office: false,
-        employmentContract: false,
-        b2b: false,
-        mandatoryContract: false,
-        contract: false,
-        salaryFrom: '',
-        salaryTo: '',
-        apprenticeship: false,
-        experience: 0,
+        expectedSalary: [],
+        canTakeApprenticeship: [],
+        monthsOfCommercialExp: [],
     });
     console.log(state);
     const setRate = (key: KeysOfRate, num: number) => {
@@ -60,40 +51,19 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
         setState(stateToUbdate);
     };
 
-    const updateForm = (key: string, value: any) => {
-        // setForm(form => ({
-        //     ...form,
-        //     [key]: value,
-        // }));
+    const setNormal = (key: KeysOfNormal, val: string | boolean | number) => {
+        const stateToUbdate = new FilterManager({ state }).setNormal(key, val);
+        setState(stateToUbdate);
     };
 
     const handleCancelButton = () => {
         setIsPopUpVisible(false);
     };
 
-    // const handleClearButton = () => {
-    //     setForm({
-    //         courseRate: 0,
-    //         activityRate: 0,
-    //         codeRate: 0,
-    //         scrumRate: 0,
-    //         remote: false,
-    //         office: false,
-    //         employmentContract: false,
-    //         b2b: false,
-    //         mandatoryContract: false,
-    //         contract: false,
-    //         salaryFrom: '',
-    //         salaryTo: '',
-    //         apprenticeship: false,
-    //         experience: 0,
-    //     });
-    // }
-
     const handleSubmitForm = async (e: any) => {
         e.preventDefault();
-
-        // console.table(form);
+        const data = new FilterManager({ state }).prepareState();
+        console.log(data);
     };
 
     return (
@@ -672,26 +642,18 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                         <p className="popup-inner-wrapper__form__salary-segment__title">
                             Oczekiwane wynagrodzenie miesięczne
                         </p>
-                        <label htmlFor="from">Od</label>
-                        <input
-                            type="number"
-                            id="from"
-                            name="jobSalary"
-                            value={state.salaryFrom}
-                            placeholder="zł"
-                            onChange={(e) =>
-                                updateForm('salaryFrom', Number(e.target.value))
-                            }
-                        />
                         <label htmlFor="to">Do</label>
                         <input
                             type="number"
                             id="to"
                             name="jobSalary"
-                            value={state.salaryTo}
+                            value={state.expectedSalary[0]}
                             placeholder="zł"
                             onChange={(e) =>
-                                updateForm('salaryTo', Number(e.target.value))
+                                setNormal(
+                                    'expectedSalary',
+                                    Number(e.target.value)
+                                )
                             }
                         />
                     </div>
@@ -701,41 +663,24 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                             początek
                         </p>
                         <div className="popup-inner-wrapper__form__intern-segment__radio-inputs">
-                            <label htmlFor="intern-yes">
+                            <label>
                                 <input
                                     className="popup-inner-wrapper__form__intern-segment__radio"
-                                    type="radio"
-                                    checked={state.apprenticeship}
-                                    id="intern-yes"
-                                    name="internship"
-                                    value="1"
+                                    type="checkbox"
+                                    checked={
+                                        state.canTakeApprenticeship.length
+                                            ? state.canTakeApprenticeship[0]
+                                            : false
+                                    }
                                     onChange={(e) =>
-                                        updateForm(
-                                            'apprenticeship',
-                                            Boolean(e.target.value)
+                                        setNormal(
+                                            'canTakeApprenticeship',
+                                            !state.canTakeApprenticeship[0]
                                         )
                                     }
                                 />
                                 <span></span>
                                 Tak
-                            </label>
-                            <label htmlFor="intern-no">
-                                <input
-                                    className="popup-inner-wrapper__form__intern-segment__radio"
-                                    type="radio"
-                                    checked={!state.apprenticeship}
-                                    id="intern-no"
-                                    name="internship"
-                                    value=""
-                                    onChange={(e) =>
-                                        updateForm(
-                                            'apprenticeship',
-                                            Boolean(e.target.value)
-                                        )
-                                    }
-                                />
-                                <span></span>
-                                Nie
                             </label>
                         </div>
                     </div>
@@ -747,9 +692,12 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                         <input
                             type="number"
                             name="experience"
-                            value={state.experience}
+                            value={state.monthsOfCommercialExp[0]}
                             onChange={(e) =>
-                                updateForm('experience', Number(e.target.value))
+                                setNormal(
+                                    'monthsOfCommercialExp',
+                                    Number(e.target.value)
+                                )
                             }
                         />
                     </div>

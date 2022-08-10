@@ -6,6 +6,13 @@ export type KeysOfRate =
 
 export type KeysOfEx = 'expectedTypeWork' | 'expectedContractType';
 
+export type KeysOfNormal =
+    | 'expectedSalary'
+    | 'canTakeApprenticeship'
+    | 'monthsOfCommercialExp';
+
+type Keys = KeysOfRate | KeysOfEx | KeysOfNormal;
+
 interface QueryInterface {
     courseCompletion: number[];
     courseEngagment: number[];
@@ -13,16 +20,9 @@ interface QueryInterface {
     teamProjectDegree: number[];
     expectedTypeWork: string[];
     expectedContractType: string[];
-    remote: boolean;
-    office: boolean;
-    employmentContract: boolean;
-    b2b: boolean;
-    mandatoryContract: boolean;
-    contract: boolean;
-    salaryFrom: number | string;
-    salaryTo: number | string;
-    apprenticeship: boolean;
-    experience: number;
+    expectedSalary: string[];
+    canTakeApprenticeship: boolean[];
+    monthsOfCommercialExp: number[];
 }
 
 type Props = {
@@ -76,5 +76,27 @@ export class FilterManager {
                 [key]: arr,
             };
         }
+    }
+    setNormal(key: KeysOfNormal, val: string | number | boolean) {
+        const arr = [...this.state[key]];
+        arr[0] = val;
+        return {
+            ...this.state,
+            [key]: arr,
+        };
+    }
+
+    prepareState() {
+        const data: any = {};
+        for (const property in this.state) {
+            if (this.state[property as Keys].length) {
+                if (property === 'expectedSalary') {
+                    data[property] = [0, ...this.state[property as Keys]];
+                } else {
+                    data[property] = this.state[property as Keys];
+                }
+            }
+        }
+        return data;
     }
 }
