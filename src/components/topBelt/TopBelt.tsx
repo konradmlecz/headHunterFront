@@ -32,7 +32,7 @@ function TopBelt() {
     }
 
     const handleHome = async () => {
-        navigate(`/${globalState.user.role}`, {replace: true});
+        navigate(`/${globalState.user.role === 'hr' ? globalState.user.role + "/available" : globalState.user.role}`, {replace: true});
     }
 
     const open = Boolean(anchorEl);
