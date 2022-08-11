@@ -45,11 +45,7 @@ export const Login = () => {
 
     return (
         <div className="login-wrapper">
-            <form
-                action=""
-                onSubmit={submitLoginForm}
-                className="login-wrapper__form"
-            >
+            <form className="login-wrapper__form">
                 <img
                     src={logo}
                     alt="MegaK logo"
@@ -92,11 +88,12 @@ export const Login = () => {
                         Nie masz konta?
                         <a href=""> Zarejestruj się</a>
                     </p>
-                    <input
-                        type="submit"
-                        value="Zaloguj się"
+                    <button
+                        onClick={submitLoginForm}
                         className="login-wrapper__form__submit-button"
-                    />
+                    >
+                        Zaloguj się
+                    </button>
                 </div>
             </form>
         </div>
