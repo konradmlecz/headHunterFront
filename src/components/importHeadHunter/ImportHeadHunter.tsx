@@ -1,4 +1,5 @@
 import React, {FormEvent, useState} from "react";
+import {adress} from "../../constant/setting";
 
 
 export const ImportHeadHunter = () => {
@@ -19,7 +20,7 @@ export const ImportHeadHunter = () => {
         setError(false);
         setSuccess(false);
 
-        const res = await fetch('http://localhost:3001/admin/headhunter', {
+        const res = await fetch(`${adress}/admin/headhunter`, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(user),

@@ -4,7 +4,7 @@ type Props = {
     link:string
 }
 export async function getData({link}:Props) {
-    const response = await fetch(`${adress}${link}`,{
+    const response = await fetch(`${adress}/${link}`,{
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         // mode: 'no-cors', // no-cors, *cors, same-origin
         credentials: 'include', // include, *same-origin, omit

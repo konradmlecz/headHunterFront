@@ -1,5 +1,7 @@
+import {adress} from "../constant/setting";
+
 export async function updateItem(data:{ link:string}) {
-    const link = `http://localhost:3001/${data.link}`
+    const link = `${adress}/${data.link}`
     console.log(link, 'link');
     const response = await fetch(link, {
         method: 'PATCH', // *GET, POST, PUT, DELETE, etc.

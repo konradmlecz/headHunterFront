@@ -1,6 +1,7 @@
 import * as React from 'react';
 import WrapperLoggedView from "../../components/wrapperLoggedView/WrapperLoggedView";
 import {FormEvent, useState} from "react";
+import {adress} from "../../constant/setting";
 import "./../studentView/StudentView.css";
 
 function SettingsView() {
@@ -20,7 +21,7 @@ function SettingsView() {
             return
         }
 
-        const res = await fetch('http://localhost:3001/user/change-password', {
+        const res = await fetch(`${adress}/user/change-password`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

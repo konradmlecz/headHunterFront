@@ -10,6 +10,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import "./StudentView.css";
+import {adress} from "../../constant/setting";
 
 function UserView() {
     const {dispatchGlobalContext, globalState} = React.useContext(Global);
@@ -54,7 +55,7 @@ function UserView() {
         setError(false);
         setSuccess(false);
 
-        const res = await fetch('http://localhost:3001/student/profile', {
+        const res = await fetch(`${adress}/student/profile`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(user),
@@ -90,7 +91,7 @@ function UserView() {
     useEffect(() => {
         (async () => {
             if (globalState.user.role !== "student") navigate("/login", {replace: true});
-            const res = await fetch('http://localhost:3001/student/profile', {
+            const res = await fetch(`${adress}/student/profile`, {
                 method: 'GET',
                 credentials: 'include',
             })

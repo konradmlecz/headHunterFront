@@ -1,6 +1,8 @@
+import {adress} from "../constant/setting";
+
 export async function login(data:{pwd:string,email:string}) {
 
-    const response = await fetch('http://localhost:3001/auth/login', {
+    const response = await fetch(`${adress}/auth/login`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         // mode: 'no-cors', // no-cors, *cors, same-origin
         credentials: 'include', // include, *same-origin, omit

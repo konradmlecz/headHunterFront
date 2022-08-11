@@ -2,6 +2,7 @@ import {Button} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import Box from "@mui/material/Box";
 import React, {useState} from "react";
+import {adress} from "../../constant/setting";
 
 export const ImportStudent = () => {
     const [selectedFile, setSelectedFile] = useState<any>();
@@ -22,7 +23,7 @@ export const ImportStudent = () => {
         const formData = new FormData();
         formData.append('studentData', selectedFile);
         fetch(
-            'http://localhost:3001/admin/import',
+            `${adress}/admin/import`,
             {
                 method: 'POST',
                 body: formData,

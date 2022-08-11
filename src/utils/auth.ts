@@ -1,5 +1,7 @@
+import {adress} from "../constant/setting";
+
 export async function auth() {
-    const response = await fetch('http://localhost:3001/auth/check',{
+    const response = await fetch(`${adress}/auth/check`,{
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         // mode: 'no-cors', // no-cors, *cors, same-origin
         credentials: 'include', // include, *same-origin, omit

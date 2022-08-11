@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+import {adress} from "../../constant/setting";
 
 export const SetPassword = () => {
     const params = useParams();
@@ -13,7 +14,7 @@ export const SetPassword = () => {
 
     useEffect(() => {
         (async () => {
-            const resCheck = await fetch(`http://localhost:3001/user/check/${params.id}/${params.token}`)
+            const resCheck = await fetch(`${adress}/user/check/${params.id}/${params.token}`)
             const dataCheck = await resCheck.json()
             await setCheck(dataCheck)
         })()
@@ -21,7 +22,7 @@ export const SetPassword = () => {
 
     const handleSubmit = async (e: any) => {
         await e.preventDefault()
-        const resPassword = await fetch(`http://localhost:3001/user/setpassword`,{
+        const resPassword = await fetch(`${adress}/user/setpassword`,{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

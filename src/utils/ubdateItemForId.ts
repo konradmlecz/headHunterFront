@@ -1,5 +1,7 @@
+import {adress} from "../constant/setting";
+
 export async function ubdateItemForId(data:{id: string, link:string}) {
-    const link = `http://localhost:3001/${data.link}${data.id}`
+    const link = `${adress}/${data.link}${data.id}`
     console.log(link, 'link');
     const response = await fetch(link, {
         method: 'PATCH', // *GET, POST, PUT, DELETE, etc.

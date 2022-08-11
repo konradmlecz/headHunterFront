@@ -5,7 +5,7 @@ type Props = {
     data: any;
 };
 export async function postData({ link, data }: Props) {
-    const response = await fetch(`${adress}${link}`, {
+    const response = await fetch(`${adress}/${link}`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         // mode: 'no-cors', // no-cors, *cors, same-origin
         credentials: 'include', // include, *same-origin, omit
