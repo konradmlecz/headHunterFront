@@ -86,13 +86,6 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                         <p className="popup-inner-wrapper__form__top-segment__title">
                             Filtrowanie
                         </p>
-                        <button
-                            className="popup-inner-wrapper__form__top-segment__button"
-                            type="button"
-                            // onClick={handleClearButton}
-                        >
-                            Wyczyść wszystkie
-                        </button>
                     </div>
                     <div className="popup-inner-wrapper__form__course-rate-segment">
                         <p className="popup-inner-wrapper__form__course-rate-segment__title">

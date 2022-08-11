@@ -17,7 +17,6 @@ import { ContextManager } from '../../context/ContextManager';
 import { useNavigate, useLocation, Navigate, Link } from 'react-router-dom';
 import { AuthRouter } from '../../utils/AuthRouter';
 import './CVView.css';
-import { Typography } from '@mui/material';
 
 const tempData = {
     name: 'Anna Kowalska',

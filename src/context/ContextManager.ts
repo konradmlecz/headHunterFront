@@ -101,6 +101,13 @@ export class ContextManager {
 
     async setFilter(data: any) {
         const res = await postData({ link: 'student/set-filter', data: data });
-        console.log(res);
+        if (res.isSuccess) {
+            this.dispatch({
+                type: 'SET_STUDENTS_AVAILABLE',
+                payload: {
+                    studentsAvailable: res.data,
+                },
+            });
+        }
     }
 }
