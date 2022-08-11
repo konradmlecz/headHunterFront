@@ -1,6 +1,6 @@
 export type KeysOfRate =
     | 'courseCompletion'
-    | 'courseEngagment'
+    | 'courseEngagement'
     | 'projectDegree'
     | 'teamProjectDegree';
 
@@ -15,7 +15,7 @@ type Keys = KeysOfRate | KeysOfEx | KeysOfNormal;
 
 interface QueryInterface {
     courseCompletion: number[];
-    courseEngagment: number[];
+    courseEngagement: number[];
     projectDegree: number[];
     teamProjectDegree: number[];
     expectedTypeWork: string[];

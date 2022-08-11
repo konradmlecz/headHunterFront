@@ -10,6 +10,9 @@ export async function postData({ link, data }: Props) {
         // mode: 'no-cors', // no-cors, *cors, same-origin
         credentials: 'include', // include, *same-origin, omit
         body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        },
     });
     const dataPrimary = await response.text();
     try {

@@ -16,7 +16,7 @@ interface Props {
 
 interface QueryInterface {
     courseCompletion: number[];
-    courseEngagment: number[];
+    courseEngagement: number[];
     projectDegree: number[];
     teamProjectDegree: number[];
     expectedTypeWork: string[];
@@ -31,7 +31,7 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
 
     const [state, setState] = useState<QueryInterface>({
         courseCompletion: [],
-        courseEngagment: [],
+        courseEngagement: [],
         projectDegree: [],
         teamProjectDegree: [],
         expectedTypeWork: [],
@@ -218,10 +218,10 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                                     value="5"
                                     checked={new FilterManager({
                                         state,
-                                    }).ifIsChecked('courseEngagment', 5)}
+                                    }).ifIsChecked('courseEngagement', 5)}
                                     onChange={(e) =>
                                         setRate(
-                                            'courseEngagment',
+                                            'courseEngagement',
                                             Number(e.target.value)
                                         )
                                     }
@@ -239,10 +239,10 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                                     value="4"
                                     checked={new FilterManager({
                                         state,
-                                    }).ifIsChecked('courseEngagment', 4)}
+                                    }).ifIsChecked('courseEngagement', 4)}
                                     onChange={(e) =>
                                         setRate(
-                                            'courseEngagment',
+                                            'courseEngagement',
                                             Number(e.target.value)
                                         )
                                     }
@@ -260,10 +260,10 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                                     value="3"
                                     checked={new FilterManager({
                                         state,
-                                    }).ifIsChecked('courseEngagment', 3)}
+                                    }).ifIsChecked('courseEngagement', 3)}
                                     onChange={(e) =>
                                         setRate(
-                                            'courseEngagment',
+                                            'courseEngagement',
                                             Number(e.target.value)
                                         )
                                     }
@@ -281,10 +281,10 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                                     value="2"
                                     checked={new FilterManager({
                                         state,
-                                    }).ifIsChecked('courseEngagment', 2)}
+                                    }).ifIsChecked('courseEngagement', 2)}
                                     onChange={(e) =>
                                         setRate(
-                                            'courseEngagment',
+                                            'courseEngagement',
                                             Number(e.target.value)
                                         )
                                     }
@@ -302,10 +302,10 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                                     value="1"
                                     checked={new FilterManager({
                                         state,
-                                    }).ifIsChecked('courseEngagment', 1)}
+                                    }).ifIsChecked('courseEngagement', 1)}
                                     onChange={(e) =>
                                         setRate(
-                                            'courseEngagment',
+                                            'courseEngagement',
                                             Number(e.target.value)
                                         )
                                     }
