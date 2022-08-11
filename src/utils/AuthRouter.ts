@@ -16,6 +16,7 @@ const pathNamesHr = ['/hr/available', '/hr/interview', '/cv']
 const pathNamesAdmin = ['/hr/available', '/hr/interview', '/cv', '/admin']
 
 
+
 export class AuthRouter {
     navigate:NavigateFunction;
     location:Location;
@@ -25,11 +26,14 @@ export class AuthRouter {
          this.location = location
          this.state = state
     }
+
     check(){
      switch (this.state.user.role) {
         case 'hr':
+            console.log('ok')
             if(!pathNamesHr.includes(this.location.pathname)){
                 this.toLogin()
+
             }
             break;
         case 'admin':
@@ -48,6 +52,6 @@ export class AuthRouter {
      }
     }
     toLogin(){
-        this.navigate ("/",{ replace: true })
+        this.navigate ("/", {replace: true})
     }
 }

@@ -17,7 +17,7 @@ const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
     const navigate = useNavigate();
 
-  
+
     const show = ()=> {
         new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setChoosenStudent(itemStudent.id)
         navigate("/cv", { replace: true });
@@ -26,21 +26,21 @@ const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
 
     const handleStatusAv = async ()=>{
         await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToAvailable(itemStudent.id)
-        
+
     }
 
     const handleStatusEm = async ()=>{
         await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).setStatusOfStudentToEmployed(itemStudent.id)
-        
+
     }
     return (
         <>
         <Box sx={{display:'flex', flexDirection:'column', margin: '10px', borderTop: '4px solid #222224', padding: '5px 10px'}}>
           <Box sx={{display:"grid", gridTemplateColumns: 'auto auto 1fr auto auto auto auto', justifyContent:'center', alignItems:'center'}}>
             <Typography>
-               
+
             </Typography>
-            
+
             <Typography>
                 {itemStudent.firstName + ' ' + itemStudent.lastName}
             </Typography>
@@ -64,7 +64,7 @@ const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
                               cursor:'pointer'
              }}>
                 {
-                    open ?   <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} /> 
+                    open ?   <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />
                 }
              </Box>
             </Box>
@@ -73,6 +73,5 @@ const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
      </>
     );
   }
-  
+
   export default ListItemAvaiable;
-  

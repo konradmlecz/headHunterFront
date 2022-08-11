@@ -8,11 +8,11 @@ export async function postData({ link, data }: Props) {
     const response = await fetch(`${adress}/${link}`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         // mode: 'no-cors', // no-cors, *cors, same-origin
+        headers: {
+            'Content-Type': 'application/json'
+        },
         credentials: 'include', // include, *same-origin, omit
         body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json',
-        },
     });
     const dataPrimary = await response.text();
     try {
