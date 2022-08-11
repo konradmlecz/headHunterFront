@@ -99,7 +99,7 @@ export class ContextManager {
         return this.state.choosenStudent;
     }
 
-    async setFilter(data: any) {
+    async setFilter(data: any, setIsPopUpVisible: (bool: boolean) => void) {
         const res = await postData({ link: 'student/set-filter', data: data });
         if (res.isSuccess) {
             this.dispatch({
@@ -108,6 +108,7 @@ export class ContextManager {
                     studentsAvailable: res.data,
                 },
             });
+            setIsPopUpVisible(false);
         }
     }
 }

@@ -69,7 +69,7 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
         new ContextManager({
             state: globalState,
             dispatch: dispatchGlobalContext,
-        }).setFilter(data);
+        }).setFilter(data, setIsPopUpVisible);
         console.log(data);
     };
 
