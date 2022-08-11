@@ -550,28 +550,34 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                             type="checkbox"
                             id="remote"
                             name="jobPlace"
-                            value="remote"
+                            value="Wyłącznie zdalnie"
                             checked={new FilterManager({
                                 state,
-                            }).ifIsCheckedEx('expectedTypeWork', 'remote')}
+                            }).ifIsCheckedEx(
+                                'expectedTypeWork',
+                                'Wyłącznie zdalnie'
+                            )}
                             onChange={(e) =>
-                                setExpected('expectedTypeWork', 'remote')
+                                setExpected(
+                                    'expectedTypeWork',
+                                    'Wyłącznie zdalnie'
+                                )
                             }
                         />
-                        <label htmlFor="remote">Praca zdalna</label>
+                        <label htmlFor="remote">Wyłącznie zdalnie</label>
                         <input
                             type="checkbox"
                             id="office"
                             name="jobPlace"
-                            value="office"
+                            value="Na miejscu"
                             checked={new FilterManager({
                                 state,
-                            }).ifIsCheckedEx('expectedTypeWork', 'office')}
+                            }).ifIsCheckedEx('expectedTypeWork', 'Na miejscu')}
                             onChange={(e) =>
-                                setExpected('expectedTypeWork', 'office')
+                                setExpected('expectedTypeWork', 'Na miejscu')
                             }
                         />
-                        <label htmlFor="office">Praca w biurze</label>
+                        <label htmlFor="office">Na miejscu</label>
                     </div>
                     <div className="popup-inner-wrapper__form__contract-segment">
                         <p className="popup-inner-wrapper__form__contract-segment__title">
@@ -581,69 +587,56 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                             type="checkbox"
                             id="employment"
                             name="jobContract"
-                            value="employmentContract"
+                            value="Tylko UoP"
                             checked={new FilterManager({
                                 state,
                             }).ifIsCheckedEx(
                                 'expectedContractType',
-                                'employmentContract'
+                                'Tylko UoP'
                             )}
                             onChange={(e) =>
-                                setExpected(
-                                    'expectedContractType',
-                                    'employmentContract'
-                                )
+                                setExpected('expectedContractType', 'Tylko UoP')
                             }
                         />
-                        <label htmlFor="employment">Umowa o pracę</label>
+                        <label htmlFor="employment">Tylko UoP</label>
                         <input
                             type="checkbox"
                             id="b2b"
                             name="jobContract"
-                            value="b2b"
-                            checked={new FilterManager({
-                                state,
-                            }).ifIsCheckedEx('expectedContractType', 'b2b')}
-                            onChange={(e) =>
-                                setExpected('expectedContractType', 'b2b')
-                            }
-                        />
-                        <label htmlFor="b2b">B2B</label>
-                        <input
-                            type="checkbox"
-                            id="mandate"
-                            name="jobContract"
-                            value="mandatoryContract"
+                            value="Możliwe B2B"
                             checked={new FilterManager({
                                 state,
                             }).ifIsCheckedEx(
                                 'expectedContractType',
-                                'mandatoryContract'
+                                'Możliwe B2B'
                             )}
                             onChange={(e) =>
                                 setExpected(
                                     'expectedContractType',
-                                    'mandatoryContract'
+                                    'Możliwe B2B'
                                 )
                             }
                         />
-                        <label htmlFor="mandate">Umowa zlecenie</label>
+                        <label htmlFor="b2b">Możliwe B2B</label>
                         <input
                             type="checkbox"
                             id="contract"
                             name="jobContract"
-                            value="contract"
+                            value="Możliwe UZ/UoD"
                             checked={new FilterManager({
                                 state,
                             }).ifIsCheckedEx(
                                 'expectedContractType',
-                                'contract'
+                                'Możliwe UZ/UoD'
                             )}
                             onChange={(e) =>
-                                setExpected('expectedContractType', 'contract')
+                                setExpected(
+                                    'expectedContractType',
+                                    'Możliwe UZ/UoD'
+                                )
                             }
                         />
-                        <label htmlFor="contract">Umowa o dzieło</label>
+                        <label htmlFor="Możliwe UZ/UoD">Możliwe UZ/UoD</label>
                     </div>
                     <div className="popup-inner-wrapper__form__salary-segment">
                         <p className="popup-inner-wrapper__form__salary-segment__title">
