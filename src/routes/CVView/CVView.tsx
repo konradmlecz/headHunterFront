@@ -126,9 +126,9 @@ export const CVView = () => {
                     </div>
                     <div className="cv__short-bio">
                         <div className="cv__short-bio__img">
-                            {/* <img
+                            <img
                                 src={
-                                    student?.bonusProjectUrls.split('/')[3]
+                                    student.bonusProjectUrls?.split('/')[3]
                                         ? `https://github.com/${
                                               student?.bonusProjectUrls.split(
                                                   '/'
@@ -137,7 +137,7 @@ export const CVView = () => {
                                         : defaultUser
                                 }
                                 className="cv__short-bio__img__temp-photo"
-                            /> */}
+                            />
                         </div>
                         <div className="cv__short-bio__info">
                             <p className="cv__short-bio__info__name">
