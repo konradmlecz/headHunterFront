@@ -71,7 +71,6 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 cursor: 'pointer',
-                                // borderBottom: `${tab === 'Available' ? '2px solid red' : '2px solid transparent'}`
                             }}
                         >
                             <Typography
@@ -93,7 +92,6 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 cursor: 'pointer',
-                                //      borderBottom: `${tab === 'Talk' ? '2px solid red' : '2px solid transparent'}`
                             }}
                             onClick={() =>
                                 navigate('/hr/interview', { replace: true })
