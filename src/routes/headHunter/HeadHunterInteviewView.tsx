@@ -8,24 +8,24 @@ import HeadHunterMain from '../../components/headHunterMain/HeadHunterMain';
 
 //available interview
 
-function HeadHunterAvailableView() {
+export const HeadHunterInterviewView = () => {
 
     const {dispatchGlobalContext, globalState} = React.useContext(Global);
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
-        new AuthRouter({navigate: navigate, location: location, state: globalState}).check();
         (async () => {
+            await new AuthRouter({navigate: navigate, location: location, state: globalState}).check();
             await new ContextManager({dispatch: dispatchGlobalContext, state: globalState}).ubdateStudents()
         })()
     }, [])
 
     return (
         <HeadHunterMain>
-            <ListTalk/>
+            {<ListTalk/>}
         </HeadHunterMain>
+
     );
 }
 
-export default HeadHunterAvailableView;

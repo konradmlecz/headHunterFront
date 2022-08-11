@@ -100,7 +100,7 @@ export class ContextManager {
     }
 
     async setFilter(data: any) {
-        const res = await postData({ link: 'student/set-filter/', data: data });
+        const res = await postData({ link: 'student/set-filter', data: data });
         console.log(res);
     }
 }
