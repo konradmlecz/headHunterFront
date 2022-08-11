@@ -5,11 +5,12 @@ type Props = {
     data: any;
 };
 export async function postData({ link, data }: Props) {
+    console.log(data);
     const response = await fetch(`${adress}/${link}`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         // mode: 'no-cors', // no-cors, *cors, same-origin
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         credentials: 'include', // include, *same-origin, omit
         body: JSON.stringify(data),

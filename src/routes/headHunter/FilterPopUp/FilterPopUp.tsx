@@ -636,7 +636,7 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
                                 )
                             }
                         />
-                        <label htmlFor="Możliwe UZ/UoD">Możliwe UZ/UoD</label>
+                        <label htmlFor="contract">Możliwe UZ/UoD</label>
                     </div>
                     <div className="popup-inner-wrapper__form__salary-segment">
                         <p className="popup-inner-wrapper__form__salary-segment__title">
