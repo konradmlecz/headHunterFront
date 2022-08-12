@@ -76,6 +76,8 @@ export const SetPassword = () => {
                     }}
                     type="password"
                     required={true}
+                    minLength={4}
+                    maxLength={255}
                     onChange={e=> setPassword(e.target.value)}
                 />
                 <label>Potwierdź hasło:</label>

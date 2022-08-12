@@ -56,6 +56,8 @@ function SettingsView() {
                         <input
                             type="password"
                             required={true}
+                            minLength={4}
+                            maxLength={255}
                             onChange={e => setNewPwd( e.target.value)}
                         />
                         <label>Powtórz hasło</label>
