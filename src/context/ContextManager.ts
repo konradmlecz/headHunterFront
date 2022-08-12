@@ -117,6 +117,20 @@ export class ContextManager {
         }
     }
 
+    async clearFilter() {
+        const res = await postData({ link: 'student/set-filter', data: {} });
+        if (res.isSuccess) {
+            this.dispatch({
+                type: 'SET_STUDENTS_AVAILABLE',
+                payload: {
+                    studentsAvailable: res.data,
+                    availableTotalPages: res.totalPages,
+                    availableActualPage: 1
+                },
+            });
+        }
+    }
+
     async handlePrevPage(){
         if(this.state.availableActualPage > 1 ){
             const data = await getData({ link: 'student/all', parametr:this.state.availableActualPage - 1 });

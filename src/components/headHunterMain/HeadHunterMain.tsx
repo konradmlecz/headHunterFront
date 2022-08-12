@@ -17,15 +17,23 @@ type Props = {
 };
 
 const HeadHunterMain: FC<Props> = ({ children }) => {
+    const { dispatchGlobalContext, globalState } = React.useContext(Global);
+    const navigate = useNavigate();
+    const location = useLocation();
     const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
 
     const handleFilterButton = () => {
         setIsPopUpVisible(true);
     };
 
-    const { dispatchGlobalContext, globalState } = React.useContext(Global);
-    const navigate = useNavigate();
-    const location = useLocation();
+    const handleClearFiltr = async () => {
+        await new ContextManager({
+            state: globalState,
+            dispatch: dispatchGlobalContext,
+        }).clearFilter();
+    };
+
+    
 
     useEffect(() => {
         (async () => {
@@ -120,7 +128,6 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
                         <Box
                             sx={{
                                 marginBottom: '5px',
-
                                 width: '100%',
                                 height: '50px',
                                 display: 'grid',
@@ -157,7 +164,14 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
                             }}
                         >
                             {location.pathname === '/hr/available' && (
-                                <Button
+                                <Box sx={{
+                                    display:'grid',
+                                    gridTemplateColumns:'auto auto',
+                                    gap:'40px',
+                                    justifyItems:'center',
+                                    alignItems:'center'
+                                }}>
+                                                      <Button
                                     sx={{
                                         background: '#1E1E1F',
                                         cursor: 'pointer',
@@ -175,6 +189,15 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
                                         Filtrowanie
                                     </Typography>
                                 </Button>
+                                <Button   sx={{
+                                    background: '#1E1E1F',
+                                    cursor: 'pointer',
+                                }}
+                                onClick={handleClearFiltr}
+                                variant="contained">
+                                 Wyczyść
+                                </Button>
+                                </Box>
                             )}
                         </Box>
                     </Box>
