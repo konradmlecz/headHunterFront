@@ -13,7 +13,7 @@ function Main() {
     const [role, setRole] = React.useState<Roles>('');
 
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
-
+ 
     React.useEffect(() => {
         (async () => {
             const response = await auth();

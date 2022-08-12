@@ -26,6 +26,8 @@ export class ContextManager {
                 type: 'SET_STUDENTS_AVAILABLE',
                 payload: {
                     studentsAvailable: data.data,
+                    availableTotalPages: data.totalPages,
+                    availableActualPage: this.state.availableActualPage
                 },
             });
         }
@@ -35,6 +37,7 @@ export class ContextManager {
                 type: 'SET_STUDENTS_INTERVIEW',
                 payload: {
                     studentsInteview: data2.data,
+                    interviewTotalPages: data2.totalPages
                 },
             });
         }
@@ -106,9 +109,43 @@ export class ContextManager {
                 type: 'SET_STUDENTS_AVAILABLE',
                 payload: {
                     studentsAvailable: res.data,
+                    availableTotalPages: res.totalPages,
+                    availableActualPage: 1
                 },
             });
             setIsPopUpVisible(false);
         }
+    }
+
+    async handlePrevPage(){
+        if(this.state.availableActualPage > 1 ){
+            const data = await getData({ link: 'student/all', parametr:this.state.availableActualPage - 1 });
+            if (data.isSuccess) {
+                this.dispatch({
+                    type: 'SET_STUDENTS_AVAILABLE',
+                    payload: {
+                        studentsAvailable: data.data,
+                        availableTotalPages: data.totalPages,
+                        availableActualPage: this.state.availableActualPage - 1
+                    },
+                });
+            }
+        }
+    }
+    async handleNextPage(){
+        if(this.state.availableActualPage < this.state.availableTotalPages){
+            const data = await getData({ link: 'student/all', parametr:this.state.availableActualPage + 1 });
+            if (data.isSuccess) {
+                this.dispatch({
+                    type: 'SET_STUDENTS_AVAILABLE',
+                    payload: {
+                        studentsAvailable: data.data,
+                        availableTotalPages: data.totalPages,
+                        availableActualPage: this.state.availableActualPage + 1
+                    },
+                });
+            }
+        }
+        
     }
 }

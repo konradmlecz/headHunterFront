@@ -67,6 +67,11 @@ export type GlobalState = {
         lastName: string
     },
     studentsAvailable:Student[],
+    interviewTotalPages:number,
+    interviewActualPage:number,
+    availableTotalPages:number,
+    availableActualPage:number,
+
     studentsInteview:Student[],
     choosenStudent: Student 
 };
@@ -77,6 +82,11 @@ export const initialState:GlobalState = {
         firstName: '',
         lastName: ''
     },
+    interviewTotalPages:1,
+    interviewActualPage:1,
+    availableTotalPages:1,
+    availableActualPage:1,
+
     studentsAvailable:[],
     studentsInteview:[],
     choosenStudent: StudentData
@@ -114,12 +124,15 @@ export const reducerGlobalState: Reducer<GlobalState, Action> = (state, action) 
                 case ActionKind.SET_STUDENTS_AVAILABLE:
                     return {
                         ...state,
-                        studentsAvailable: action.payload.studentsAvailable
+                        studentsAvailable: action.payload.studentsAvailable,
+                        availableTotalPages: action.payload.availableTotalPages,
+                        availableActualPage: action.payload.availableActualPage
                     };
                 case ActionKind.SET_STUDENTS_INTERVIEW:
                         return {
                             ...state,
-                            studentsInteview: action.payload.studentsInteview
+                            studentsInteview: action.payload.studentsInteview,
+                            interviewTotalPages: action.payload.interviewTotalPages
                         };
                 case ActionKind.SET_STUDENT_CV:
                             return {

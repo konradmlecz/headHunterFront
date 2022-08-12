@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState, ReactNode } from 'react';
-import { Box, Typography, TextField, Button } from '@mui/material';
+import { Box, Typography, TextField, Button, Pagination } from '@mui/material';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 import { Global } from '../../context/store';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import PaginationBarAvailable from '../paginationBar/PaginationBarAvailable';
 import ListAvailable from '../../components/listAvailable/ListAvailable';
 import ListTalk from '../../components/listTalk/ListTalk';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -179,6 +179,8 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
                         </Box>
                     </Box>
                     <Box>{children}</Box>
+                    {location.pathname === '/hr/available' ? <PaginationBarAvailable/> : null}
+                    
                 </Box>
             </Box>
         </WrapperLoggedView>
