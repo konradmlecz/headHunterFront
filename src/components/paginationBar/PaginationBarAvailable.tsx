@@ -11,12 +11,11 @@ function PaginationBarAvailable() {
     new ContextManager({dispatch:dispatchGlobalContext, state:globalState})
     const location = useLocation();
 
-    const handleNextPage = () => {
-        new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).handleNextPage()
+    const handleNextPage = async () => {
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).handleNextPage()
     }
-    const handlePrevPage = () => {
-        console.log("handlePrevPage ");
-        new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).handlePrevPage()
+    const handlePrevPage = async () => {
+       await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).handlePrevPage()
     }
     return (
         <Box
