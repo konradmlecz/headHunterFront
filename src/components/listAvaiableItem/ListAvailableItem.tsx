@@ -24,7 +24,7 @@ const ListItemAvaiable: FC<Props> = ({itemStudent}) => {
         <Box sx={{display:'flex', flexDirection:'column', margin: '10px', borderTop: '4px solid #222224', padding: '5px 10px'}}>
           <Box sx={{display:"grid", gridTemplateColumns: 'auto 1fr auto auto', justifyContent:'center', alignItems:'center'}}>
             <Typography>
-                {itemStudent.firstName + ' ' + itemStudent.lastName}
+                {itemStudent.firstName + ' ' + String(itemStudent.lastName).charAt(0) + '.'}
             </Typography>
             <Box/>
             <Button sx={{
