@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import temp_photo from '../../images/temp_photo.jpg';
 import defaultUser from '../../images/default_user_icon_4_by_karmaanddestiny_de7834s.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -389,10 +389,10 @@ export const CVView = () => {
                             </div>
                             <div className="cv__main-bio__content">
                                 <div className="cv__main-bio__content__scrum">
-                                    {tempData.scrumLinks.map(
+                                    {student.bonusProjectUrls?.split(",").map(
                                         (link: string, i: number) => (
                                             <a
-                                                href=""
+                                                href={link}
                                                 className="cv__main-bio__content__scrum__link"
                                                 key={i}
                                             >
@@ -418,10 +418,10 @@ export const CVView = () => {
                             </div>
                             <div className="cv__main-bio__content">
                                 <div className="cv__main-bio__content__pass">
-                                    {tempData.passLinks.map(
+                                    {student.projectUrls?.split(",").map(
                                         (link: string, i: number) => (
                                             <a
-                                                href=""
+                                                href={link}
                                                 className="cv__main-bio__content__pass__link"
                                                 key={i}
                                             >

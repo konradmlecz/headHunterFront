@@ -27,7 +27,7 @@
 }
 
 .editProfileForm > label {
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 20px;
     color: var(--input-placeholder-color);
 }
@@ -40,6 +40,13 @@
     height: 30px;
     border: none;
     border-bottom: 1px solid #666;
+}
+
+.editProfileForm > textarea {
+    background-color: var(--input-background-color);
+    width: 100%;
+    min-height: 100px;
+    color: var(--input-placeholder-color);
 }
 
 .btn {

@@ -9,8 +9,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import "./StudentView.css";
 import {adress} from "../../constant/setting";
+import "./StudentView.css";
 
 function UserView() {
     const {dispatchGlobalContext, globalState} = React.useContext(Global);
@@ -161,11 +161,14 @@ function UserView() {
                             type="email"
                             required={true}
                             value={user.email}
+                            minLength={3}
+                            maxLength={255}
                             onChange={e => updateUser("email", e.target.value)}
                         />
-                        <label>Numer telefonu</label>
+                        <label>Numer telefonu (format xxx xxx xxx)</label>
                         <input
-                            type="text"
+                            type="tel"
+                            pattern="[0-9]{3} [0-9]{3} [0-9]{3}"
                             placeholder={String(user.phone)}
                             onChange={e => updateUser("phone", e.target.value)}
                         />
@@ -174,6 +177,8 @@ function UserView() {
                             type="text"
                             required={true}
                             value={user.firstName ?? ""}
+                            minLength={3}
+                            maxLength={13}
                             onChange={e => updateUser("firstName", e.target.value)}
                         />
                         <label>Nazwisko*</label>
@@ -181,6 +186,8 @@ function UserView() {
                             type="text"
                             required={true}
                             value={user.lastName ?? ""}
+                            minLength={2}
+                            maxLength={28}
                             onChange={e => updateUser("lastName", e.target.value)}
                         />
 
@@ -189,25 +196,32 @@ function UserView() {
                             type="text"
                             required={true}
                             value={user.githubUsername ?? ""}
+                            minLength={4}
+                            maxLength={39}
                             onChange={e => updateUser("githubUsername", e.target.value)}
                         />
                         <label>Portfolio URL</label>
                         <input
                             type="text"
                             value={user.portfolioUrls ?? ""}
+                            minLength={0}
+                            maxLength={255}
                             onChange={e => updateUser("portfolioUrls", e.target.value)}
                         />
-                        <label>Projekty GitHub*</label>
-                        <input
-                            type="text"
+                        <label>Projekty GitHub* (Linki oddzielone przecinkami)</label>
+                        <textarea
                             required={true}
                             value={user.projectUrls ?? ""}
+                            minLength={0}
+                            maxLength={255}
                             onChange={e => updateUser("projectUrls", e.target.value)}
                         />
                         <label>Biogram zawodowy</label>
                         <input
                             type="text"
                             value={user.bio ?? ""}
+                            minLength={0}
+                            maxLength={255}
                             onChange={e => updateUser("bio", e.target.value)}
                         />
                         <label>Preferowane miejsce pracy*</label>
@@ -223,6 +237,8 @@ function UserView() {
                         <input
                             type="text"
                             value={user.targetWorkCity ?? ""}
+                            minLength={0}
+                            maxLength={30}
                             onChange={e => updateUser("targetWorkCity", e.target.value)}
                         />
                         <label>Oczekiwany typ kontraktu*</label>
@@ -237,10 +253,13 @@ function UserView() {
                         <input
                             type="text"
                             value={user.expectedSalary ?? ""}
+                            minLength={0}
+                            maxLength={255}
                             onChange={e => updateUser("expectedSalary", e.target.value)}
                         />
                         <label>Zgoda na odbycie bezpłatnych praktyk/stażu*</label>
-                        <select onChange={e => updateUser("canTakeApprenticeship", Number(e.target.value))}>
+                        <select required={true} onChange={e => updateUser("canTakeApprenticeship", Number(e.target.value))}>
+                            <option value="" selected disabled hidden>Wybierz</option>
                             <option value="1">Tak</option>
                             <option value="0">Nie</option>
                         </select>
@@ -253,20 +272,17 @@ function UserView() {
                             onChange={e => updateUser("monthsOfCommercialExp", e.target.value)}
                         />
                         <label>Przebieg edukacji</label>
-                        <input
-                            type="text"
+                        <textarea
                             value={user.education ?? ""}
                             onChange={e => updateUser("education", e.target.value)}
                         />
                         <label>Przebieg doswiadczenia zawodowego</label>
-                        <input
-                            type="text"
+                        <textarea
                             value={user.workExperience ?? ""}
                             onChange={e => updateUser("workExperience", e.target.value)}
                         />
                         <label>Kursy i certyfikaty</label>
-                        <input
-                            type="text"
+                        <textarea
                             value={user.courses ?? ""}
                             onChange={e => updateUser("courses", e.target.value)}
                         />
