@@ -1,22 +1,15 @@
-import React, { FC, useEffect } from 'react';
-import { Box, Typography, TextField, Button } from '@mui/material';
+import React, { } from 'react';
+import { Box, Typography } from '@mui/material';
 import { Global } from '../../context/store';
-import { getData } from '../../utils/getData';
 import { ContextManager } from '../../context/ContextManager';
-import { useNavigate, useLocation } from 'react-router-dom';
-import ListTalkItem from '../listTalkItem/ListTalkItem';
 function PaginationBarAvailable() {
     const { dispatchGlobalContext, globalState } = React.useContext(Global);
 
-    new ContextManager({dispatch:dispatchGlobalContext, state:globalState})
-    const location = useLocation();
-
-    const handleNextPage = () => {
-        new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).handleNextPage()
+    const handleNextPage = async () => {
+        await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).handleNextPage()
     }
-    const handlePrevPage = () => {
-        console.log("handlePrevPage ");
-        new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).handlePrevPage()
+    const handlePrevPage = async () => {
+       await new ContextManager({dispatch:dispatchGlobalContext, state:globalState}).handlePrevPage()
     }
     return (
         <Box

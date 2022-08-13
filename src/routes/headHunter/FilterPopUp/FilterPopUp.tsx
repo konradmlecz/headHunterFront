@@ -40,7 +40,6 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
         canTakeApprenticeship: [],
         monthsOfCommercialExp: [],
     });
-    console.log(state);
     const setRate = (key: KeysOfRate, num: number) => {
         const stateToUbdate = new FilterManager({ state }).setRate(key, num);
         setState(stateToUbdate);
@@ -70,7 +69,6 @@ export const FilterPopUp = ({ setIsPopUpVisible }: Props) => {
             state: globalState,
             dispatch: dispatchGlobalContext,
         }).setFilter(data, setIsPopUpVisible);
-        console.log(data);
     };
 
     return (
