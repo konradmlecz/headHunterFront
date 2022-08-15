@@ -1,23 +1,23 @@
-import React, { FC, useEffect, useState, ReactNode } from 'react';
-import { Box, Typography, TextField, Button, Pagination } from '@mui/material';
+import React, {FC, useEffect, useState, ReactNode} from 'react';
+import {Box, Typography, TextField, Button, Pagination} from '@mui/material';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
-import { Global } from '../../context/store';
-import { useNavigate, useLocation } from 'react-router-dom';
+import {Global} from '../../context/store';
+import {useNavigate, useLocation} from 'react-router-dom';
 import PaginationBarAvailable from '../paginationBar/PaginationBarAvailable';
 import ListAvailable from '../../components/listAvailable/ListAvailable';
 import ListTalk from '../../components/listTalk/ListTalk';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import { FilterPopUp } from '../../routes/headHunter/FilterPopUp/FilterPopUp';
-import { ContextManager } from '../../context/ContextManager';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faFilter} from '@fortawesome/free-solid-svg-icons';
+import {FilterPopUp} from '../../routes/headHunter/FilterPopUp/FilterPopUp';
+import {ContextManager} from '../../context/ContextManager';
 //available interview
 
 type Props = {
     children: ReactNode;
 };
 
-const HeadHunterMain: FC<Props> = ({ children }) => {
-    const { dispatchGlobalContext, globalState } = React.useContext(Global);
+const HeadHunterMain: FC<Props> = ({children}) => {
+    const {dispatchGlobalContext, globalState} = React.useContext(Global);
     const navigate = useNavigate();
     const location = useLocation();
     const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
@@ -33,8 +33,6 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
         }).clearFilter();
     };
 
-    
-
     useEffect(() => {
         (async () => {
             await new ContextManager({
@@ -47,7 +45,7 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
     return (
         <WrapperLoggedView>
             {isPopUpVisible ? (
-                <FilterPopUp setIsPopUpVisible={setIsPopUpVisible} />
+                <FilterPopUp setIsPopUpVisible={setIsPopUpVisible}/>
             ) : null}
             <Box
                 sx={{
@@ -79,14 +77,18 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 cursor: 'pointer',
+                                borderBottom: `${
+                                    location.pathname === '/hr/available' ? '2px solid red' : '2px solid transparent'
+                                }`,
                             }}
                         >
                             <Typography
                                 sx={{
                                     color: 'white',
                                 }}
-                                onClick={() =>
-                                    navigate('/hr/available', { replace: true })
+                                onClick={() => {
+                                    navigate('/hr/available', {replace: true});
+                                }
                                 }
                             >
                                 Dostępni kursanci
@@ -100,9 +102,13 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 cursor: 'pointer',
+                                borderBottom: `${
+                                    location.pathname === '/hr/interview' ? '2px solid red' : '2px solid transparent'
+                                }`,
                             }}
-                            onClick={() =>
-                                navigate('/hr/interview', { replace: true })
+                            onClick={() => {
+                                navigate('/hr/interview', {replace: true})
+                            }
                             }
                         >
                             <Typography
@@ -154,7 +160,7 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
                                     size="small"
                                 />
                             </Box>
-                            <Box />
+                            <Box/>
                         </Box>
                         <Box
                             sx={{
@@ -165,45 +171,45 @@ const HeadHunterMain: FC<Props> = ({ children }) => {
                         >
                             {location.pathname === '/hr/available' && (
                                 <Box sx={{
-                                    display:'grid',
-                                    gridTemplateColumns:'auto auto',
-                                    gap:'40px',
-                                    justifyItems:'center',
-                                    alignItems:'center'
+                                    display: 'grid',
+                                    gridTemplateColumns: 'auto auto',
+                                    gap: '40px',
+                                    justifyItems: 'center',
+                                    alignItems: 'center'
                                 }}>
-                                                      <Button
-                                    sx={{
+                                    <Button
+                                        sx={{
+                                            background: '#1E1E1F',
+                                            cursor: 'pointer',
+                                        }}
+                                        onClick={handleFilterButton}
+                                        variant="contained"
+                                    >
+                                        {' '}
+                                        <FontAwesomeIcon icon={faFilter}/>{' '}
+                                        <Typography
+                                            sx={{
+                                                paddingLeft: '5px',
+                                            }}
+                                        >
+                                            Filtrowanie
+                                        </Typography>
+                                    </Button>
+                                    <Button sx={{
                                         background: '#1E1E1F',
                                         cursor: 'pointer',
                                     }}
-                                    onClick={handleFilterButton}
-                                    variant="contained"
-                                >
-                                    {' '}
-                                    <FontAwesomeIcon icon={faFilter} />{' '}
-                                    <Typography
-                                        sx={{
-                                            paddingLeft: '5px',
-                                        }}
-                                    >
-                                        Filtrowanie
-                                    </Typography>
-                                </Button>
-                                <Button   sx={{
-                                    background: '#1E1E1F',
-                                    cursor: 'pointer',
-                                }}
-                                onClick={handleClearFiltr}
-                                variant="contained">
-                                 Wyczyść
-                                </Button>
+                                            onClick={handleClearFiltr}
+                                            variant="contained">
+                                        Wyczyść
+                                    </Button>
                                 </Box>
                             )}
                         </Box>
                     </Box>
                     <Box>{children}</Box>
                     {location.pathname === '/hr/available' ? <PaginationBarAvailable/> : null}
-                    
+
                 </Box>
             </Box>
         </WrapperLoggedView>

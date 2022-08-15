@@ -18,39 +18,6 @@ import { useNavigate, useLocation, Navigate, Link } from 'react-router-dom';
 import { AuthRouter } from '../../utils/AuthRouter';
 import './CVView.css';
 
-const tempData = {
-    name: 'Anna Kowalska',
-    github: 'annakowalska',
-    phone: '+48 566 072 227',
-    email: 'annakowalska@gmail.com',
-    info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur doloremque eos et ex excepturi ipsam laudantium maxime nam perferendis porro',
-    courseRate: 5,
-    courseActivityRate: 3,
-    codeRate: 4,
-    scrumRate: 5,
-    place: 'biuro',
-    city: 'Warszawa',
-    contract: 'umowa o pracę',
-    salary: 8000,
-    agreement: true,
-    experience: '6 miesięcy',
-    education:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur doloremque eos et ex excepturi ipsam laudantium maxime nam perferendis porro Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur doloremque eos et ex excepturi ipsam laudantium maxime nam perferendis porro Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur doloremque eos et ex excepturi ipsam laudantium maxime nam perferendis porro',
-    courses:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur doloremque eos et ex excepturi ipsam laudantium maxime nam perferendis porro, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur doloremque eos et ex excepturi ipsam laudantium maxime nam perferendis porro',
-    profExperience:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur doloremque eos et ex excepturi ipsam laudantium maxime nam perferendis porro, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur doloremque eos et ex excepturi ipsam laudantium maxime nam perferendis porro, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur doloremque eos et ex excepturi ipsam laudantium maxime nam perferendis porro, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur doloremque eos et ex excepturi ipsam laudantium maxime nam perferendis porro',
-    portfolioLink: 'https://loremipsum/dolor/sit/ament',
-    scrumLinks: [
-        'https://loremipsum/scrum/sit/ament/front',
-        'https://loremipsum/scrum/sit/ament/back',
-    ],
-    passLinks: [
-        'https://loremipsum/dolor/sit/ament/front',
-        'https://loremipsum/dolor/sit/ament/back',
-    ],
-};
-
 // function to color stars relates to rating
 const colorStars = (rate: number) => {
     return [...Array(5)].map((icon: IconDefinition, i: number) => {
@@ -389,7 +356,7 @@ export const CVView = () => {
                             </div>
                             <div className="cv__main-bio__content">
                                 <div className="cv__main-bio__content__scrum">
-                                    {JSON.parse(student.bonusProjectUrls).map(
+                                    {student.bonusProjectUrls && JSON.parse(student.bonusProjectUrls).map(
                                         (link: string, i: number) => (
                                             <a
                                                 href={link}
