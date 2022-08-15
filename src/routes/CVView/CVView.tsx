@@ -389,7 +389,7 @@ export const CVView = () => {
                             </div>
                             <div className="cv__main-bio__content">
                                 <div className="cv__main-bio__content__scrum">
-                                    {student.bonusProjectUrls?.split(",").map(
+                                    {JSON.parse(student.bonusProjectUrls).map(
                                         (link: string, i: number) => (
                                             <a
                                                 href={link}
