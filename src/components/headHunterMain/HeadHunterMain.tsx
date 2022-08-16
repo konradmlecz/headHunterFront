@@ -154,9 +154,9 @@ const HeadHunterMain: FC<Props> = ({children}) => {
                                     sx={{
                                         border: 'none',
                                         background: '#1E1E1F',
-                                        color: 'white',
                                         outline: 'none',
                                     }}
+                                    inputProps={{ style: { color: "#7E7E7E" } }}
                                     size="small"
                                 />
                             </Box>
