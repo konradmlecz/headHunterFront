@@ -1,7 +1,7 @@
 import React, {FormEvent, useEffect, useState} from 'react'
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 import {Global} from '../../context/store';
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {expectedContractType, expectedTypeWork, Student} from "../../types/global-types";
 import {ContextManager} from "../../context/ContextManager";
 import Button from '@mui/material/Button';
@@ -11,11 +11,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import PhoneInput from 'react-phone-number-input/input'
 import {adress} from "../../constant/setting";
+import {AuthRouter} from "../../utils/AuthRouter";
 import "./StudentView.css";
 
 function UserView() {
     const {dispatchGlobalContext, globalState} = React.useContext(Global);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [user, setUser] = useState<Student>(
         {
@@ -90,7 +92,8 @@ function UserView() {
 
     useEffect(() => {
         (async () => {
-            if (globalState.user.role !== "student") navigate("/login", {replace: true});
+            new AuthRouter({navigate: navigate, location: location, state: globalState}).check();
+
             const res = await fetch(`${adress}/student/profile`, {
                 method: 'GET',
                 credentials: 'include',
@@ -257,7 +260,8 @@ function UserView() {
                             onChange={e => updateUser("expectedSalary", e.target.value)}
                         />
                         <label>Zgoda na odbycie bezpłatnych praktyk/stażu*</label>
-                        <select required={true} onChange={e => updateUser("canTakeApprenticeship", Number(e.target.value))}>
+                        <select required={true}
+                                onChange={e => updateUser("canTakeApprenticeship", Number(e.target.value))}>
                             <option value="" selected disabled hidden>Wybierz</option>
                             <option value="1">Tak</option>
                             <option value="0">Nie</option>
