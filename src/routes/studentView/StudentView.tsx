@@ -9,6 +9,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
+import PhoneInput from 'react-phone-number-input/input'
 import {adress} from "../../constant/setting";
 import "./StudentView.css";
 
@@ -19,7 +20,7 @@ function UserView() {
     const [user, setUser] = useState<Student>(
         {
             email: '',
-            phone: 0,
+            phone: '',
             firstName: '',
             lastName: '',
             githubUsername: '',
@@ -85,7 +86,6 @@ function UserView() {
         dispatchGlobalContext({
             type: 'CLEAR_USER',
         });
-
     }
 
     useEffect(() => {
@@ -165,12 +165,11 @@ function UserView() {
                             maxLength={255}
                             onChange={e => updateUser("email", e.target.value)}
                         />
-                        <label>Numer telefonu (format xxx xxx xxx)</label>
-                        <input
-                            type="tel"
-                            pattern="[0-9]{3} [0-9]{3} [0-9]{3}"
-                            placeholder={String(user.phone)}
-                            onChange={e => updateUser("phone", e.target.value)}
+                        <label>Numer telefonu</label>
+                        <PhoneInput
+                            country="PL"
+                            value={user.phone}
+                            onChange={(value) => updateUser("phone", value)}
                         />
                         <label>Imię*</label>
                         <input

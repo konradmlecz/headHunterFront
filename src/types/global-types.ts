@@ -28,7 +28,7 @@ export enum expectedContractType {
 export interface Student {
     id?: string;
     email: string;
-    phone: number;
+    phone: string;
     firstName: string;
     lastName: string;
     githubUsername: string;

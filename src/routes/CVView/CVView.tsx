@@ -16,6 +16,7 @@ import { Global } from '../../context/store';
 import { ContextManager } from '../../context/ContextManager';
 import { useNavigate, useLocation, Navigate, Link } from 'react-router-dom';
 import { AuthRouter } from '../../utils/AuthRouter';
+import { formatPhoneNumberIntl } from 'react-phone-number-input'
 import './CVView.css';
 
 // function to color stars relates to rating
@@ -124,7 +125,7 @@ export const CVView = () => {
                                 <FontAwesomeIcon
                                     icon={phoneReceiverIconDefinition}
                                 />{' '}
-                                {student.phone}
+                                {formatPhoneNumberIntl(String(student.phone))}
                             </p>
                             <p className="cv__short-bio__info__email">
                                 <FontAwesomeIcon
