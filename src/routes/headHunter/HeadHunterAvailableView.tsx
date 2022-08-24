@@ -14,11 +14,10 @@ function HeadHunterAvailableView() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    console.log(globalState);
+  
     useEffect(() => {
         new AuthRouter({navigate: navigate, location: location, state: globalState}).check();
         (async () => {
-
             await new ContextManager({dispatch: dispatchGlobalContext, state: globalState}).ubdateStudents()
         })()
     }, [])

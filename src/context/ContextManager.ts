@@ -162,4 +162,31 @@ export class ContextManager {
         }
         
     }
+
+    async handleAv(parametr:string){
+            const data = await getData({ link: 'student/search-available', parametr:parametr });
+            if (data.isSuccess) {
+                this.dispatch({
+                    type: 'SET_STUDENTS_AVAILABLE',
+                    payload: {
+                        studentsAvailable: data.data,
+                        availableTotalPages: data.totalPages,
+                        availableActualPage: 1
+                    },
+                });
+            }
+    }
+    async handleInt(parametr:string){
+        const data = await getData({ link: 'student/search-interview', parametr:parametr });
+        if (data.isSuccess) {
+            this.dispatch({
+                type: 'SET_STUDENTS_INTERVIEW',
+                payload: {
+                    studentsInteview: data.data,
+                    interviewTotalPages: data.totalPages,
+                    interviewActualPage: 1
+                },
+            });
+        }
+}
 }

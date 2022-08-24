@@ -1,11 +1,9 @@
 import React, {FC, useEffect, useState, ReactNode} from 'react';
-import {Box, Typography, TextField, Button, Pagination} from '@mui/material';
+import {Box, Typography, TextField, Button} from '@mui/material';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 import {Global} from '../../context/store';
 import {useNavigate, useLocation} from 'react-router-dom';
 import PaginationBarAvailable from '../paginationBar/PaginationBarAvailable';
-import ListAvailable from '../../components/listAvailable/ListAvailable';
-import ListTalk from '../../components/listTalk/ListTalk';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFilter} from '@fortawesome/free-solid-svg-icons';
 import {FilterPopUp} from '../../routes/headHunter/FilterPopUp/FilterPopUp';
@@ -21,6 +19,7 @@ const HeadHunterMain: FC<Props> = ({children}) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
+    // const [search, setSearch] = useState<string>('');
 
     const handleFilterButton = () => {
         setIsPopUpVisible(true);
@@ -32,7 +31,18 @@ const HeadHunterMain: FC<Props> = ({children}) => {
             dispatch: dispatchGlobalContext,
         }).clearFilter();
     };
-
+    const handleAv = async (e: any)=>{
+        await new ContextManager({
+            dispatch: dispatchGlobalContext,
+            state: globalState,
+        }).handleAv(e.target.value);
+    }
+    const handleInt = async (e: any)=>{
+        await new ContextManager({
+            dispatch: dispatchGlobalContext,
+            state: globalState,
+        }).handleInt(e.target.value);
+    }
     useEffect(() => {
         (async () => {
             await new ContextManager({
@@ -148,7 +158,7 @@ const HeadHunterMain: FC<Props> = ({children}) => {
                                     alignItems: 'center',
                                 }}
                             >
-                                <TextField
+                                    <TextField
                                     id="outlined-size-small"
                                     placeholder="Szukaj"
                                     sx={{
@@ -158,6 +168,7 @@ const HeadHunterMain: FC<Props> = ({children}) => {
                                     }}
                                     inputProps={{ style: { color: "#7E7E7E" } }}
                                     size="small"
+                                    onChange={location.pathname === '/hr/available' ? handleAv : handleInt}
                                 />
                             </Box>
                             <Box/>

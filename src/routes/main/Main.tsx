@@ -17,7 +17,7 @@ function Main() {
     React.useEffect(() => {
         (async () => {
             const response = await auth();
-            console.log(response);
+
             if (response.isSuccess) {
                 dispatchGlobalContext({
                     type: 'SET_USER',
