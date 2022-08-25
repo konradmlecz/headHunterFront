@@ -1,5 +1,5 @@
-import React, {FC, useEffect, useState, ReactNode} from 'react';
-import {Box, Typography, TextField, Button} from '@mui/material';
+import React, {FC, useEffect, useState, ReactNode, SyntheticEvent} from 'react';
+import {Box, Typography, TextField, Button, FormControl} from '@mui/material';
 import WrapperLoggedView from '../../components/wrapperLoggedView/WrapperLoggedView';
 import {Global} from '../../context/store';
 import {useNavigate, useLocation} from 'react-router-dom';
@@ -19,7 +19,7 @@ const HeadHunterMain: FC<Props> = ({children}) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isPopUpVisible, setIsPopUpVisible] = useState<boolean>(false);
-    // const [search, setSearch] = useState<string>('');
+    const [search, setSearch] = useState<string>('');
 
     const handleFilterButton = () => {
         setIsPopUpVisible(true);
@@ -31,17 +31,17 @@ const HeadHunterMain: FC<Props> = ({children}) => {
             dispatch: dispatchGlobalContext,
         }).clearFilter();
     };
-    const handleAv = async (e: any)=>{
+    const handleAv = async () => {
         await new ContextManager({
             dispatch: dispatchGlobalContext,
             state: globalState,
-        }).handleAv(e.target.value);
+        }).handleAv(search);
     }
-    const handleInt = async (e: any)=>{
+    const handleInt = async () => {
         await new ContextManager({
             dispatch: dispatchGlobalContext,
             state: globalState,
-        }).handleInt(e.target.value);
+        }).handleInt(search);
     }
     useEffect(() => {
         (async () => {
@@ -51,6 +51,17 @@ const HeadHunterMain: FC<Props> = ({children}) => {
             }).ubdateStudents();
         })();
     }, []);
+
+    const handleSubmit = async (e: SyntheticEvent) => {
+        e.preventDefault();
+        if(search === ''){
+            await new ContextManager({
+                dispatch: dispatchGlobalContext,
+                state: globalState,
+            }).ubdateStudents();
+        }
+        location.pathname === '/hr/available' ? await handleAv() : await handleInt();
+    };
 
     return (
         <WrapperLoggedView>
@@ -151,26 +162,29 @@ const HeadHunterMain: FC<Props> = ({children}) => {
                                 gridTemplateRows: 'auto',
                             }}
                         >
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                    <TextField
-                                    id="outlined-size-small"
-                                    placeholder="Szukaj"
+                            <form
+                                onSubmit={handleSubmit}>
+                                <Box
                                     sx={{
-                                        border: 'none',
-                                        background: '#1E1E1F',
-                                        outline: 'none',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
                                     }}
-                                    inputProps={{ style: { color: "#7E7E7E" } }}
-                                    size="small"
-                                    onChange={location.pathname === '/hr/available' ? handleAv : handleInt}
-                                />
-                            </Box>
+                                >
+                                    <TextField
+                                        id="outlined-size-small"
+                                        placeholder="Szukaj"
+                                        sx={{
+                                            border: 'none',
+                                            background: '#1E1E1F',
+                                            outline: 'none',
+                                        }}
+                                        inputProps={{style: {color: "#7E7E7E"}}}
+                                        size="small"
+                                        onChange={e => setSearch(e.target.value)}
+                                    />
+                                </Box>
+                            </form>
                             <Box/>
                         </Box>
                         <Box
