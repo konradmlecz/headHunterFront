@@ -62,7 +62,7 @@ export const Login = () => {
                                 color: 'red',
                             }}
                         >
-                            Email albo łasło są nieprawidłowe
+                            Email albo hasło są nieprawidłowe.
                         </Typography>
                     </Box>
                 )}
@@ -81,7 +81,7 @@ export const Login = () => {
                     required={true}
                 />
                 <a href="" className="login-wrapper__form__link-forgot">
-                    Zapomniałeś hasła?
+                    <a href="/user/reminderPassword"> Zapomniałeś hasła?</a>
                 </a>
                 <div className="login-wrapper__form__bottom-form-line">
                     <p className="login-wrapper__form__register-label">
